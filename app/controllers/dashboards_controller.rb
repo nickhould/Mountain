@@ -133,7 +133,7 @@ class DashboardsController < ApplicationController
   def genarate_keys_for_chart(data_hash)
     formated_hash = []
     data_hash.each do |key, value|
-      formated_hash << key.to_date
+      formated_hash << key
     end
     formated_hash.reverse
   end

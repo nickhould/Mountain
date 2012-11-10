@@ -1,54 +1,33 @@
 <p id="notice"><%= notice %></p>
 
-<%= render 'audience' %>
+<div class="row-fluid">
+	<%= render 'audience' %>
+</div>
 
+<br>
 
+</div class="row-fluid">
+	<%= render 'audiencenumbers' %>
+</div>
 
-<p>
+<br>
+
+<div class="row-fluid">
+	<%= render 'trafficsources' %>
+	<%= render 'topcontent' %>
+</div>
+
+<!-- <p>
 	<b>Name:</b>
 	<%= @dashboard.name %><br>
 	<h2>Visits for the last 30 days</h2>
 	<% @visits.each do |key, value| %>
 	<%= key %>: <%= value %></br>
 	<% end %>
-</p>
-
-<table summary="Traffic Sources for Your Website" class="table table-striped">  
-  <caption>Your Top Traffic Sources</caption>  
-  <tr>  
-    <th>Source</th>  
-    <th>Number of Visitors</th>    
-  </tr> 
-<% @sources.each do |source| %> 
-  <tr>  
-    <td><%= source.source %></td>  
-    <td><%= source.visits %></td>   
-  </tr>
-<% end %>  
-</table>
+</p> -->
 
 
-<table>
 
-<h2>Top 10 pages</h2>
-<ol>
-<% @pages.each do |page| %>
-	<li><%= page.page_title %>: <%= page.pageviews %></li>
-<% end %>
-</ol>
-
-<h2>All profiles</h2>
-<% @profiles.each do |profile| %>
-<%= profile.title %>: <%= profile.id %><br>
-<% end %>
-
-<h2>All Web Property ID</h2>
-<% @web_properties.each do |property| %>
-<%= property.account_id %>: <%= property.id %><br>
-<% end %>
-
-
-<%= render 'chart' %>
 
 <%= link_to 'Edit', edit_dashboard_path(@dashboard) %> |
 <%= link_to 'Back', dashboards_path %>

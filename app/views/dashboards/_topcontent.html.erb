@@ -14,7 +14,7 @@
 				<% hostname = page.hostname %>
 				<% pagepath = page.page_path %>
 				<!-- Will not work for https:// look at google api for possible solution -->
-				<td><%= link_to truncate(page.page_title, :length => 70 ), "http://#{hostname}" + "#{pagepath}", :target => :_blank %></td>
+				<td><%= link_to truncate(page.page_title, :line_width => 60 ), "http://#{hostname}" + "#{pagepath}" %></td>
 
 			</tr>
 		<% end %>

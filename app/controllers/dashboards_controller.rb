@@ -22,7 +22,8 @@ class DashboardsController < ApplicationController
     @profiles = ga.profiles
     @web_properties = ga.web_properties
 
-
+    @visits_chart = genarate_values_for_chart(@visits)
+    @date_chart = genarate_keys_for_chart(@visits)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -127,10 +128,18 @@ class DashboardsController < ApplicationController
   end
 
 
-  def genarate_string_for_chart(data_hash)
+  def genarate_keys_for_chart(data_hash)
     formated_hash = []
     data_hash.each do |key, value|
-      formated_hash << [key.day, value] 
+      formated_hash << key.to_date
+    end
+    formated_hash.reverse
+  end
+
+  def genarate_values_for_chart(data_hash)
+    formated_hash = []
+    data_hash.each do |key, value|
+      formated_hash << value
     end
     formated_hash.reverse
   end

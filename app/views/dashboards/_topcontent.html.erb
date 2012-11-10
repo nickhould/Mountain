@@ -1,14 +1,23 @@
-<div class="span6 offset1">
-	<table>
+<div class="span6">
 
+	<table summary="Your Websites Top Content" class="table"> 
 	<h2>Top Content</h2>
-		<ol>
-		<% @pages.each do |page| %>
-			<li><%= page.page_title %>: <%= page.pageviews %></li>
-		<% end %>
-		</ol>
 
-		<h2>All profiles</h2>
+		<tr>
+			<th>Views</th>
+			<th>Title</th>
+		<tr>
+
+		<% @pages.each do |page| %>
+
+			<tr>
+				<td><%= page.pageviews %></td>
+				<td><%= truncate(page.page_title, :length => 70 )%></td>
+			</tr>
+		<% end %>
+	</table>
+
+<!-- 		<h2>All profiles</h2>
 		<% @profiles.each do |profile| %>
 		<%= profile.title %>: <%= profile.id %><br>
 		<% end %>
@@ -16,7 +25,5 @@
 		<h2>All Web Property ID</h2>
 		<% @web_properties.each do |property| %>
 		<%= property.account_id %>: <%= property.id %><br>
-		<% end %>
-
-	</table>
+		<% end %> -->
 </div>

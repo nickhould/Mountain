@@ -12,10 +12,10 @@
 			<tr>
 				<% hostname = page.hostname %>
 				<% pagepath = page.page_path %>
-				<td><%= page.pageviews %></td>
 
 				<!-- Will not work for https:// look at google api for possible solution -->
 				<td><%= link_to truncate(page.page_title, :length => 70 ), "http://#{hostname}" + "#{pagepath}", :target => :_blank %></td>
+				<td><%= page.pageviews %></td>
 
 			</tr>
 		<% end %>

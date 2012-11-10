@@ -24,3 +24,10 @@ class Pages
 	metrics :pageviews
 	dimensions :pagetitle, :hostname, :page_path
 end
+
+
+class Pageviews
+	extend Garb::Model
+
+	metrics :pageviews
+end

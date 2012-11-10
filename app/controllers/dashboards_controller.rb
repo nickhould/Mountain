@@ -20,8 +20,8 @@ class DashboardsController < ApplicationController
     @visit_summary = ga.per_day(:visits)
     @sources = ga.profile.sources.sort_by{|e| e.visits.to_i}.reverse.take(10)
     @pages = top_pages
-    @profiles = ga.profiles
-    @web_properties = ga.web_properties
+    @snap_visits = ga.profile.visits.first
+    @snap_pageviews = ga.profile.pageviews.first
     
 
     @visits_chart = genarate_values_for_chart(@visits)

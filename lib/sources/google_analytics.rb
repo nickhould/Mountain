@@ -14,7 +14,7 @@ class GoogleAnalytics
 		Garb::Management::Profile.all
 	end
 
-	def profile(web_property_id="UA-23645331-1")
+	def profile(web_property_id="UA-27991223-1")
 		profile = Garb::Management::Profile.all.detect do |p| 
 			p.web_property_id == web_property_id
 		end

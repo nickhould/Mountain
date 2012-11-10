@@ -15,8 +15,12 @@ class DashboardsController < ApplicationController
   def show
     @dashboard = Dashboard.find(params[:id])
     ga = GoogleAnalytics.new
-    #@visits = ga.visits_by_day
-    @visits = ga.per_day(:visits)
+    #@visits = ga.per_day(:visits)
+    @visits = fake_data
+    @sources = ga.profile.sources.sort_by{|e| e.visits.to_i}.reverse.take(10)
+    @pages = ga.profile.pages.sort_by{|e| e.pageviews.to_i}.reverse.take(10)
+    @profiles = ga.profiles
+    @web_properties = ga.web_properties
 
 
 
@@ -86,5 +90,40 @@ class DashboardsController < ApplicationController
     end
   end
 
+  private
+
+  #Delete me in production
+  def fake_data
+    data = { "Fri, 09 Nov 2012"=>3, 
+            "Thu, 08 Nov 2012"=>2, 
+            "Wed, 07 Nov 2012"=>2, 
+            "Tue, 06 Nov 2012"=>2, 
+            "Mon, 05 Nov 2012"=>0, 
+            "Sun, 04 Nov 2012"=>0, 
+            "Sat, 03 Nov 2012"=>0, 
+            "Fri, 02 Nov 2012"=>0, 
+            "Thu, 01 Nov 2012"=>4, 
+            "Wed, 31 Oct 2012"=>1, 
+            "Tue, 30 Oct 2012"=>9, 
+            "Mon, 29 Oct 2012"=>2, 
+            "Sun, 28 Oct 2012"=>0, 
+            "Sat, 27 Oct 2012"=>1, 
+            "Fri, 26 Oct 2012"=>0, 
+            "Thu, 25 Oct 2012"=>3, 
+            "Wed, 24 Oct 2012"=>5, 
+            "Tue, 23 Oct 2012"=>14, 
+            "Mon, 22 Oct 2012"=>60, 
+            "Sun, 21 Oct 2012"=>2, 
+            "Sat, 20 Oct 2012"=>1, 
+            "Fri, 19 Oct 2012"=>4, 
+            "Thu, 18 Oct 2012"=>3, 
+            "Wed, 17 Oct 2012"=>2, 
+            "Tue, 16 Oct 2012"=>0, 
+            "Mon, 15 Oct 2012"=>4, 
+            "Sun, 14 Oct 2012"=>5, 
+            "Sat, 13 Oct 2012"=>4, 
+            "Fri, 12 Oct 2012"=>20, 
+            "Thu, 11 Oct 2012"=>68 } 
+  end
 
 end

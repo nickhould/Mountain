@@ -10,7 +10,7 @@
 </p>
 
 <table summary="Traffic Sources for Your Website" class="table table-striped">  
-  <caption>Your Top Traffic Sources</caption>  
+  <caption>Top 10 Traffic Sources</caption>  
   <tr>  
     <th>Source</th>  
     <th>Number of Visitors</th>    
@@ -24,14 +24,19 @@
 </table>
 
 
-<table>
-
-<h2>Top 10 pages</h2>
-<ol>
+<table summary="The most visited pages on your website" class="table table-striped">  
+  <caption>Top 10 pages</caption>  
+  <tr>  
+    <th>Page Title</th>  
+    <th>Number of Views</th>    
+  </tr> 
 <% @pages.each do |page| %>
-	<li><%= page.page_title %>: <%= page.pageviews %></li>
-<% end %>
-</ol>
+  <tr>  
+    <td><%= page.page_title %></td>  
+    <td><%= page.pageviews %></td>   
+  </tr>
+<% end %>  
+</table>
 
 <h2>All profiles</h2>
 <% @profiles.each do |profile| %>

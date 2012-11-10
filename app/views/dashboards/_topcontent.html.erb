@@ -2,11 +2,19 @@
 	<table>
 
 	<h2>Top Content</h2>
-		<ol>
+	<table class="table">
+		<tr>
+			<th>Page title</th>
+			<th>Pageviews</th>
+		</tr>
 		<% @pages.each do |page| %>
-			<li><%= page.page_title %>: <%= page.pageviews %></li>
+		<tr>
+			<td><%= page.page_title %></td>
+			<td><%= page.pageviews %></td>
+		</tr>
 		<% end %>
-		</ol>
+	</table>
+
 
 		<h2>All profiles</h2>
 		<% @profiles.each do |profile| %>

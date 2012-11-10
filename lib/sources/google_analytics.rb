@@ -40,4 +40,7 @@ class GoogleAnalytics
 		end
 		results
 	end
+
+	
+  
 end

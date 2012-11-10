@@ -11,3 +11,10 @@ class Visits
 
   metrics :visits
 end
+
+class Page
+  extend Garb::Model
+
+  dimensions :pageTitle
+  metrics :pageviews  
+end

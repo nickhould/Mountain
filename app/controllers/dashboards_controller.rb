@@ -22,7 +22,8 @@ class DashboardsController < ApplicationController
     @pages = top_pages
     @snap_visits = ga.profile.visits.first
     @snap_pageviews = ga.profile.pageviews.first
-    
+    @snap_exits = ga.profile.exits.first
+    @snap_visitors = ga.profile.visitors.first
 
     @visits_chart = genarate_values_for_chart(@visits)
     @date_chart = genarate_keys_for_chart(@visits)

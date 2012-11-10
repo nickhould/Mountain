@@ -1,9 +1,7 @@
 <div class="span6">
 
-	<table summary="Your Websites Top Content" class="table"> 
+	<table summary="Your Websites Top Content" class="table">
 	<h2>Top Content</h2>
-
-	<table class="table">
 		<tr>
 			<th>Views</th>
 			<th>Title</th>
@@ -13,18 +11,14 @@
 
 			<tr>
 				<td><%= page.pageviews %></td>
-				<td><%= truncate(page.page_title, :length => 70 )%></td>
+				<% hostname = page.hostname %>
+				<% pagepath = page.page_path %>
+				<!-- Will not work for https:// look at google api for possible solution -->
+				<td><%= link_to truncate(page.page_title, :length => 70 ), "http://#{hostname}" + "#{pagepath}", :target => :_blank %></td>
+
 			</tr>
 		<% end %>
 	</table>
 
-<!-- 		<h2>All profiles</h2>
-		<% @profiles.each do |profile| %>
-		<%= profile.title %>: <%= profile.id %><br>
-		<% end %>
-
-		<h2>All Web Property ID</h2>
-		<% @web_properties.each do |property| %>
-		<%= property.account_id %>: <%= property.id %><br>
-		<% end %> -->
 </div>
+

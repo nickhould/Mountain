@@ -21,6 +21,6 @@ end
 class Pages
 	extend Garb::Model
 
-	metrics :pageViews
-	dimensions :pageTitle
+	metrics :pageviews
+	dimensions :pagetitle, :hostname, :page_path
 end

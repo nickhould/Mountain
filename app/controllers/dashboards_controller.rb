@@ -15,12 +15,14 @@ class DashboardsController < ApplicationController
   def show
     @dashboard = Dashboard.find(params[:id])
     ga = GoogleAnalytics.new
-    #visits = ga.per_day(:visits)
-    @visits = fake_data
+    #@visits = ga.per_day(:visits)
+    @visits = fake_data 
+    @visit_summary = ga.per_day(:visits)
     @sources = ga.profile.sources.sort_by{|e| e.visits.to_i}.reverse.take(10)
-    @pages = ga.profile.pages.sort_by{|e| e.pageviews.to_i}.reverse.take(10)
+    @pages = top_pages
     @profiles = ga.profiles
     @web_properties = ga.web_properties
+    
 
     @visits_chart = genarate_values_for_chart(@visits)
     @date_chart = genarate_keys_for_chart(@visits)

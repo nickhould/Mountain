@@ -1,6 +1,6 @@
 <div class="span6">
 
-	<table summary="Your Websites Top Content" class="table table-striped"> 
+	<table summary="Your Websites Top Content" class="table"> 
 	<h2>Top Content</h2>
 
 		<tr>
@@ -15,7 +15,8 @@
 				<% hostname = page.hostname %>
 				<% pagepath = page.page_path %>
 				<!-- Will not work for https:// look at google api for possible solution -->
-				<td><%= link_to page.page_title, "http://#{hostname}" + "#{pagepath}" %></td>
+				<td><%= link_to truncate(page.page_title, :length => 70 ), "http://#{hostname}" + "#{pagepath}" %></td>
+
 			</tr>
 		<% end %>
 	</table>

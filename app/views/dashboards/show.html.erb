@@ -16,16 +16,7 @@
 	<%= render 'topcontent' %>
 </div>
 
-\<!--
-<p>
-	<b>Name:</b>
-	<%= @dashboard.name %><br>
-	<h2>Visits for the last 30 days</h2>
-	<% @visits.each do |key, value| %>
-	<%= key %>: <%= value %></br>
-	<% end %>
-</p>
--->
+
 
 <%= link_to 'Edit', edit_dashboard_path(@dashboard) %> |
 <%= link_to 'Back', dashboards_path %>

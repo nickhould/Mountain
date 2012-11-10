@@ -1,0 +1,29 @@
+body {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  color: #333333;
+  background-color: #ffffff;
+  padding: 80px;
+}
+
+.navbar .brand {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 600;
+	display: block;
+	float: left;
+	padding: 20px 20px 20px;
+	margin-left: -20px;
+	font-size: 24px;
+	color: #fff;
+	text-shadow: none;
+}
+
+.navbar-inner {
+  min-height: 60px;
+  padding-right: 20px;
+  padding-left: 20px;
+  background-color: #3d3d3d; /* background color will be black for all browsers */
+  background-image: none;
+  background-repeat: no-repeat;
+  width: 100%;
+}

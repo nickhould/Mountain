@@ -1,12 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
-  <%= @dashboard.name %><br>
-  <h2>Visits for the last 30 days</h2>
-  <% @visits.each do |key, value| %>
-  <%= key %>: <%= value %></br>
-  <% end %>
+	<b>Name:</b>
+	<%= @dashboard.name %><br>
+	<h2>Visits for the last 30 days</h2>
+	<% @visits.each do |key, value| %>
+	<%= key %>: <%= value %></br>
+	<% end %>
 </p>
 
 <h2>Sources by visit</h2>
@@ -32,3 +32,4 @@
 
 <%= link_to 'Edit', edit_dashboard_path(@dashboard) %> |
 <%= link_to 'Back', dashboards_path %>
+

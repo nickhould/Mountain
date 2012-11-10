@@ -7,8 +7,7 @@ Dashboardly::Application.routes.draw do
   match '/auth/failure', to: redirect('/')
   get '/session/end', to: 'sessions#destroy'
 
-
-
+end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

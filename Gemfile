@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.8'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'will_paginate', '3.0.3'
-gem 'jquery-rails', '2.0.2'
+#gem 'jquery-rails', '2.0.2'
 gem 'garb'
 
 group :development, :test do

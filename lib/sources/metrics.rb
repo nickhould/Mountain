@@ -5,16 +5,22 @@ class Exits
   dimensions :page_path
 end
 
-
 class Visits
   extend Garb::Model
 
   metrics :visits
 end
 
-class Page
+class Sources
   extend Garb::Model
 
-  dimensions :pageTitle
-  metrics :pageviews  
+  metrics :visits
+  dimensions :source
+end
+
+class Pages
+	extend Garb::Model
+
+	metrics :pageViews
+	dimensions :pageTitle
 end

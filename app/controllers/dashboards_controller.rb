@@ -17,7 +17,14 @@ class DashboardsController < ApplicationController
     ga = GoogleAnalytics.new
     #@visits = ga.per_day(:visits)
     @visits = fake_data
+<<<<<<< HEAD
     @top_pages = ga.pages(:pageviews, :pageTitle)
+=======
+    @sources = ga.profile.sources
+    @pages = ga.profile.pages
+    @profiles = ga.profiles
+    @web_properties = ga.web_properties
+>>>>>>> 981be90e4dd4806d910708b98d4a1f743b1e196b
 
 
     respond_to do |format|

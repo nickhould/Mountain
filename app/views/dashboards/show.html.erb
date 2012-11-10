@@ -1,14 +1,35 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
-  <%= @dashboard.name %><br>
-  <h2>Visits for the last 30 days</h2>
-  <% @visits.each do |key, value| %>
-  <%= key %>: <%= value %></br>
-  <% end %>
+	<b>Name:</b>
+	<%= @dashboard.name %><br>
+	<h2>Visits for the last 30 days</h2>
+	<% @visits.each do |key, value| %>
+	<%= key %>: <%= value %></br>
+	<% end %>
 </p>
 
+<h2>Sources by visit</h2>
+<% @sources.each do |source| %>
+	<%= source.source %>: <%= source.visits %><br>
+<% end %>
+
+
+<h2>Top 10 pages</h2>
+<% @pages.each do |page| %>
+	<%= page.page_title %>: <%= page.pageviews %><br>
+<% end %>
+
+<h2>All profiles</h2>
+<% @profiles.each do |profile| %>
+<%= profile.title %>: <%= profile.id %><br>
+<% end %>
+
+<h2>All Web Property ID</h2>
+<% @web_properties.each do |property| %>
+<%= property.account_id %>: <%= property.id %><br>
+<% end %>
 
 <%= link_to 'Edit', edit_dashboard_path(@dashboard) %> |
 <%= link_to 'Back', dashboards_path %>
+

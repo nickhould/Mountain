@@ -27,3 +27,16 @@ body {
   background-repeat: no-repeat;
   width: 100%;
 }
+
+.bignums {
+	font-size: 60px;
+	font-weight: bolder;
+	padding: 10px;
+	list-style: none;
+}
+
+.bignums p {
+	font-size: 20px;
+	font-weight: 400;
+	padding: 10px;
+}

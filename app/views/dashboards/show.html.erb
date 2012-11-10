@@ -16,6 +16,7 @@
 	<%= render 'topcontent' %>
 </div>
 
+\<!--
 <p>
 	<b>Name:</b>
 	<%= @dashboard.name %><br>
@@ -24,48 +25,7 @@
 	<%= key %>: <%= value %></br>
 	<% end %>
 </p>
-
-<table summary="Traffic Sources for Your Website" class="table table-striped">  
-  <caption>Top 10 Traffic Sources</caption>  
-  <tr>  
-    <th>Source</th>  
-    <th>Number of Visitors</th>    
-  </tr> 
-<% @sources.each do |source| %> 
-  <tr>  
-    <td><%= source.source %></td>  
-    <td><%= source.visits %></td>   
-  </tr>
-<% end %>  
-</table>
-
-
-<table summary="The most visited pages on your website" class="table table-striped">  
-  <caption>Top 10 pages</caption>  
-  <tr>  
-    <th>Page Title</th>  
-    <th>Number of Views</th>    
-  </tr> 
-<% @pages.each do |page| %>
-  <tr>  
-    <td><%= page.page_title %></td>  
-    <td><%= page.pageviews %></td>   
-  </tr>
-<% end %>  
-</table>
-
-<h2>All profiles</h2>
-<% @profiles.each do |profile| %>
-<%= profile.title %>: <%= profile.id %><br>
-<% end %>
-
-<h2>All Web Property ID</h2>
-<% @web_properties.each do |property| %>
-<%= property.account_id %>: <%= property.id %><br>
-<% end %>
-
-
-<%= render 'chart' %>
+-->
 
 <%= link_to 'Edit', edit_dashboard_path(@dashboard) %> |
 <%= link_to 'Back', dashboards_path %>

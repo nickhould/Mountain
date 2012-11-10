@@ -12,7 +12,10 @@
 
 			<tr>
 				<td><%= page.pageviews %></td>
-				<td><%= page.page_title %></td>
+				<% hostname = page.hostname %>
+				<% pagepath = page.page_path %>
+				<!-- Will not work for https:// look at google api for possible solution -->
+				<td><%= link_to page.page_title, "http://#{hostname}" + "#{pagepath}" %></td>
 			</tr>
 		<% end %>
 	</table>
@@ -27,3 +30,4 @@
 		<%= property.account_id %>: <%= property.id %><br>
 		<% end %> -->
 </div>
+

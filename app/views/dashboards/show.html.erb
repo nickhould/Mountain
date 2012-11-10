@@ -9,16 +9,29 @@
 	<% end %>
 </p>
 
-<h2>Sources by visit</h2>
-<% @sources.each do |source| %>
-	<%= source.source %>: <%= source.visits %><br>
-<% end %>
+<table summary="Traffic Sources for Your Website" class="table table-striped">  
+  <caption>Your Top Traffic Sources</caption>  
+  <tr>  
+    <th>Source</th>  
+    <th>Number of Visitors</th>    
+  </tr> 
+<% @sources.each do |source| %> 
+  <tr>  
+    <td><%= source.source %></td>  
+    <td><%= source.visits %></td>   
+  </tr>
+<% end %>  
+</table>
 
+
+<table>
 
 <h2>Top 10 pages</h2>
+<ol>
 <% @pages.each do |page| %>
-	<%= page.page_title %>: <%= page.pageviews %><br>
+	<li><%= page.page_title %>: <%= page.pageviews %></li>
 <% end %>
+</ol>
 
 <h2>All profiles</h2>
 <% @profiles.each do |profile| %>

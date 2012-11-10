@@ -10,15 +10,18 @@
 </p>
 
 <h2>Sources by visit</h2>
+<ol>
 <% @sources.each do |source| %>
-	<%= source.source %>: <%= source.visits %><br>
+	<li><%= source.source %>: <%= source.visits %></li>
 <% end %>
-
+</ol>
 
 <h2>Top 10 pages</h2>
+<ol>
 <% @pages.each do |page| %>
-	<%= page.page_title %>: <%= page.pageviews %><br>
+	<li><%= page.page_title %>: <%= page.pageviews %></li>
 <% end %>
+</ol>
 
 <h2>All profiles</h2>
 <% @profiles.each do |profile| %>

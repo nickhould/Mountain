@@ -2,6 +2,11 @@ Dashboardly::Application.routes.draw do
   
   resources :dashboards
 
+
+  match '/auth/:provider/callback', to: 'sessions#create'
+  match '/auth/failure', to: redirect('/')
+  get '/session/end', to: 'sessions#destroy'
+
 end
   # The priority is based upon order of creation:
   # first created -> highest priority.

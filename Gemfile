@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.8'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'will_paginate', '3.0.3'
-gem 'jquery-rails', '2.0.2'
+#gem 'jquery-rails', '2.0.2'
 gem 'garb'
 
 group :development, :test do
@@ -22,6 +22,23 @@ group :assets do
   gem 'uglifier', '1.2.3'
 end
 
+gem 'jquery-rails'
+
+gem 'omniauth-google-oauth2'
+
+gem 'certified'
+
+# To use ActiveModel has_secure_password
+# gem 'bcrypt-ruby', '~> 3.0.0'
+
+# To use Jbuilder templates for JSON
+# gem 'jbuilder'
+
+# Use unicorn as the app server
+# gem 'unicorn'
+
+# Deploy with Capistrano
+# gem 'capistrano'
 group :test do
   gem 'capybara', '1.1.2'
   gem 'factory_girl_rails', '4.1.0'

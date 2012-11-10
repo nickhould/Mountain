@@ -17,10 +17,11 @@ class DashboardsController < ApplicationController
     ga = GoogleAnalytics.new
     #@visits = ga.per_day(:visits)
     @visits = fake_data
-    @sources = ga.profile.sources
-    @pages = ga.profile.pages
+    @sources = ga.profile.sources.sort_by{|e| e.visits.to_i}.reverse.take(10)
+    @pages = ga.profile.pages.sort_by{|e| e.pageviews.to_i}.reverse.take(10)
     @profiles = ga.profiles
     @web_properties = ga.web_properties
+
 
 
     respond_to do |format|

@@ -1,37 +1,6 @@
 $(document).ready(function(){
 		
-	$("#username").focus(function() {
-		
-		$(this).parent(".input-prepend").addClass("input-prepend-focus");
-	
-	});
-	
-	$("#username").focusout(function() {
-		
-		$(this).parent(".input-prepend").removeClass("input-prepend-focus");
-	
-	});
-	
-	$("#password").focus(function() {
-		
-		$(this).parent(".input-prepend").addClass("input-prepend-focus");
-	
-	});
-	
-	$("#password").focusout(function() {
-		
-		$(this).parent(".input-prepend").removeClass("input-prepend-focus");
-	
-	});
-	
-	
-	
-			
-	/* ---------- Add class .active to current link  ---------- */
-	$('ul.main-menu li a').each(function(){
-		if($($(this))[0].href==String(window.location))
-			$(this).parent().addClass('active');
-	});
+
 			
 	/* ---------- Acivate Functions ---------- */
 	$("#overlay").delay(1250).fadeOut(500);
@@ -893,15 +862,10 @@ function charts() {
 	/* ---------- Chart with points ---------- */
 	if($("#sincos").length)
 	{
-		var sin = [], cos = [];
-
-		for (var i = 0; i < 14; i += 0.5) {
-			sin.push([i, Math.sin(i)/i]);
-			cos.push([i, Math.cos(i)]);
-		}
+		var pageviews = [["Today", 10], ["Tomorrow", 50], ["Yesterday", 75]]
 
 		var plot = $.plot($("#sincos"),
-			   [ { data: sin, label: "sin(x)/x"}, { data: cos, label: "cos(x)" } ], {
+			   [ { data: pageviews, label: "Sources"}], {
 				   series: {
 					   lines: { show: true,
 								lineWidth: 2,

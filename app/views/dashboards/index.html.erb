@@ -1,23 +1,26 @@
-<h1>Listing dashboards</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class="span4 offset4">
+  <h1>Dashboards</h1>
 
-<% @dashboards.each do |dashboard| %>
-  <tr>
-    <td><%= dashboard.name %></td>
-    <td><%= link_to 'Show', dashboard %></td>
-    <td><%= link_to 'Edit', edit_dashboard_path(dashboard) %></td>
-    <td><%= link_to 'Destroy', dashboard, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
 
-<br />
+  <% @dashboards.each do |dashboard| %>
+    <tr>
+      <td><%= dashboard.name %></td>
+      <td><%= link_to 'Show', dashboard %></td>
+      <td><%= link_to 'Edit', edit_dashboard_path(dashboard) %></td>
+      <td><%= link_to 'Destroy', dashboard, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+  </table>
 
-<%= link_to 'New Dashboard', new_dashboard_path %>
+  <br />
+
+  <%= link_to 'New Dashboard', new_dashboard_path %>
+</div>

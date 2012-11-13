@@ -1,4 +1,5 @@
 <h2>Visits</h2>
+
 <script type="text/javascript">
 $(function () {
     var chart;
@@ -12,15 +13,19 @@ $(function () {
             },
             plotOptions: {
                 series: {
-                    lineWidth: 10
+                    pointStart: 0,
+                    lineWidth: 10,
+                    pointStart: Date.UTC(2010, 0, 1), // sets formatting for date and time
+                    pointInterval: 24 * 3600 * 1000 // one day
                 }
             },
             title: {
                 text: 'Visits over Time',
-                x: -20 //center
+                x: 0 //center
             },
             xAxis: {
-                categories: <%= @date_charts.to_json %>
+                categories: <%= @date_charts.to_json %>,
+                type: 'datetime' // sets x-axis to date format
             },
             yAxis: {
                 title: {
@@ -39,8 +44,8 @@ $(function () {
                 borderWidth: 0
             },
             series: [{
-                name: 'Pageviews',
-                color: '#aaeb90',
+                name: 'Visits',
+                color: '#8ebfe7',
                 data: <%= @visits_chart.to_json %>
             }],
             credits:{enabled:false}

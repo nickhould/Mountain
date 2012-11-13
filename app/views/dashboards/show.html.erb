@@ -1,18 +1,27 @@
 <p id="notice"><%= notice %></p>
-<%= render 'charts_layout' %>
 
 <div class="row-fluid">
-    <div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+	<%= render 'dashheader' %>
 </div>
+<br>
 
-</div class="row-fluid">
+<div class="row-fluid">
+    <div id="container" style="min-width: 400px; height: 400px; margin: 0 auto">
+    	<%= render 'charts_layout' %>
+	</div>
+</div>
+<br>
+
+<div class="row-fluid">
 	<%= render 'audiencenumbers' %>
 </div>
 <br>
+
 <div class="row-fluid">
 	<%= render 'trafficsources' %>
 	<%= render 'topcontent' %>
 </div>
+
 
 <!-- <p>
 	<b>Name:</b>

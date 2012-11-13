@@ -17,13 +17,12 @@ class DashboardsController < ApplicationController
     ga = GoogleAnalytics.new
     #@visits = ga.per_day(:visits)
     @visits = fake_data 
-    @visit_summary = ga.per_day(:visits)
     @sources = ga.profile.sources.sort_by{|e| e.visits.to_i}.reverse.take(10)
     @pages = top_pages
     @snap_visits = ga.profile.visits.first
     @snap_pageviews = ga.profile.pageviews.first
     @snap_exits = ga.profile.exits.first
-    @snap_visitors = ga.profile.visitors.first
+    @snap_bounce = ga.profile.visitors.first
 
     @visits_chart = genarate_values_for_chart(@visits)
     @date_chart = genarate_keys_for_chart(@visits)

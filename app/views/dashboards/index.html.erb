@@ -12,15 +12,11 @@
 
   <% @dashboards.each do |dashboard| %>
     <tr>
-      <td><%= dashboard.name %></td>
-      <td><%= link_to 'Show', dashboard %></td>
-      <td><%= link_to 'Edit', edit_dashboard_path(dashboard) %></td>
-      <td><%= link_to 'Destroy', dashboard, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link_to dashboard.name, dashboard %></td>
     </tr>
   <% end %>
   </table>
 
   <br />
 
-  <%= link_to 'New Dashboard', new_dashboard_path %>
 </div>

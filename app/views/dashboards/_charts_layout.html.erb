@@ -1,6 +1,4 @@
 <h2>Visits</h2>
-
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script type="text/javascript">
 $(function () {
     var chart;
@@ -11,6 +9,11 @@ $(function () {
                 type: 'line',
                 marginRight: 130,
                 marginBottom: 25
+            },
+            plotOptions: {
+                series: {
+                    lineWidth: 10
+                }
             },
             title: {
                 text: 'Visits over Time',
@@ -33,13 +36,14 @@ $(function () {
                 layout: 'vertical',
                 align: 'right',
                 verticalAlign: 'top',
-
                 borderWidth: 0
             },
             series: [{
                 name: 'Pageviews',
+                color: '#aaeb90',
                 data: <%= @visits_chart.to_json %>
-            }]
+            }],
+            credits:{enabled:false}
         });
     });
     

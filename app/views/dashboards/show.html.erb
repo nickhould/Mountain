@@ -2,29 +2,24 @@
 <%= render 'charts_layout' %>
 
 <div class="row-fluid">
-<div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+    <div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
 </div>
-
 
 </div class="row-fluid">
 	<%= render 'audiencenumbers' %>
 </div>
-
 <br>
-
 <div class="row-fluid">
 	<%= render 'trafficsources' %>
-
 	<%= render 'topcontent' %>
 </div>
-
 
 <!-- <p>
 	<b>Name:</b>
 	<%= @dashboard.name %><br>
 	<h2>Visits for the last 30 days</h2>
-	<% @visits.each do |key, value| %>
-	<%= key %>: <%= value %></br>
-	<% end %>
+	<%  @visits.each do |key, value| %>
+	<%=  key %>: <%=  value %></br>
+	<%  end %>
 </p> -->
 

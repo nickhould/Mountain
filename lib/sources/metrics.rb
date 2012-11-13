@@ -8,7 +8,7 @@ end
 class Visits
   extend Garb::Model
 
-  metrics :visits
+  metrics :visits, :visitbouncerate
 end
 
 class Sources
@@ -24,3 +24,17 @@ class Pages
 	metrics :pageviews
 	dimensions :pagetitle, :hostname, :page_path
 end
+
+
+class Pageviews
+	extend Garb::Model 
+
+	metrics :pageviews
+end
+
+class Visitors
+	extend Garb::Model
+
+	metrics :visitors
+end
+

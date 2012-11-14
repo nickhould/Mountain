@@ -9,6 +9,7 @@ class Visits
   extend Garb::Model
 
   metrics :visits, :visitbouncerate
+  dimensions :date
 end
 
 class Sources
@@ -38,3 +39,8 @@ class Visitors
 	metrics :visitors
 end
 
+class Snapshot
+  extend Garb::Model
+
+  metrics :visits, :pageviews, :visitors, :visitbouncerate
+end

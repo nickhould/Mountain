@@ -5,28 +5,28 @@
 		 <div class="span3">
 			<li>
 					
-					<%= @snap_visits.visits %>
+					<%= @snap.visits %>
 				<p>Visits</p>
 			</li>
 		</div>
 
 		<div class="span3">
 			<li>
-		    <%= @snap_pageviews.pageviews %>
+		    <%= @snap.pageviews %>
 				<p>Views<p>
 			</li>
 		</div>
 
 		<div class="span3">
 			<li>
-				<%= @snap_exits.exits %>
-				<p>Exits<p>
+				<%= @snap.visit_bounce_rate.to_f.round(2) %>%
+				<p>Bounce Rate<p>
 			</li>
 		</div>
 
 		<div class="span3">
 			<li>
-				2559
+				<%= @snap.visitors %>
 				<p>Visitors<p>
 			</li>
 		</div>

@@ -15,17 +15,18 @@ class DashboardsController < ApplicationController
   def show
     @dashboard = Dashboard.find(params[:id])
     ga = GoogleAnalytics.new
-    #@visits = ga.per_day(:visits)
-    @visits = fake_data 
+
+    #Chart
+    @visits = ga.profile.visits
+
+    # Content & Sources 
     @sources = ga.profile.sources.sort_by{|e| e.visits.to_i}.reverse.take(10)
     @pages = top_pages
-    @snap_visits = ga.profile.visits.first
-    @snap_pageviews = ga.profile.pageviews.first
-    @snap_exits = ga.profile.exits.first
-    @snap_bounce = ga.profile.visitors.first
 
-    @visits_chart = genarate_values_for_chart(@visits)
-    @date_chart = genarate_keys_for_chart(@visits)
+    # Snapshot
+    @snap = ga.profile.snapshot.first
+
+
 
     respond_to do |format|
       format.html # show.html.erb
@@ -130,9 +131,9 @@ class DashboardsController < ApplicationController
   end
 
 
-  def genarate_keys_for_chart(data_hash)
+  def genarate_keys_for_chart(results)
     formated_hash = []
-    data_hash.each do |key, value|
+    results.each do
       formated_hash << key
     end
     formated_hash.reverse
@@ -145,5 +146,6 @@ class DashboardsController < ApplicationController
     end
     formated_hash.reverse
   end
+
 
 end

@@ -15,7 +15,7 @@ $(function () {
                 series: {
                     pointStart: 0,
                     lineWidth: 1,
-                    pointStart: Date.UTC(2010, 0, 1), // sets formatting for date and time
+                    pointStart: Date.UTC(<%= render_point_start(@visits) %>), // sets formatting for date and time
                     pointInterval: 24 * 3600 * 1000 // one day
                 }
             },
@@ -24,7 +24,6 @@ $(function () {
                 x: 0 //center
             },
             xAxis: {
-                categories: <%= @date_charts.to_json %>,
                 type: 'datetime' // sets x-axis to date format
             },
             yAxis: {
@@ -46,7 +45,7 @@ $(function () {
             series: [{
                 name: 'Visits',
                 color: '#8ebfe7',
-                data: <%= @visits_chart.to_json %>
+                data: <%= render_js_array(@visits, :visits) %>
             }],
             credits:{enabled:false}
         });

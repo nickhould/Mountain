@@ -14,7 +14,7 @@ $(function () {
             plotOptions: {
                 series: {
                     pointStart: 0,
-                    lineWidth: 1,
+                    lineWidth: 0,
                     pointStart: Date.UTC(<%= render_point_start(@visits) %>), // sets formatting for date and time
                     pointInterval: 24 * 3600 * 1000 // one day
                 }
@@ -32,8 +32,8 @@ $(function () {
                 },
                 plotLines: [{
                     value: 0,
-                    width: 1
-                    
+                    width: 1,
+                    color: '#808080'
                 }]
             },
             legend: {

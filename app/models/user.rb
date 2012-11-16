@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :name, :provider, :uid, :oauth_token
+  attr_accessible :name, :provider, :uid
 
 	def self.from_omniauth(auth)
 		 where(auth.slice("provider", "uid")).first || create_from_omniauth(auth)
@@ -16,4 +16,6 @@ class User < ActiveRecord::Base
 	def get_authentication_token
 		self.oauth_token
 	end
+
+
 end

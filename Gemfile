@@ -7,6 +7,7 @@ gem 'garb', :git => "git://github.com/Sija/garb.git"
 gem 'jquery-rails'
 gem 'omniauth-google-oauth2'
 gem 'certified'
+gem 'devise'
 
 group :development, :test do
   gem 'sqlite3', '1.3.5'

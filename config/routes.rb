@@ -1,5 +1,7 @@
 Dashboardly::Application.routes.draw do
-  
+
+  resources :users
+
   root :to => 'dashboards#index'
   resources :dashboards
   match '/auth/:provider/callback', to: 'sessions#create'

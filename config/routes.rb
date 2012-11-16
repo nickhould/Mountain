@@ -4,7 +4,9 @@ Dashboardly::Application.routes.draw do
   resources :dashboards
   match '/auth/:provider/callback', to: 'sessions#create'
   match '/auth/failure', to: redirect('/')
-  get '/session/end', to: 'sessions#destroy'
+
+  delete '/logout', to: 'sessions#destroy', as: :sign_out
+
 
   root to: 'staticpages#home'
   get '/home' => 'staticpages#home'

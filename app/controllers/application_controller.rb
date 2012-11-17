@@ -1,10 +1,12 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  helper_method :current_user
 
 
-def top_pages
-  ga = GoogleAnalytics.new
-  return ga.profile.pages.sort_by{|e| e.pageviews.to_i}.reverse.take(10)
-end
+	private
+
+		def current_user
+  		@current_user ||= User.find(session[:user_id]) if session[:user_id]
+		end
 
 end

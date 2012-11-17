@@ -1,15 +1,15 @@
 class SessionsController < ApplicationController
 
 	def create
-        # raise request.env["omniauth.auth"].to_yaml
-
    	auth = request.env["omniauth.auth"]
-   		
-   		if User.find_by_provider_and_uid(auth["provider"], auth["uid"])
-   			user =	User.find_by_provider_and_uid(auth["provider"], auth["uid"])
-	  	else		
-    		user = User.from_omniauth(auth)
-		end
-    	end
+    session[:oauth_token] = auth["credentials"]["token"]
+    user = User.from_omniauth(env["omniauth.auth"])
+    session[:user_id] = user.id
+    redirect_to root_url, notice: "Signed in!"
+  end
 
+  def destroy
+    session[:user_id] = nil
+    redirect_to root_url, notice: "Signed out!"
+  end
 end

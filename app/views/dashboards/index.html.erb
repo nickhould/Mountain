@@ -2,12 +2,9 @@
 <div class="span4 offset4">
   <h1>Dashboards</h1>
 
-  <table>
+  <table class="table">
     <tr>
       <th>Name</th>
-      <th></th>
-      <th></th>
-      <th></th>
     </tr>
 
   <% @dashboards.each do |dashboard| %>
@@ -17,6 +14,7 @@
   <% end %>
   </table>
 
-  <br />
+  <%= button_to "New dashboard", new_dashboard_path, method: :get  %>
 
+  <br />
 </div>

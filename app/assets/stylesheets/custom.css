@@ -67,6 +67,15 @@ body {
 
 }
 
+.jumbotron {
+	padding: 200px 0 200px;
+	width: 100%;
+	text-align: left;
+	background: #6D3353;
+	color: #fff;
+	
+}
+
 #form {
 	width:400px;height:250px;
 	-webkit-border-radius: 20px;
@@ -76,3 +85,4 @@ body {
 	margin-top: 80px;
 	padding: 20px;
 }
+

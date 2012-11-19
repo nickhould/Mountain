@@ -67,13 +67,10 @@ body {
 
 }
 
-.jumbotron {
-	padding: 200px 0 200px;
-	width: 100%;
-	text-align: left;
-	background: #6D3353;
-	color: #fff;
-	
+.signin {
+   color: #fff;
+   text-shadow:none;
+   margin-right: 20px;
 }
 
 #form {
@@ -85,4 +82,7 @@ body {
 	margin-top: 80px;
 	padding: 20px;
 }
+
+
+
 

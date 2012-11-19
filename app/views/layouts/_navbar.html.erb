@@ -1,20 +1,22 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
-      <div class="span6">
-      	<div class="row span1">
+      <div class="span1">
 		      <%= image_tag "dashboardly_logo.svg", :width => 50 %>		  
 		   </div>
 
 		      <a class="brand" href="/home">Dashboardly</a>
-          <ul class="nav">
-            <li><a href="#"><%= link_to "Dashboards", dashboards_url %></a></li>  
-            <% if current_user? %>
-              <li><%= link_to "Sign out", sign_out_url, method: :delete %></li>
-            <% else %>
-              <li><%= link_to "Sign in", '/auth/google_oauth2' %></li>
-            <% end %>  
-          </ul>
+  
+          <ul class="nav nav-pills pull-right ">
+            <li>
+              <%= link_to "Dashboards", dashboards_url %>
+            </li>
+              
+              <% if current_user? %>
+              <li class="btn btn-danger btn-flat signin"><%= link_to "Sign Out", sign_out_url, method: :delete %></li>
+              <% else %>
+              <li class="btn btn-danger btn-flat signin" ><%= link_to "Sign In", '/auth/google_oauth2' %></li>
+              <% end %>  
+            </ul>
 
-  		</div>
   </div>
 </div>

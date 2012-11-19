@@ -1,4 +1,7 @@
 class DashboardsController < ApplicationController
+
+  before_filter :signed_in_user
+
   # GET /dashboards
   # GET /dashboards.json
   def index

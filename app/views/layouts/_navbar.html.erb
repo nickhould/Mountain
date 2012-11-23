@@ -4,19 +4,21 @@
 		      <%= image_tag "dashboardly_logo.svg", :width => 50 %>		  
 		   </div>
 
-		      <a class="brand" href="/home">Dashboardly</a>
-  
-          <ul class="nav nav-pills pull-right ">
-            <li>
-              <%= link_to "Dashboards", dashboards_url %>
-            </li>
-              
-              <% if current_user? %>
-              <li class="btn btn-danger btn-flat signin"><%= link_to "Sign Out", sign_out_url, method: :delete %></li>
-              <% else %>
-              <li class="btn btn-danger btn-flat signin" ><%= link_to "Sign In", '/auth/google_oauth2' %></li>
-              <% end %>  
-            </ul>
+		    <a class="brand" href="/home">Dashboardly</a>
 
+      <div class"span1">  
+      <ul class="nav pull-right ">
+              
+      <% if current_user? %>
+        <li class="btn btn-danger btn-flat signin">
+          <%= link_to "Sign Out", sign_out_url, method: :delet%>
+        </li>
+      <% else %>
+        <li class="btn btn-danger btn-flat signin" >
+          <%= link_to "Sign In", '/auth/google_oauth2' %>
+        </li>
+      <% end %>  
+    </div>
+    </ul>
   </div>
 </div>

@@ -56,22 +56,15 @@ body {
     border:0;
 }
 
-.btn-login {
-	margin:  20px 50px;
-  	padding: 18px 30px;
-  	font-size: 18px;
-  	line-height: normal;
-  	-webkit-border-radius: 5px;
-     -moz-border-radius: 5px;
-          border-radius: 5px;
-
-}
-
 .signin {
    color: #fff;
+   font-size: 14px;
    text-shadow:none;
-   margin-right: 20px;
+   margin-top: 60px; 
+   margin-right: 30px;
+   font-weight: 700;
 }
+
 
 #form {
 	width:400px;height:250px;
@@ -82,7 +75,5 @@ body {
 	margin-top: 80px;
 	padding: 20px;
 }
-
-
 
 

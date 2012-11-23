@@ -6,8 +6,16 @@ class GoogleAnalytics
 		Garb::Management::Account.all
 	end
 
-	def web_properties
-		Garb::Management::WebProperty.all
+	def web_properties(garbsession)
+		collection = []
+		properties = Garb::Management::WebProperty.all(garbsession)
+		properties.each do |p|
+			property = OpenStruct.new
+			property.name = p.entry["name"]
+			property.id = p.entry["id"]
+			collection << propertys
+		end
+		return collection
 	end
 
 	def profiles
@@ -40,4 +48,20 @@ class GoogleAnalytics
 		end
 		results
 	end
+
+	# Oauth1
+
+	# def garbsession(consumer, google_token, google_secret)
+	# 	garbsession = Garb::Session.new
+	# 	garbsession.access_token = OAuth::AccessToken.new(consumer, google_token, google_secret)
+	# 	garbsession
+	# end
+
+	# def profile_selection(garbsession)
+	# 	# Once we have an OAuth::AccessToken constructed, do fun stuff with it
+	# 	ga_id = "UA-XXXXXXX-X"
+	# 	profile = Garb::Management::Profile.all(garbsession).detect {|p| p.web_property_id == ga_id}
+	# 	ga_monthly = GoogleAnalyticsDate.results(profile, :start_date => (Date.today - 30), :end_date => Date.today, :sort => :date)
+	# 	return ga_monthly
+	# end
 end

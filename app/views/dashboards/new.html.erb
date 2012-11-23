@@ -2,7 +2,11 @@
 
 	<h1>New dashboard</h1>
 
-	<%= render 'form' %>
+	<% @webproperties.each do |profile|  %>
+		<br>*********************
+			<%= profile.title	 %>: <%= profile.web_property_id %>
+		<br>*********************
+	<% end %>
 
 	<%= link_to 'Back', dashboards_path %>
 

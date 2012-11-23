@@ -11,7 +11,7 @@
             <% if current_user? %>
               <li><%= link_to "Sign out", sign_out_url, method: :delete %></li>
             <% else %>
-              <li><%= link_to "Sign in", '/auth/google_oauth2' %></li>
+              <li><%= link_to "Sign in", '/auth/google' %></li>
             <% end %>  
           </ul>
 

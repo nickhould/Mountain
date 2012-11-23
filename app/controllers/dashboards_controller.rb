@@ -1,11 +1,13 @@
 class DashboardsController < ApplicationController
 
-  before_filter :signed_in_user
+  before_filter :signed_in_user, :set_oauth
 
   # GET /dashboards
   # GET /dashboards.json
   def index
     @dashboards = Dashboard.all
+
+
 
     respond_to do |format|
       format.html # index.html.erb
@@ -18,18 +20,18 @@ class DashboardsController < ApplicationController
   def show
     @dashboard = Dashboard.find(params[:id])
     ga = GoogleAnalytics.new
+    ga = ga.profile(@dashboard.web_property_id)
+
 
     #Chart
-    @visits = ga.profile.visits
+    @visits = ga.visits
     
     # Content & Sources 
-    @sources = ga.profile.sources.sort {|e| -e.visits.to_i }.take(10)
-    @pages = ga.profile.pages.sort {|e| -e.visits.to_i }.take(10)
+    @sources = ga.sources.sort {|e| -e.visits.to_i }.take(10)
+    @pages = ga.pages.sort {|e| -e.visits.to_i }.take(10)
 
     # Snapshot
-    @snap = ga.profile.snapshot.first
-
-
+    @snap = ga.snapshot.first
 
     respond_to do |format|
       format.html # show.html.erb
@@ -41,6 +43,9 @@ class DashboardsController < ApplicationController
   # GET /dashboards/new.json
   def new
     @dashboard = Dashboard.new
+    ga = GoogleAnalytics.new
+    # @webproperties = ga.web_properties(@garbsession)
+    @webproperties = Garb::Management::Profile.all(@garbsession)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -94,6 +99,23 @@ class DashboardsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to dashboards_url }
       format.json { head :no_content }
+    end
+  end
+
+  def set_oauth
+    api_key = "tKHc-DDjWZu3mern4k1u7ndN"
+    if session[:google_token] and session[:google_secret]
+      consumer = OAuth::Consumer.new('472837297406.apps.googleusercontent.com', api_key, {
+        :site => 'https://www.google.com',
+        :request_token_path => '/accounts/OAuthGetRequestToken',
+        :access_token_path => '/accounts/OAuthGetAccessToken',
+        :authorize_path => '/accounts/OAuthAuthorizeToken'
+      })
+      @garbsession = Garb::Session.new
+      @garbsession.access_token = OAuth::AccessToken.new(consumer, session[:google_token], session[:google_secret])
+      @authorized = true
+    else 
+      redirect_to root_path
     end
   end
 end

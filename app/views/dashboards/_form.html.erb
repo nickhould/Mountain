@@ -16,7 +16,7 @@
   </div>
   <div class="field">
     <%= f.label :web_property_id %><br />
-    <%= collection_select(:dashboard, :web_property_id, @webproperties, :id, :name )
+    <%= collection_select(:dashboard, :web_property_id, @profiles, :web_property_id, :title )
  %>
   </div>
 

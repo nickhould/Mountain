@@ -1,13 +1,7 @@
 <div class="span4 offset4">
 
 	<h1>New dashboard</h1>
-
-	<% @webproperties.each do |profile|  %>
-		<br>*********************
-			<%= profile.title	 %>: <%= profile.web_property_id %>
-		<br>*********************
-	<% end %>
-
+	<%= render 'form' %>	
 	<%= link_to 'Back', dashboards_path %>
 
 </div>

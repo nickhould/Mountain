@@ -1,6 +1,6 @@
 class DashboardsController < ApplicationController
 
-  before_filter :signed_in_user, :set_oauth
+  before_filter :signed_in_user
 
   # GET /dashboards
   # GET /dashboards.json
@@ -19,16 +19,17 @@ class DashboardsController < ApplicationController
   # GET /dashboards/1.json
   def show
     @dashboard = Dashboard.find(params[:id])
-    ga = GoogleAnalytics.new
+    ga = GoogleAnalytics.new(session[:google_token], session[:google_secret]) 
     ga = ga.profile(@dashboard.web_property_id)
+    
 
 
     #Chart
     @visits = ga.visits
     
     # Content & Sources 
-    @sources = ga.sources.sort {|e| -e.visits.to_i }.take(10)
-    @pages = ga.pages.sort {|e| -e.visits.to_i }.take(10)
+    @sources = ga.sources.take(10)
+    @pages = ga.pages.take(10)
 
     # Snapshot
     @snap = ga.snapshot.first
@@ -43,9 +44,9 @@ class DashboardsController < ApplicationController
   # GET /dashboards/new.json
   def new
     @dashboard = Dashboard.new
-    ga = GoogleAnalytics.new
-    # @webproperties = ga.web_properties(@garbsession)
-    @webproperties = Garb::Management::Profile.all(@garbsession)
+    ga = GoogleAnalytics.new(session[:google_token], session[:google_secret]) 
+    @profiles = ga.profiles
+    # @profiles = current_user.profiles
 
     respond_to do |format|
       format.html # new.html.erb
@@ -102,20 +103,5 @@ class DashboardsController < ApplicationController
     end
   end
 
-  def set_oauth
-    api_key = "tKHc-DDjWZu3mern4k1u7ndN"
-    if session[:google_token] and session[:google_secret]
-      consumer = OAuth::Consumer.new('472837297406.apps.googleusercontent.com', api_key, {
-        :site => 'https://www.google.com',
-        :request_token_path => '/accounts/OAuthGetRequestToken',
-        :access_token_path => '/accounts/OAuthGetAccessToken',
-        :authorize_path => '/accounts/OAuthAuthorizeToken'
-      })
-      @garbsession = Garb::Session.new
-      @garbsession.access_token = OAuth::AccessToken.new(consumer, session[:google_token], session[:google_secret])
-      @authorized = true
-    else 
-      redirect_to root_path
-    end
-  end
+
 end

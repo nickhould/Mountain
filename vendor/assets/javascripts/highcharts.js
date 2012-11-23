@@ -8,8 +8,6 @@
 
 //= require jquery
 //= require jquery_ujs
-//= require ./jquery.flot.js
-//= require ./exporting.js
 
 (function(){function r(a,b){var c;a||(a={});for(c in b)a[c]=b[c];return a}function ka(){for(var a=0,b=arguments,c=b.length,d={};a<c;a++)d[b[a++]]=b[a];return d}function w(a,b){return parseInt(a,b||10)}function la(a){return typeof a==="string"}function X(a){return typeof a==="object"}function Ha(a){return Object.prototype.toString.call(a)==="[object Array]"}function Aa(a){return typeof a==="number"}function ma(a){return J.log(a)/J.LN10}function ba(a){return J.pow(10,a)}function Ba(a,b){for(var c=a.length;c--;)if(a[c]===
 b){a.splice(c,1);break}}function t(a){return a!==x&&a!==null}function z(a,b,c){var d,e;if(la(b))t(c)?a.setAttribute(b,c):a&&a.getAttribute&&(e=a.getAttribute(b));else if(t(b)&&X(b))for(d in b)a.setAttribute(d,b[d]);return e}function na(a){return Ha(a)?a:[a]}function o(){var a=arguments,b,c,d=a.length;for(b=0;b<d;b++)if(c=a[b],typeof c!=="undefined"&&c!==null)return c}function H(a,b){if(Ca&&b&&b.opacity!==x)b.filter="alpha(opacity="+b.opacity*100+")";r(a.style,b)}function Q(a,b,c,d,e){a=C.createElement(a);

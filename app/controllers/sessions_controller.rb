@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     google_secret= session[:google_secret] = auth.credentials.secret
     @user = User.from_omniauth(auth, google_token, google_secret)
     session[:user_id] = @user.id
-    redirect_to root_url, notice: "Signed in!"
+    redirect_to new_dashboard_url, notice: "Signed in!"
   end
 
   def destroy

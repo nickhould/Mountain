@@ -65,6 +65,18 @@ body {
    font-weight: 700;
 }
 
+    /* Home Page
+    -------------------------------------------------- */
+
+    /* Center align the text within the three columns below the carousel */
+.marketing .span4 {
+	text-align: center;
+}
+
+.marketing .span4 p {
+	margin-left: 10px;
+   margin-right: 10px;
+}
 
 #form {
 	width:400px;height:250px;

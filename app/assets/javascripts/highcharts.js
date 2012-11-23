@@ -6,6 +6,8 @@
  License: www.highcharts.com/license
 */
 
+//= require jquery
+//= require jquery_ujs
 //= require ./jquery.flot.js
 //= require ./exporting.js
 

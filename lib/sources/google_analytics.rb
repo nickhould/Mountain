@@ -5,7 +5,6 @@ class GoogleAnalytics
 	def initialize(token, secret)
 		@token = token
 		@secret = secret
-		@api_key = "tKHc-DDjWZu3mern4k1u7ndN"
 	end
 
 	def accounts
@@ -31,7 +30,8 @@ class GoogleAnalytics
 	end
 
 	def garbsession
-    consumer = OAuth::Consumer.new('472837297406.apps.googleusercontent.com', @api_key, {
+		api_key = "tKHc-DDjWZu3mern4k1u7ndN"
+    consumer = OAuth::Consumer.new('472837297406.apps.googleusercontent.com', api_key, {
         :site => 'https://www.google.com',
         :request_token_path => '/accounts/OAuthGetRequestToken',
         :access_token_path => '/accounts/OAuthGetAccessToken',

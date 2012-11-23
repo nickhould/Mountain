@@ -8,6 +8,9 @@
           <ul class="nav pull-right">
 
             <% if current_user? %>
+              <li>
+                <%= link_to "Dashboards", dashboards_url %>
+              </li>
               <li class="btn btn-danger btn-flat signin">
                 <%= link_to "Sign out", sign_out_url, method: :delete %>
               </li>

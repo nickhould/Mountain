@@ -159,7 +159,7 @@ textarea {
 
 body {
   margin: 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 20px;
   color: #333333;
@@ -4380,14 +4380,15 @@ input[type="submit"].btn.btn-mini {
 
 .navbar .nav > li {
   float: left;
+  margin-right: 30px;
 }
 
 .navbar .nav > li > a {
   float: none;
   padding: 10px 15px 10px;
-  color: #777777;
+  color: #fff;
   text-decoration: none;
-  text-shadow: 0 1px 0 #ffffff;
+  
 }
 
 .navbar .nav .dropdown-toggle .caret {
@@ -4396,7 +4397,7 @@ input[type="submit"].btn.btn-mini {
 
 .navbar .nav > li > a:focus,
 .navbar .nav > li > a:hover {
-  color: #333333;
+  /*color: #333333;*/
   text-decoration: none;
   background-color: transparent;
 }

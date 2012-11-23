@@ -1,21 +1,18 @@
 class User < ActiveRecord::Base
   attr_accessible :name, :provider, :uid
 
-	def self.from_omniauth(auth)
-		 where(auth.slice("provider", "uid")).first || create_from_omniauth(auth)
+  has_many :dashboards
+
+	def self.from_omniauth(auth, google_token, google_secret)
+		where(provider: auth.provider, uid: auth.uid).first || create_from_omniauth(auth, google_token, google_secret)
 	end
 
 
-	def self.create_from_omniauth(auth)
-		create! do |user|
-			user.provider = auth["provider"]
-			user.uid = auth["uid"]
-		end
+	def self.create_from_omniauth(auth, google_token, google_secret)
+		@user = User.new
+		@user.provider = auth.provider
+		@user.uid = auth.uid
+		@user.save
+		@user
 	end
-
-	def get_authentication_token
-		self.oauth_token
-	end
-
-
 end

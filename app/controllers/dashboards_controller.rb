@@ -1,8 +1,13 @@
 class DashboardsController < ApplicationController
+
+  before_filter :signed_in_user
+
   # GET /dashboards
   # GET /dashboards.json
   def index
     @dashboards = Dashboard.all
+
+
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,19 +19,20 @@ class DashboardsController < ApplicationController
   # GET /dashboards/1.json
   def show
     @dashboard = Dashboard.find(params[:id])
-    ga = GoogleAnalytics.new
+    ga = GoogleAnalytics.new(session[:google_token], session[:google_secret]) 
+    ga = ga.profile(@dashboard.web_property_id)
+    
+
 
     #Chart
-    @visits = ga.profile.visits
+    @visits = ga.visits
     
     # Content & Sources 
-    @sources = ga.profile.sources.sort {|e| -e.visits.to_i }.take(10)
-    @pages = ga.profile.pages.sort {|e| -e.visits.to_i }.take(10)
+    @sources = ga.sources.take(10)
+    @pages = ga.pages.take(10)
 
     # Snapshot
-    @snap = ga.profile.snapshot.first
-
-
+    @snap = ga.snapshot.first
 
     respond_to do |format|
       format.html # show.html.erb
@@ -38,6 +44,9 @@ class DashboardsController < ApplicationController
   # GET /dashboards/new.json
   def new
     @dashboard = Dashboard.new
+    ga = GoogleAnalytics.new(session[:google_token], session[:google_secret]) 
+    @profiles = ga.profiles
+    # @profiles = current_user.profiles
 
     respond_to do |format|
       format.html # new.html.erb
@@ -93,4 +102,6 @@ class DashboardsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
 end

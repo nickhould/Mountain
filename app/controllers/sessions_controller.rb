@@ -1,10 +1,11 @@
 class SessionsController < ApplicationController
 
 	def create
-   	auth = request.env["omniauth.auth"]
-    session[:oauth_token] = auth["credentials"]["token"]
-    user = User.from_omniauth(env["omniauth.auth"])
-    session[:user_id] = user.id
+    auth = request.env["omniauth.auth"]
+    google_token = session[:google_token] = auth.credentials.token
+    google_secret= session[:google_secret] = auth.credentials.secret
+    @user = User.from_omniauth(auth, google_token, google_secret)
+    session[:user_id] = @user.id
     redirect_to root_url, notice: "Signed in!"
   end
 

@@ -14,6 +14,12 @@
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
+  <div class="field">
+    <%= f.label :web_property_id %><br />
+    <%= collection_select(:dashboard, :web_property_id, @profiles, :web_property_id, :title )
+ %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

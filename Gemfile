@@ -3,11 +3,10 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.8'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'will_paginate', '3.0.3'
-gem 'garb', :git => "git://github.com/Sija/garb.git"
+gem 'garb'
 gem 'jquery-rails'
-gem 'omniauth-google-oauth2'
+gem 'omniauth-google', :git => 'git://github.com/davidkpham/omniauth-google.git'
 gem 'certified'
-gem 'devise'
 
 group :development, :test do
   gem 'sqlite3', '1.3.5'
@@ -15,6 +14,7 @@ group :development, :test do
   gem 'guard-rspec', '1.2.1'
   gem 'guard-spork', '1.2.0'  
   gem 'spork', '0.9.2'
+  gem 'pry'
 end
 
 # Gems used only for assets and not required
@@ -25,7 +25,7 @@ group :assets do
   gem 'uglifier', '1.2.3'
 end
 
-
+gem 'pry'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

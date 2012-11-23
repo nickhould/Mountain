@@ -5,13 +5,12 @@ class GoogleAnalytics
 	def initialize(token, secret)
 		@token = token
 		@secret = secret
+		@api_key = "tKHc-DDjWZu3mern4k1u7ndN"
 	end
-
 
 	def accounts
 		Garb::Management::Account.all(garbsession)
 	end
-
 
 	def web_properties
 		Garb::Management::WebProperty.all(garbsession)
@@ -31,27 +30,8 @@ class GoogleAnalytics
 		Garb::Management::Goal.all(garbsession)
 	end
 
-	#Metrics
-	def validated_result(metric, raw_result)
-		result = raw_result.first
-		result.nil? ? 0 : result.method(metric).call.to_i
-	end
-
-	def per_day(metric)
-		results = Hash.new
-		date = Date.today
-		30.times do |i|
-			raw_result = profile.method(metric).call(start_date: date, end_date: date)
-			results[date] = validated_result(metric, raw_result)
-			date -= 1
-		end
-		results
-	end
-
-
 	def garbsession
-		api_key = "tKHc-DDjWZu3mern4k1u7ndN"
-    consumer = OAuth::Consumer.new('472837297406.apps.googleusercontent.com', api_key, {
+    consumer = OAuth::Consumer.new('472837297406.apps.googleusercontent.com', @api_key, {
         :site => 'https://www.google.com',
         :request_token_path => '/accounts/OAuthGetRequestToken',
         :access_token_path => '/accounts/OAuthGetAccessToken',

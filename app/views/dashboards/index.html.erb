@@ -5,11 +5,17 @@
   <table class="table">
     <tr>
       <th>Name</th>
+      <th>Visits</th> 
+      <th>Variation</th>
+      <th></th>
     </tr>
 
   <% @dashboards.each do |dashboard| %>
     <tr>
       <td><%= link_to dashboard.name, dashboard %></td>
+      <td><%= @ga.profile(dashboard.web_property_id).visitstotal.first.visits %></td>
+      <td>+25%</td>
+      <td><%= link_to "Edit", edit_dashboard_url(dashboard) %></td>
     </tr>
   <% end %>
   </table>

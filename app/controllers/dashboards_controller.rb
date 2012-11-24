@@ -53,6 +53,7 @@ class DashboardsController < ApplicationController
   # GET /dashboards/1/edit
   def edit
     @dashboard = Dashboard.find(params[:id])
+    @profiles = @ga.profiles
   end
 
   # POST /dashboards
@@ -82,6 +83,7 @@ class DashboardsController < ApplicationController
         format.html { redirect_to @dashboard, notice: 'Dashboard was successfully updated.' }
         format.json { head :no_content }
       else
+        @profiles = @ga.profiles
         format.html { render action: "edit" }
         format.json { render json: @dashboard.errors, status: :unprocessable_entity }
       end

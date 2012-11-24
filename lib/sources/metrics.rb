@@ -5,6 +5,13 @@ class Exits
   dimensions :page_path
 end
 
+
+class Visitstotal
+  extend Garb::Model
+
+  metrics :visits
+end
+
 class Visits
   extend Garb::Model
 

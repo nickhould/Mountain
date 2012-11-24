@@ -4,12 +4,13 @@
       <h2><%= pluralize(@dashboard.errors.count, "error") %> prohibited this dashboard from being saved:</h2>
 
       <ul>
-      <% @dashboard.errors.full_messages.each  tdo |msg| %>
+      <% @dashboard.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
+
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>

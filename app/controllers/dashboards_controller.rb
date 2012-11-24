@@ -1,12 +1,14 @@
 class DashboardsController < ApplicationController
 
   before_filter :signed_in_user
+  before_filter :create_garb_session
+  before_filter :at_least_one_dashboard, only: :index
+  before_filter :authorized_user, only: [:show, :update, :edit, :destroy]
 
   # GET /dashboards
   # GET /dashboards.json
   def index
-    @dashboards = Dashboard.all
-
+    @dashboards = current_user.dashboards
 
 
     respond_to do |format|
@@ -18,19 +20,14 @@ class DashboardsController < ApplicationController
   # GET /dashboards/1
   # GET /dashboards/1.json
   def show
-    @dashboard = Dashboard.find(params[:id])
-    ga = GoogleAnalytics.new(session[:google_token], session[:google_secret]) 
-    ga = ga.profile(@dashboard.web_property_id)
+    @dashboard = current_user.dashboards.find_by_id(params[:id])
+    ga = @ga.profile(@dashboard.web_property_id)
     
-
-
     #Chart
     @visits = ga.visits
-    
     # Content & Sources 
     @sources = ga.sources.take(10)
     @pages = ga.pages.take(10)
-
     # Snapshot
     @snap = ga.snapshot.first
 
@@ -43,9 +40,8 @@ class DashboardsController < ApplicationController
   # GET /dashboards/new
   # GET /dashboards/new.json
   def new
-    @dashboard = Dashboard.new
-    ga = GoogleAnalytics.new(session[:google_token], session[:google_secret]) 
-    @profiles = ga.profiles
+    @dashboard = current_user.dashboards.new
+    @profiles = @ga.profiles
     # @profiles = current_user.profiles
 
     respond_to do |format|
@@ -62,13 +58,14 @@ class DashboardsController < ApplicationController
   # POST /dashboards
   # POST /dashboards.json
   def create
-    @dashboard = Dashboard.new(params[:dashboard])
+    @dashboard = current_user.dashboards.new(params[:dashboard])
 
     respond_to do |format|
       if @dashboard.save
         format.html { redirect_to @dashboard, notice: 'Dashboard was successfully created.' }
         format.json { render json: @dashboard, status: :created, location: @dashboard }
       else
+        @profiles = @ga.profiles
         format.html { render action: "new" }
         format.json { render json: @dashboard.errors, status: :unprocessable_entity }
       end
@@ -101,5 +98,20 @@ class DashboardsController < ApplicationController
       format.html { redirect_to dashboards_url }
       format.json { head :no_content }
     end
+  end
+
+  def create_garb_session
+    @ga = GoogleAnalytics.new(session[:google_token], session[:google_secret]) 
+  end
+
+  def at_least_one_dashboard
+    if Dashboard.count == 0
+      redirect_to new_dashboard_url, notice: "Please create a dashboard."
+    end
+  end
+
+  def authorized_user
+    dashboard = current_user.dashboards.find_by_id(params[:id])
+    redirect_to root_path unless dashboard
   end
 end

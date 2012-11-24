@@ -4,7 +4,7 @@
       <h2><%= pluralize(@dashboard.errors.count, "error") %> prohibited this dashboard from being saved:</h2>
 
       <ul>
-      <% @dashboard.errors.full_messages.each do |msg| %>
+      <% @dashboard.errors.full_messages.each  tdo |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
@@ -16,7 +16,7 @@
   </div>
   <div class="field">
     <%= f.label :web_property_id %><br />
-    <%= collection_select(:dashboard, :web_property_id, @profiles, :web_property_id, :title )
+    <%= collection_select(:dashboard, :web_property_id, @profiles, :web_property_id, :title, :prompt => true )
  %>
   </div>
 

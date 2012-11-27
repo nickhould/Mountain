@@ -48,6 +48,7 @@ class Snapshot
   extend Garb::Model
 
   metrics :visits, :pageviews, :visitors, :visitbouncerate
+  dimensions :page_path
 end
 
 ## Page Specifc

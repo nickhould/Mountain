@@ -1,0 +1,17 @@
+<div class="span6">
+
+	<table summary="Traffic Sources for Your Website" class="table table-striped">  
+	  <h2>Top Traffic Sources</h2>  
+	  <tr>  
+	    <th>Source</th>  
+	    <th>Visitors</th>    
+	  </tr> 
+	<% @dashboard.sources_per_page(@page_path).each do |source| %> 
+	  <tr>  
+	    <td><%= source.source %></td>  
+	    <td><%= source.visits %></td>   
+	  </tr>
+	<% end %>  
+	</table>
+
+</div>

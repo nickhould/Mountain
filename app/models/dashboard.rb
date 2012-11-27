@@ -1,4 +1,4 @@
-require 'uri'
+	require 'uri'
 class Dashboard < ActiveRecord::Base
   attr_accessible :name, :web_property_id, :user_id
 
@@ -35,6 +35,18 @@ class Dashboard < ActiveRecord::Base
 	def sources_per_page(page_path)
 		sources = profile.sources(filters: { :page_path.eql => page_path })
 		sources = sources.sort { |a,b| a.visits.to_i <=> b.visits.to_i}.reverse.take(10)
+	end
+
+	def snapshot_per_page(page_path, reload = false)
+		if reload
+			@snapshot = profile.snapshot(filters: { :page_path.eql => page_path }).first		 	
+		else
+			@snapshot ||= profile.snapshot(filters: { :page_path.eql => page_path }).first		 	
+		end
+	end
+
+	def next_page_path
+
 	end
 end
 

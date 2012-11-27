@@ -3,28 +3,28 @@
 	<ul>
 		 <div class="span3">
 			<li>	
-					<%= @dashboard.snapshot.visits %>
+					<%= @dashboard.snapshot_per_page(@page_path).visits %>
 				<p>Visits</p>
 			</li>
 		</div>
 
 		<div class="span3">
 			<li>
-		    <%= @dashboard.snapshot.pageviews %>
+		    <%= @dashboard.snapshot_per_page(@page_path).pageviews %>
 				<p>Views<p>
 			</li>
 		</div>
 
 		<div class="span3">
 			<li>
-				<%= @dashboard.snapshot.visit_bounce_rate.to_f.round(2) %>%
+				<%= @dashboard.snapshot_per_page(@page_path).visit_bounce_rate.to_f.round(2) %>%
 				<p>Bounce Rate<p>
 			</li>
 		</div>
 
 		<div class="span3">
 			<li>
-				<%= @dashboard.snapshot.visitors %>
+				<%= @dashboard.snapshot_per_page(@page_path).visitors %>
 				<p>Visitors<p>
 			</li>
 		</div>

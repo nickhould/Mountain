@@ -57,4 +57,9 @@ class Dashboard < ActiveRecord::Base
 	def exits_per_page(page_path)
 		exits = profile.exits(filters: { :page_path.eql => page_path }).first
 	end
+
+	def keywords_per_page(page_path)
+		keywords = profile.keywords(filters: { :page_path.eql => page_path})
+		keywords = keywords.sort { |a,b| a.visits.to_i <=> b.visits.to_i }.reverse.take(5)
+	end
 end

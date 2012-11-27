@@ -64,3 +64,10 @@ class Nextpage
   metrics :pageviews
   dimensions :page_path, :pagetitle 
 end
+
+class Keywords
+  extend Garb::Model
+
+  metrics :visits
+  dimensions :keyword
+end

@@ -5,20 +5,19 @@
 		<tr>
 			<th>Title</th>
 			<th>Views</th>
-		<tr>
-
-		<% @pages.each do |page| %>
+		</tr>
+		<% @dashboard.pages.each do |page| %>
 
 			<tr>
-				<% hostname = page.hostname %>
-				<% pagepath = page.page_path %>
-
 				<!-- Will not work for https:// look at google api for possible solution -->
-				<td><%= link_to truncate(page.page_title, :length => 70 ), "http://#{hostname}" + "#{pagepath}", :target => :_blank %></td>
+				<td><%= link_to truncate(page.page_title, :length => 70 ), dashboard_page_url(@dashboard.id, encode_url_for_params(page.page_path)) %>
+				</td>
 				<td><%= page.pageviews %></td>
 			</tr>
 		<% end %>
 	</table>
 
 </div>
+
+
 

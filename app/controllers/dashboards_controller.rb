@@ -21,16 +21,9 @@ class DashboardsController < ApplicationController
   # GET /dashboards/1.json
   def show
     @dashboard = current_user.dashboards.find_by_id(params[:id])
-    ga = @ga.profile(@dashboard.web_property_id)
-    
-    #Chart
-    @visits = ga.visits
-    # Content & Sources 
-    @sources = ga.sources.take(10)
-    @pages = ga.pages.take(10)
-    # Snapshot
-    @snap = ga.snapshot.first
-
+    @dashboard.datasource(session[:google_token], session[:google_secret])
+    @sources = @dashboard.sources_per_page('/post/36067940845/think-smaller')
+   
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @dashboard }
@@ -101,6 +94,8 @@ class DashboardsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+protected
 
   def create_garb_session
     @ga = GoogleAnalytics.new(session[:google_token], session[:google_secret]) 

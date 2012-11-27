@@ -1,33 +1,21 @@
-<%= render 'highcharts' %>
+	<%= render 'highcharts' %>
+
 <div class="row-fluid">
-	<%= render 'dashheader' %>
+	<%= render 'header' %>
 </div>
-
-
 <div class="row-fluid">
-    <div id="container" style="min-width: 400px; height: 400px; margin: 0 auto">
-    	<%= render 'charts_layout' %>
+  <div id="container" style="min-width: 400px; height: 400px; margin: 0 auto">
+    	<%= render 'line_chart' %>
 	</div>
 </div>
 <br>
 
 <div class="row-fluid">
-	<%= render 'audiencenumbers' %>
+	<%= render 'snapshot' %>
 </div>
 <br>
 
 <div class="row-fluid">
-	<%= render 'trafficsources' %>
-	<%= render 'topcontent' %>
+	<%= render 'top_traffic_sources' %>
+	<%= render 'top_content' %>
 </div>
-
-
-<!-- <p>
-	<b>Name:</b>
-	<%= @dashboard.name %><br>
-	<h2>Visits for the last 30 days</h2>
-	<%  @visits.each do |key, value| %>
-	<%=  key %>: <%=  value %></br>
-	<%  end %>
-</p> -->
-

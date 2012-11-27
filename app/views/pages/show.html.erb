@@ -1,0 +1,18 @@
+<div class="row-fluid">
+	<%= render 'header' %>
+</div>
+<div class="row-fluid">
+<%= render 'line_chart' %> 
+</div>
+<h1>Page details <small><%= @page_path %></small>
+</h1>
+<p></p>
+
+
+
+
+
+
+
+
+<%= @dashboard.sources_per_page(@page_path) %>

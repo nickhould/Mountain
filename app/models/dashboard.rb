@@ -32,31 +32,29 @@ class Dashboard < ActiveRecord::Base
 		profile.snapshot.first
 	end
 
+	def pageviews_per_page(page_path)
+		pageviews = profile.pageviews(filters: { :page_path.eql => page_path }).first
+	end
+
 	def sources_per_page(page_path)
-		sources = profile.sources(filters: { :page_path.eql => page_path })
-		sources = sources.sort { |a,b| a.visits.to_i <=> b.visits.to_i}.reverse.take(10)
+		unsorted_sources = profile.sources(filters: { :page_path.eql => page_path })
+		sources = unsorted_sources.sort { |a,b| a.visits.to_i <=> b.visits.to_i }.reverse.take(10)
 	end
 
 	def snapshot_per_page(page_path, reload = false)
 		if reload
-			@snapshot = profile.snapshot(filters: { :page_path.eql => page_path }).first		 	
+			@snapshot = profile.snapshotperpage(filters: { :page_path.eql => page_path }).first		 	
 		else
-			@snapshot ||= profile.snapshot(filters: { :page_path.eql => page_path }).first		 	
+			@snapshot ||= profile.snapshotperpage(filters: { :page_path.eql => page_path }).first		 	
 		end
 	end
 
-	def next_page_path
+	def next_page_path(page_path)
+		next_page_path = profile.nextpage(filters: { :previous_page_path.eql => page_path })
+		next_page_path = next_page_path.sort { |a,b| a.pageviews.to_i <=> b.pageviews.to_i }.reverse.take(4)
+	end
 
+	def exits_per_page(page_path)
+		exits = profile.exits(filters: { :page_path.eql => page_path }).first
 	end
 end
-
-
-	# def data(web_property_id)
-	# 	data = OpenStruct.new
-	# 	ga = profile(web_property_id)
-	# 	data.visits = ga.visits
-	# 	data.sources = ga
-	# 	data.pages = ga
-	# 	data.snapshot = ga.snapshot.first
-	# 	data
-	# end

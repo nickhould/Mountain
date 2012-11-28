@@ -1,0 +1,33 @@
+<h2>Snapshot</h2>
+	<div class="bignums">
+	<ul>
+		 <div class="span3">
+			<li>	
+					<%= @dashboard.snapshot_per_page(@page_path).visits %>
+				<p>Visits</p>
+			</li>
+		</div>
+
+		<div class="span3">
+			<li>
+		    <%= @dashboard.snapshot_per_page(@page_path).pageviews %>
+				<p>Views<p>
+			</li>
+		</div>
+
+		<div class="span3">
+			<li>
+				<%= @dashboard.snapshot_per_page(@page_path).visit_bounce_rate.to_f.round(2) %>%
+				<p>Bounce Rate<p>
+			</li>
+		</div>
+
+		<div class="span3">
+			<li>
+				<%= @dashboard.snapshot_per_page(@page_path).visitors %>
+				<p>Visitors<p>
+			</li>
+		</div>
+	</ul>
+</div>
+

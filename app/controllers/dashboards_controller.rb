@@ -35,7 +35,7 @@ class DashboardsController < ApplicationController
   def new
     @dashboard = current_user.dashboards.new
     @profiles = @ga.profiles
-    # @profiles = current_user.profiles
+     # @profiles = current_user.profiles
 
     respond_to do |format|
       format.html # new.html.erb

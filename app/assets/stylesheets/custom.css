@@ -78,14 +78,18 @@ body {
    margin-right: 10px;
 }
 
-#form {
-	width:400px;height:250px;
+.form-template {
 	-webkit-border-radius: 20px;
 	-moz-border-radius: 20px;
 	border-radius: 20px;
 	background-color:#E3E3E3;
 	margin-top: 80px;
 	padding: 20px;
+}
+
+.form-textfield {
+  width: 96%;
+  height: 60px;
 }
 
 

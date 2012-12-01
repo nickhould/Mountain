@@ -7,6 +7,8 @@ $(function () {
         chart = new Highcharts.Chart({
             chart: {
                 renderTo: 'container',
+                // height: 300,    
+                // See dashboard show view to edit height.
                 type: 'area',
                 marginRight: 130,
                 marginBottom: 25
@@ -20,7 +22,7 @@ $(function () {
                 }
             },
             title: {
-                text: 'Visits over Time',
+                text: '',
                 x: 0 //center
             },
             xAxis: {
@@ -43,6 +45,7 @@ $(function () {
                 borderWidth: 0
             },
             series: [{
+                showInLegend: false, 
                 name: 'Visits',
                 color: '#8ebfe7',
                 data: <%= render_js_array(@dashboard.visits, :visits) %>

@@ -4,7 +4,7 @@
 	<ul>
 		<div class="span3">
 			<li>
-		    <%= @dashboard.snapshot.pageviews %> <%= image_tag arrow(@dashboard, :pageviews), :class => "arrows" %>
+		    <%= @dashboard.snapshot.pageviews %> <%= image_tag arrow(@dashboard, :pageviews), 'data-original-title' => "Test",  :class => "arrows" %> 
 				<p>Views<p>
 			</li>
 		</div>
@@ -59,3 +59,10 @@
 	</div>
 	</ul>
 </div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.arrows').tooltip(function(){
+	});
+});
+</script>

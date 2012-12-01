@@ -1,6 +1,10 @@
-<div class="dropdown">
-  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Dropdown trigger</a>
-  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-    ...
-  </ul>
-</div>
+<%= today = Date.today.month %>
+<select>
+  <option value="default">Last 30 days</option>
+  <option value="<%= today.prev_month.month %>">November</option>
+  <option value="mercedes">October</option>
+  <option value="audi">September</option>
+  <option value="audi">August</option>
+  <option value="audi">July</option>
+</select>
+

@@ -1,3 +1,5 @@
+
+
 body {
   margin: 0;
   font-family: 'Open Sans', sans-serif;
@@ -28,24 +30,6 @@ body {
   width: 100%;
 }
 
-.bignums {
-	font-size: 60px;
-	font-weight: bolder;
-	padding: 20px;
-}
-
-.bignums p {
-	font-size: 20px;
-	font-weight: 400;
-	padding-top: 20px;
-	list-style-type: none;
-}
-
-.bignums ul {
-	list-style-type: none;
-	list-style: none;
-}
-
 .btn-flat {
     filter:progid:DXImageTransform.Microsoft.Gradient(enabled='false');
     -webkit-box-shadow: none;
@@ -65,10 +49,8 @@ body {
    font-weight: 700;
 }
 
-    /* Home Page
-    -------------------------------------------------- */
-
-    /* Center align the text within the three columns below the carousel */
+/* Home Page
+-------------------------------------------------- */
 .marketing .span4 {
 	text-align: center;
 }
@@ -78,6 +60,8 @@ body {
    margin-right: 10px;
 }
 
+/* Scaffold Views
+-------------------------------------------------- */
 .form-template {
 	-webkit-border-radius: 20px;
 	-moz-border-radius: 20px;
@@ -85,6 +69,36 @@ body {
 	background-color:#E3E3E3;
 	margin-top: 80px;
 	padding: 40px 90px 40px 90px;
+  text-align: center;
+  width: 250px;
+}
+
+/* Snapshot
+-------------------------------------------------- */
+.bignums .span3{
+  text-align: center;
+}
+
+.bignums {
+  font-size: 3.750em;
+  /*padding: 20px;*/
+}
+
+.bignums p {
+  font-size: 20px;
+  font-weight: 400;
+  margin: 20 10 10 0;
+  list-style-type: none;
+  color: #707070;
+}
+
+.bignums ul {
+  list-style-type: none;
+  list-style: none;
+}
+
+.arrows{
+  padding:0 10 0 10;
 }
 
 

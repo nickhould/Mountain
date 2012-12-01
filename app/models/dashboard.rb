@@ -16,8 +16,8 @@ class Dashboard < ActiveRecord::Base
 		@profile ||= @ga.profile(self.web_property_id)
 	end
 
-	def visits(start_date, end_date)
-		profile.visits(start_date: start_date, end_date: end_date)
+	def visits
+		profile.visits
 	end
 
 	def sources
@@ -30,6 +30,12 @@ class Dashboard < ActiveRecord::Base
 
 	def snapshot
 		profile.snapshot.first
+	end
+
+	def snapshot_previous_period
+		end_date = 31.days.ago
+		start_date = 30.days.ago(end_date)
+		profile.snapshot(start_date: start_date, end_date: end_date).first
 	end
 
 	def pageviews_per_page(page_path)

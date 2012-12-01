@@ -48,7 +48,7 @@ end
 class Snapshot
   extend Garb::Model
 
-  metrics :visits, :pageviews, :visitors, :visitbouncerate
+  metrics :visits, :pageviews, :visitors, :visitbouncerate, :avgTimeOnSite
 end
 
 class Snapshotperpage

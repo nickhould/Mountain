@@ -36,14 +36,20 @@ module DashboardsHelper
 		data
 	end
 
+	def positive?(number)
+		number > 0 ? true : false
+	end
+
+	def negative?(number)
+		number < 0 ? true : false
+	end
+
 	def variation_positive?(object, method)
-		variation = variation(object, method)
-		variation > 0 ? true : false
+		positive? variation(object, method)
 	end
 
 	def variation_negative?(object, method)
-		variation = variation(object, method)
-		variation < 0 ? true : false
+		negative? variation(object, method)
 	end
 
 	def variation(object, method)
@@ -66,12 +72,16 @@ module DashboardsHelper
 	end
 
 	def format_negative_variation(variation)
-		variation = "-" + variation.round(2).to_s + "%"
+		variation.round(2).to_s + "%"
 	end
 
 	def convert_seconds_to_time(seconds)
     total_minutes = seconds / 1.minutes
     seconds_in_last_minute = seconds - total_minutes.minutes.seconds
     "#{total_minutes}m #{seconds_in_last_minute}s"
+	end
+
+	def format_time(seconds)
+		(Time.mktime(0)+seconds.to_f).strftime("%M:%S")
 	end
 end

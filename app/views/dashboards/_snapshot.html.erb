@@ -3,28 +3,28 @@
 	<ul>
 		 <div class="span3">
 			<li>	
-					<%= @dashboard.snapshot.visits %>
+					<%= @dashboard.snapshot.visits %> <%= image_tag "uparrow.svg", :class => "arrows" %>
 				<p>Visits</p>
 			</li>
 		</div>
 
 		<div class="span3">
 			<li>
-		    <%= @dashboard.snapshot.pageviews %>
+		    <%= @dashboard.snapshot.pageviews %> <%= image_tag "uparrow.svg", :class => "arrows" %>
 				<p>Views<p>
 			</li>
 		</div>
 
 		<div class="span3">
 			<li>
-				<%= @dashboard.snapshot.visit_bounce_rate.to_f.round(2) %>%
+				<%= @dashboard.snapshot.visit_bounce_rate.to_f.round(2) %>% <%= image_tag "downarrow.svg", :class => "arrows" %>
 				<p>Bounce Rate<p>
 			</li>
 		</div>
 
 		<div class="span3">
 			<li>
-				<%= @dashboard.snapshot.visitors %>
+				<%= @dashboard.snapshot.visitors %> <%= image_tag "uparrow.svg", :class => "arrows" %>
 				<p>Visitors<p>
 			</li>
 		</div>

@@ -1,7 +1,7 @@
-
-<div class="span4 offset4">
-  <h1>Dashboards</h1>
-
+<div class="row-fluid">
+	<div class="form-template offset4">
+  <h2>Dashboards</h2>
+	<hr>
   <table class="table">
     <tr>
       <th>Name</th>
@@ -15,12 +15,16 @@
       <td><%= link_to dashboard.name, dashboard %></td>
       <td><%= @ga.profile(dashboard.web_property_id).visitstotal.first.visits %></td>
       <td>+25%</td>
-      <td><%= link_to "Edit", edit_dashboard_url(dashboard) %></td>
+	  <td><%= link_to "Edit", edit_dashboard_url(dashboard) %></td>
+
+	  <% end %>
+
     </tr>
-  <% end %>
   </table>
 
-  <%= button_to "New dashboard", new_dashboard_path, method: :get  %>
+  <%= button_to "New dashboard", new_dashboard_path, method: :get, :class => "btn btn-large btn-primary btn-flat" %>
 
   <br />
+</div>
+
 </div>

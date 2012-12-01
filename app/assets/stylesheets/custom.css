@@ -120,30 +120,6 @@ body {
   transition-timing-function: ease;  
 }
 
-/* Home Page
--------------------------------------------------- */
-.marketing .span4 {
-	text-align: center;
-}
-
-.marketing .span4 p {
-	margin-left: 10px;
-   margin-right: 10px;
-}
-
-/* Scaffold Views
--------------------------------------------------- */
-.form-template {
-	-webkit-border-radius: 20px;
-	-moz-border-radius: 20px;
-	border-radius: 20px;
-	background-color:#E3E3E3;
-	margin-top: 80px;
-	padding: 40px 90px 40px 90px;
-  text-align: center;
-  width: 250px;
-}
-
 /* Snapshot
 -------------------------------------------------- */
 .bignums .span3{
@@ -172,5 +148,31 @@ body {
   padding:0 10 0 10;
 }
 
+/* Home Page
+-------------------------------------------------- */
+.marketing .span4 {
+  text-align: center;
+}
 
+.marketing .span4 p {
+  margin-left: 10px;
+   margin-right: 10px;
+}
+
+/* Scaffold Views
+-------------------------------------------------- */
+.form-template {
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  background-color:#E3E3E3;
+  margin-top: 80px;
+  padding: 40px 90px 40px 90px;
+  text-align: center;
+  width: 250px;
+}
+
+.table-override{
+  border: none;
+}
 

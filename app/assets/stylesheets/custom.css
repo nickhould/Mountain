@@ -172,7 +172,7 @@ body {
   width: 250px;
 }
 
-.table-override{
-  border: none;
+.table td, .table th {
+    border: none;
 }
 

@@ -1,30 +1,30 @@
 <h2>Snapshot</h2>
-	<div class="bignums">
+<div class="bignums">
 	<ul>
 		 <div class="span3">
 			<li>	
-					<%= @dashboard.snapshot_per_page(@page_path).visits %>
+					<%= @dashboard.snapshot_per_page(@page_path).visits %> <%= image_tag "uparrow.svg", :class => "arrows" %>
 				<p>Visits</p>
 			</li>
 		</div>
 
 		<div class="span3">
 			<li>
-		    <%= @dashboard.snapshot_per_page(@page_path).pageviews %>
-				<p>Views<p>
+		    <%= @dashboard.snapshot_per_page(@page_path).pageviews %> <%= image_tag "downarrow.svg", :class => "arrows" %>
+				<p>Views<p> 
 			</li>
 		</div>
 
 		<div class="span3">
 			<li>
-				<%= @dashboard.snapshot_per_page(@page_path).visit_bounce_rate.to_f.round(2) %>%
-				<p>Bounce Rate<p>
+				<%= @dashboard.snapshot_per_page(@page_path).visit_bounce_rate.to_f.round(2) %>% <%= image_tag "downarrow.svg", :class => "arrows" %>
+				<p>Bounce Rate<p> 
 			</li>
 		</div>
 
 		<div class="span3">
 			<li>
-				<%= @dashboard.snapshot_per_page(@page_path).visitors %>
+				<%= @dashboard.snapshot_per_page(@page_path).visitors %> <%= image_tag "uparrow.svg", :class => "arrows" %>
 				<p>Visitors<p>
 			</li>
 		</div>

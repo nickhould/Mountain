@@ -4,14 +4,14 @@
 	<ul>
 		<div class="span3">
 			<li>
-		    <%= @dashboard.snapshot.pageviews %> <%= image_tag arrow(@dashboard, :pageviews), 'data-original-title' => "Test",  :class => "arrows" %> 
+		    <%= @dashboard.snapshot.pageviews %> <%= image_tag arrow(@dashboard, :pageviews), 'data-original-title' => formatted_variation(@dashboard, :pageviews), :class => "arrows" %> 
 				<p>Views<p>
 			</li>
 		</div>
 
 		<div class="span3">
 			<li>
-				<%= @dashboard.snapshot.visitors %> <%= image_tag arrow(@dashboard, :visitors),'data-original-title' => "Test", :class => "arrows" %>
+				<%= @dashboard.snapshot.visitors %> <%= image_tag arrow(@dashboard, :visitors),'data-original-title' => formatted_variation(@dashboard, :visitors), :class => "arrows" %>
 				<p>Visitors<p>
 			</li>
 		</div>

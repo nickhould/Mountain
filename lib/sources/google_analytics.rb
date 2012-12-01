@@ -8,7 +8,7 @@ class GoogleAnalytics
 	end
 
 	def accounts
-		Garb::Management::Account.all(garbsession)
+		Garb::Management::Account.all(garbsession)	
 	end
 
 	def web_properties

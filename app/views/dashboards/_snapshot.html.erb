@@ -5,7 +5,8 @@
 		<div class="span3">
 			<li>
 		    <%= @dashboard.snapshot.pageviews %> <%= image_tag arrow(@dashboard, :pageviews), :class => "arrows" %>
-				<p>Views<p>
+				<p>Views<p> 
+					<%= formatted_variation(@dashboard, :pageviews) %>
 			</li>
 		</div>
 
@@ -13,6 +14,7 @@
 			<li>
 				<%= @dashboard.snapshot.visitors %> <%= image_tag arrow(@dashboard, :visitors), :class => "arrows" %>
 				<p>Visitors<p>
+				<%= formatted_variation(@dashboard, :visits) %>	
 			</li>
 		</div>
 

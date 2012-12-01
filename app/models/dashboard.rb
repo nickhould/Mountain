@@ -16,8 +16,8 @@ class Dashboard < ActiveRecord::Base
 		@profile ||= @ga.profile(self.web_property_id)
 	end
 
-	def visits
-		profile.visits
+	def visits(start_date, end_date)
+		profile.visits(start_date: start_date, end_date: end_date)
 	end
 
 	def sources

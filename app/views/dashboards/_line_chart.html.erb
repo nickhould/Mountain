@@ -15,7 +15,7 @@ $(function () {
                 series: {
                     pointStart: 0,
                     lineWidth: 0,
-                    pointStart: Date.UTC(<%= render_point_start(@dashboard.visits) %>), // sets formatting for date and time
+                    pointStart: Date.UTC(<%= render_point_start(@dashboard.visits(2.months.ago, 1.month.ago)) %>), // sets formatting for date and time
                     pointInterval: 24 * 3600 * 1000 // one day
                 }
             },
@@ -45,7 +45,7 @@ $(function () {
             series: [{
                 name: 'Visits',
                 color: '#8ebfe7',
-                data: <%= render_js_array(@dashboard.visits, :visits) %>
+                data: <%= render_js_array(@dashboard.visits(2.months.ago, 1.month.ago), :visits) %>
             }],
             credits:{enabled:false}
         });

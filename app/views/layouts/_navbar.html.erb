@@ -1,25 +1,27 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
-      <div class="span1">
-		      <%= image_tag "dashboardly_logo.svg", :width => 50 %>		  
-		   </div>
+    <div class="span1">
+		  <%= image_tag "dashboardly_logo.svg", :width => 50 %>		
+		</div>
 
-		      <a class="brand" href="/">Dashboardly</a>
-          <ul class="nav pull-right">
+		<a class="brand" href="/">Dashboardly</a>
+      <ul class="nav pull-right navigation">
 
-            <% if current_user? %>
-              <li>
-                <%= link_to "Dashboards", dashboards_url %>
-              </li>
-              <li class="btn btn-danger btn-flat signin">
-                <%= link_to "Sign out", sign_out_url, method: :delete %>
-              </li>
-            <% else %>
-              <li class="btn btn-danger btn-flat signin" >
-                <%= link_to "Sign in", '/auth/google' %>
-              </li>
-            <% end %>  
-          </ul>
+<!-- Change routing url once static pages are made. -->
+        <li class="btn btn-flat btn-nav"><%= link_to "About", dashboards_url %></li> 
+        <li class="btn btn-flat btn-nav"><%= link_to "Blog", dashboards_url %></li>
 
+      <% if current_user? %>
+        <li class="btn btn-flat btn-nav"><%= link_to "Dashboards", dashboards_url %></li>
+
+        <li class="btn btn-danger btn-flat signin">
+          <%= link_to "Sign out", sign_out_url, method: :delete %>
+        </li>
+      <% else %>
+        <li class="btn btn-danger btn-flat signin" >
+          <%= link_to "Sign in", '/auth/google' %>
+        </li>
+      <% end %>  
+      </ul>
   </div>
 </div>

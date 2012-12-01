@@ -1,18 +1,19 @@
-	<%= render 'highcharts' %>
+<%= render 'highcharts' %>
 
 <div class="row-fluid">
 	<%= render 'header' %>
 </div>
+
 <div class="row-fluid">
-  <div id="container" style="min-width: 400px; height: 400px; margin: 0 auto">
+	<h2>Views <small>Data for the last 30 days.</small></h2>
+  	<div id="container" style="min-width: 400px; height: 300px; margin: 0 auto">
     	<%= render 'line_chart' %>
 	</div>
 </div>
 <br>
 
-<div class="row-fluid">
-	<%= render 'snapshot' %>
-</div>
+<%= render 'snapshot' %>
+
 <br>
 
 <div class="row-fluid">

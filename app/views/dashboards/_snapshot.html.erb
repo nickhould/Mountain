@@ -1,13 +1,7 @@
 <h2>Snapshot</h2>
+<div class="row-fluid">	
 	<div class="bignums">
 	<ul>
-		 <div class="span3">
-			<li>	
-					<%= @dashboard.snapshot.visits %> <%= image_tag "uparrow.svg", :class => "arrows" %>
-				<p>Visits</p>
-			</li>
-		</div>
-
 		<div class="span3">
 			<li>
 		    <%= @dashboard.snapshot.pageviews %> <%= image_tag "uparrow.svg", :class => "arrows" %>
@@ -17,16 +11,54 @@
 
 		<div class="span3">
 			<li>
-				<%= @dashboard.snapshot.visit_bounce_rate.to_f.round(2) %>% <%= image_tag "downarrow.svg", :class => "arrows" %>
-				<p>Bounce Rate<p>
+				<%= @dashboard.snapshot.visitors %> <%= image_tag "uparrow.svg", :class => "arrows" %>
+				<p>Visitors<p>
 			</li>
 		</div>
 
 		<div class="span3">
 			<li>
-				<%= @dashboard.snapshot.visitors %> <%= image_tag "uparrow.svg", :class => "arrows" %>
-				<p>Visitors<p>
+				2:56 <%= image_tag "downarrow.svg", :class => "arrows" %>
+				<p>Avg Time on Site<p>
 			</li>
 		</div>
+
+		<div class="span3">
+			<li>
+				22% <%= image_tag "uparrow.svg", :class => "arrows" %>
+				<p>From Mobile<p>
+			</li>
+		</div>
+
+
+
+<div class="row-fluid">
+	<div class="span3">
+		<li>
+		   322 <%= image_tag "uparrow.svg", :class => "arrows" %>
+			<p>Total Notes<p>
+		</li>
+	</div>
+
+	<div class="span3">
+		<li>
+			214 <%= image_tag "downarrow.svg", :class => "arrows" %>
+			<p>Likes<p>
+		</li>
+	</div>
+
+	<div class="span3">
+		<li>
+			108 <%= image_tag "uparrow.svg", :class => "arrows" %>
+			<p>Reblogs<p>
+		</li>
+	</div>
+
+	<div class="span3">
+		<li>
+			64 <%= image_tag "downarrow.svg", :class => "arrows" %>
+			<p>Followers<p>
+		</li>
+	</div>
 	</ul>
 </div>

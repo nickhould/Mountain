@@ -175,13 +175,21 @@ width: 100%;
 right: 0;
 left: 0;
 height: 200px;
+padding-top: 200px;
 background-image: url("mtns.svg");
 background-repeat: repeat-x;
 text-align: center;
 }
 
 body .blue-bg {
-  background-color: #8ebfe7
+  background-color: #8ebfe7;
+  height: 100%;
+}
+.hero-unit {
+  padding: 20px;
+  margin-bottom: 30px;
+  background-color: #fff;
+  text-align: center;
 }
 
 .marketing .span4 {

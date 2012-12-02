@@ -1,33 +1,40 @@
-<h2>Snapshot</h2>
+<h2>Snapshot <small>Data for the last 30 days.</small></h2>
 <div class="bignums">
 	<ul>
 		 <div class="span3">
 			<li>
-		    <%= @dashboard.snapshot_per_page(@page_path).pageviews %> <%= image_tag "downarrow.svg", :class => "arrows" %>
+		    <%= @dashboard.snapshot_per_page(@page_path).pageviews %> <%= image_tag "downarrow.svg", 'data-original-title' => "Test", :class => "arrows" %>
 				<p>Views<p> 
 			</li>
 		</div>
 
 		 <div class="span3">
 			<li>	
-					<%= @dashboard.snapshot_per_page(@page_path).visits %> <%= image_tag "uparrow.svg", :class => "arrows" %>
+					<%= @dashboard.snapshot_per_page(@page_path).visits %> <%= image_tag "uparrow.svg", 'data-original-title' => "Test", :class => "arrows" %>
 				<p>Visits</p>
 			</li>
 		</div>
 
 		<div class="span3">
 			<li>
-				4:15 <%= image_tag "downarrow.svg", :class => "arrows" %>
+				4:15 <%= image_tag "downarrow.svg", 'data-original-title' => "Test", :class => "arrows" %>
 				<p>Avg Time on Page<p> 
 			</li>
 		</div>
 
 		<div class="span3">
 			<li>
-				17% <%= image_tag "uparrow.svg", :class => "arrows" %>
+				17% <%= image_tag "uparrow.svg", 'data-original-title' => "Test", :class => "arrows" %>
 				<p>From Mobile<p>
 			</li>
 		</div>
 	</ul>
 </div>
 
+<!-- jQuery for Tooltips -->
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.arrows').tooltip(function(){
+	});
+});
+</script>

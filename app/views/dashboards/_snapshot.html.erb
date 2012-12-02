@@ -28,7 +28,8 @@
 
 		<div class="span3">
 			<li>
-				22% <%= image_tag "uparrow.svg", 'data-original-title' => "Test", :class => "arrows" %>
+				<%= @dashboard.mobile_ratio %>% 
+				<%= image_tag arrow_for_single_metric(@dashboard.mobile_ratio_variation),'data-original-title' => @dashboard.formatted_mobile_variation, :class => "arrows"%>
 				<p>From Mobile<p>
 			</li>
 		</div>

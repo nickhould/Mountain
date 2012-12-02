@@ -12,6 +12,13 @@ module DashboardsHelper
 		start = "#{result.year}, #{result.month - 1}, #{result.day}" 
 	end
 
+	def arrow_for_single_metric(metric)
+		if metric.to_i > 0 
+			return ("uparrow.svg")
+		else
+			return ("downarrow.svg")
+		end
+	end
 
 	def arrow(object, method)
 		if variation_positive?(object, method)

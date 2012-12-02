@@ -40,15 +40,37 @@ class Dashboard < ActiveRecord::Base
 				data[:is_mobile] = obj.visits.to_f
 			end
 		end
-			ratio = ( data[:is_mobile] / ( data[:is_mobile] + data[:is_not_mobile] )) * 100
+		ratio = ( data[:is_mobile] / ( data[:is_mobile] + data[:is_not_mobile] )) * 100
+		ratio.round(2)
 	end
 
 
 	def mobile_ratio_previous_period
 		dates = previous_period_dates
-		start_date = dates[:start_date]
-		end_date = dates[:end_date]
-		
+		data = {}
+		profile.mobile(dates).each do |obj|
+			if obj.is_mobile == "No"
+				data[:is_not_mobile] = obj.visits.to_f
+			elsif obj.is_mobile == "Yes"
+				data[:is_mobile] = obj.visits.to_f
+			end
+		end
+		ratio = ( data[:is_mobile] / ( data[:is_mobile] + data[:is_not_mobile] )) * 100
+	end
+
+	def mobile_ratio_variation
+		variation = mobile_ratio - mobile_ratio_previous_period
+	end
+
+	def formatted_mobile_variation
+		variation = mobile_ratio_variation
+		if variation > 0
+			variation = "+" + variation.round(2).to_s + "%"
+			return variation
+		else
+			variation = variation.round(2).to_s + "%"
+			return variation.to_s
+		end
 	end
 
 	def snapshot
@@ -57,7 +79,7 @@ class Dashboard < ActiveRecord::Base
 
 	def previous_period_dates
 		previous_period_dates = {}
-		end_date = previous_period_dates[:end_date] = 31.days ago
+		end_date = previous_period_dates[:end_date] = 31.days.ago
 		previous_period_dates[:start_date] = 30.days.ago(end_date)
 		previous_period_dates
 	end
@@ -99,9 +121,5 @@ class Dashboard < ActiveRecord::Base
 		keywords = profile.keywords(filters: { :page_path.eql => page_path})
 		keywords = keywords.sort { |a,b| a.visits.to_i <=> b.visits.to_i }.reverse.take(5)
 	end
-
-
-	# Abstractions
-
 
 end

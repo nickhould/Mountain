@@ -171,12 +171,15 @@ body {
 -------------------------------------------------- */
 body .mtn{
 position: absolute;
+display: block;
+margin: 0 auto;
 width: 100%;
 right: 0;
 left: 0;
 height: 200px;
 background-image: url("mtns.svg");
 background-repeat: repeat-x;
+text-align: center;
 }
 
 body .blue-bg {

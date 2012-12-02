@@ -8,6 +8,10 @@ body {
   padding: 80px;
 }
 
+.table td, .table th {
+    border: none;
+}
+
 .btn-flat {
   filter:progid:DXImageTransform.Microsoft.Gradient(enabled='false');
   -webkit-box-shadow: none;
@@ -149,16 +153,6 @@ body {
   padding:0 10 0 10;
 }
 
-/* Home Page
--------------------------------------------------- */
-.marketing .span4 {
-  text-align: center;
-}
-
-.marketing .span4 p {
-  margin-left: 10px;
-   margin-right: 10px;
-}
 
 /* Scaffold Views
 -------------------------------------------------- */
@@ -173,7 +167,27 @@ body {
   width: 250px;
 }
 
-.table td, .table th {
-    border: none;
+/* Home Page
+-------------------------------------------------- */
+body .mtn{
+position: absolute;
+width: 100%;
+right: 0;
+left: 0;
+height: 200px;
+background-image: url("mtns.svg");
+background-repeat: repeat-x;
 }
 
+body .blue-bg {
+  background-color: #8ebfe7
+}
+
+.marketing .span4 {
+  text-align: center;
+}
+
+.marketing .span4 p {
+  margin-left: 10px;
+  margin-right: 10px;
+}

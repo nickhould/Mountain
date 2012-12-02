@@ -16,6 +16,8 @@ Dashboardly::Application.routes.draw do
   delete '/logout', to: 'sessions#destroy', as: :sign_out
   get '/login' => 'staticpages#login'
 
+  get '/about' => 'staticpages#about'
+
 end
   # The priority is based upon order of creation:
   # first created -> highest priority.

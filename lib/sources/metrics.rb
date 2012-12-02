@@ -1,3 +1,4 @@
+
 class Exits
   extend Garb::Model
 
@@ -71,3 +72,11 @@ class Keywords
   metrics :visits
   dimensions :keyword
 end
+
+class Mobile
+  extend Garb::Model
+
+  metrics :visits
+  dimensions :isMobile
+end
+

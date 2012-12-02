@@ -15,6 +15,18 @@ class Dashboard < ActiveRecord::Base
 		@profile ||= @ga.profile(self.web_property_id)
 	end
 
+	def accounts
+		@ga.accounts
+	end
+
+	def web_property
+		@ga.web_property(self.web_property_id)
+	end
+
+	def web_properties
+		@ga.web_properties	
+	end
+
 	def visits
 		profile.visits
 	end

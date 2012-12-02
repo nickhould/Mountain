@@ -15,6 +15,12 @@ class GoogleAnalytics
 		Garb::Management::WebProperty.all(garbsession)
 	end
 
+	def web_property(web_property_id)
+		web_property = Garb::Management::WebProperty.all(garbsession).detect do |p| 
+			p.id == web_property_id
+		end
+	end
+
 	def profiles
   	Garb::Management::Profile.all(garbsession)
 	end

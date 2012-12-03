@@ -203,3 +203,17 @@ body .blue-bg {
   margin-left: 10px;
   margin-right: 10px;
 }
+
+/* About Page
+-------------------------------------------------- */
+.about img {
+  width: 150px;
+}
+
+.about h2 {
+  line-height: 18px;
+}
+
+.about h2 small{
+  margin: 5px;
+}

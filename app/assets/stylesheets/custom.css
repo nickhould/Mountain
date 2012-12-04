@@ -66,7 +66,7 @@ footer a:hover{
   font-size: 14px;
   text-shadow:none;
   margin-top: 60px; 
-  margin-right: 10px;
+  margin-right: 5px;
   padding: 5px;
   background-color: #3d3d3d;
     -webkit-transition-property:background-color;
@@ -224,6 +224,15 @@ body .blue-bg {
   width: 150px;
 }
 
+.about h1 {
+  margin-bottom: 0;
+  font-size: 60px;
+  line-height: 1;
+  letter-spacing: -1px;
+  color: inherit;
+  text-align: center;
+}
+
 .about h2 {
   line-height: 18px;
 }
@@ -231,4 +240,5 @@ body .blue-bg {
 .about h2 small{
   margin: 5px;
 }
+
 

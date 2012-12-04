@@ -27,22 +27,7 @@ class Dashboard < ActiveRecord::Base
 		@ga.web_properties	
 	end
 
-	def visits
-		profile.visits
-	end
-
-	def sources
-		profile.sources.sort { |a,b| a.visits.to_i <=> b.visits.to_i}.reverse.take(10)
-	end
-
-	def pages
-		profile.pages.sort { |a,b| a.pageviews.to_i <=> b.pageviews.to_i}.reverse.take(10)
-	end
-
-	def mobile
-		profile.mobile
-	end
-
+# To be refactored
 	def mobile_ratio
 		data = {}
 		profile.mobile.each do |obj|
@@ -85,10 +70,6 @@ class Dashboard < ActiveRecord::Base
 		end
 	end
 
-	def snapshot
-		profile.snapshot.first
-	end
-
 	def previous_period_dates
 		previous_period_dates = {}
 		end_date = previous_period_dates[:end_date] = 31.days.ago
@@ -103,21 +84,59 @@ class Dashboard < ActiveRecord::Base
 		profile.snapshot(start_date: start_date, end_date: end_date).first
 	end
 
-	def pageviews_per_page(page_path)
-		pageviews = profile.pageviews(filters: { :page_path.eql => page_path }).first
+
+# metrics
+
+	def metric(metric_name, *options = {})
+		results = build_result(metric_name, params, options)
 	end
 
-	def sources_per_page(page_path)
-		unsorted_sources = profile.sources(filters: { :page_path.eql => page_path })
-		sources = unsorted_sources.sort { |a,b| a.visits.to_i <=> b.visits.to_i }.reverse.take(10)
-	end
-
-	def snapshot_per_page(page_path, reload = false)
-		if reload
-			@snapshot = profile.snapshotperpage(filters: { :page_path.eql => page_path }).first		 	
+	def results(metric_name, options)
+		params = params(options)
+		if options[:variation].true?
+			results = variation(metric_name, params)
 		else
-			@snapshot ||= profile.snapshotperpage(filters: { :page_path.eql => page_path }).first		 	
+			results = method(metric_name).call(params)
 		end
+	end
+
+	def params(options)
+		params = {}
+		if options[:page_path]
+			params[:filters] = { :page_path.eql => options[:page_path] }
+		end
+		params
+	end
+
+	def variation(metric, params)
+		current_data = method(metric).call(params)
+		params << previous_period_dates
+		call(somemethod, )
+	end
+
+	def visits
+	  page_path.present? ? params = {filters: { :page_path.eql => page_path.first }} : params = {}
+		profile.visits(params)
+	end
+
+	def pages(*page_path)
+		page_path.present? ? params = {filters: { :page_path.eql => page_path.first }} : params = {}
+		profile.pages.sort { |a,b| a.pageviews.to_i <=> b.pageviews.to_i}.reverse.take(10)
+	end
+
+	def mobile(*page_path)
+		page_path.present? ? params = {filters: { :page_path.eql => page_path.first }} : params = {}
+		profile.mobile(params)
+	end
+
+	def sources(*page_path)
+		page_path.present? ? params = {filters: { :page_path.eql => page_path.first }} : params = {}
+		profile.sources(params).sort { |a,b| a.visits.to_i <=> b.visits.to_i}.reverse.take(10)
+	end
+
+	def snapshot(*page_path)
+		page_path.present? ? params = {filters: { :page_path.eql => page_path.first }} : params = {}
+		profile.snapshot(params).first
 	end
 
 	def next_page_path(page_path)
@@ -125,13 +144,19 @@ class Dashboard < ActiveRecord::Base
 		next_page_path = next_page_path.sort { |a,b| a.pageviews.to_i <=> b.pageviews.to_i }.reverse.take(4)
 	end
 
-	def exits_per_page(page_path)
-		exits = profile.exits(filters: { :page_path.eql => page_path }).first
+	def exits(*page_path)
+		page_path.present? ? params = {filters: { :page_path.eql => page_path.first }} : params = {}
+		exits = profile.exits(params).first
 	end
 
-	def keywords_per_page(page_path)
-		keywords = profile.keywords(filters: { :page_path.eql => page_path})
+	def keywords(*page_path)
+		page_path.present? ? params = {filters: { :page_path.eql => page_path.first }} : params = {}
+		keywords = profile.keywords(params)
 		keywords = keywords.sort { |a,b| a.visits.to_i <=> b.visits.to_i }.reverse.take(5)
 	end
 
+	def pageviews(*page_path)
+		page_path.present? ? params = {filters: { :page_path.eql => page_path.first }} : params = {}
+		pageviews = profile.pageviews(params).first
+	end
 end

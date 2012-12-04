@@ -3,14 +3,14 @@
 	<ul>
 		 <div class="span3">
 			<li>
-		    <%= @dashboard.snapshot_per_page(@page_path).pageviews %> <%= image_tag "downarrow.svg", 'data-original-title' => "Test", :class => "arrows" %>
+		    <%= @dashboard.snapshot(@page_path).pageviews %> <%= image_tag "downarrow.svg", 'data-original-title' => "Test", :class => "arrows" %>
 				<p>Views<p> 
 			</li>
 		</div>
 
 		 <div class="span3">
 			<li>	
-					<%= @dashboard.snapshot_per_page(@page_path).visits %> <%= image_tag "uparrow.svg", 'data-original-title' => "Test", :class => "arrows" %>
+					<%= @dashboard.snapshot(@page_path).visits %> <%= image_tag "uparrow.svg", 'data-original-title' => "Test", :class => "arrows" %>
 				<p>Visits</p>
 			</li>
 		</div>

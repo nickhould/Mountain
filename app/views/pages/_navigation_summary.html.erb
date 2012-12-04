@@ -9,12 +9,12 @@
 
 	  <tr>
 	  	<td>Exits</td>
-	  	<td><%= percentage_from_total( @dashboard.exits_per_page(@page_path).exits, @dashboard.pageviews_per_page(@page_path).pageviews) %>%</td>
+	  	<td><%= percentage_from_total( @dashboard.exits(@page_path).exits, @dashboard.pageviews(@page_path).pageviews) %>%</td>
 	  </tr>
 	<% @dashboard.next_page_path(@page_path).each do |page| %> 
 	  <tr>  
 	    <td><%= page.page_title %> - <small><%= page.page_path %></small></td>  
-	    <td><%= percentage_from_total(page.pageviews, @dashboard.pageviews_per_page(@page_path).pageviews) %>%</td>   
+	    <td><%= percentage_from_total(page.pageviews, @dashboard.pageviews(@page_path).pageviews) %>%</td>   
 	  </tr>
 	<% end %>  
 	</table>

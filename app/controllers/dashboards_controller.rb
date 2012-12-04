@@ -22,7 +22,6 @@ class DashboardsController < ApplicationController
   def show
     @dashboard = current_user.dashboards.find_by_id(params[:id])
     @dashboard.datasource(session[:google_token], session[:google_secret])
-    @sources = @dashboard.sources_per_page('/post/36067940845/think-smaller')
     @dashboards = current_user.dashboards
     respond_to do |format|
       format.html # show.html.erb

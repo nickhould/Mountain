@@ -21,6 +21,20 @@ body {
   vertical-align: center;
 }
 
+/* Footer
+-------------------------------------------------- */
+footer {
+  bottom: 0px;
+  padding-top: 50px;
+}
+
+footer a{
+  color: #fff;
+}
+
+footer a:hover{
+  color: #fff;
+}
 
 /* Navigation
 -------------------------------------------------- */
@@ -217,3 +231,4 @@ body .blue-bg {
 .about h2 small{
   margin: 5px;
 }
+

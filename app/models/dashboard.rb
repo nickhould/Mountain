@@ -28,18 +28,7 @@ class Dashboard < ActiveRecord::Base
 	end
 
 # To be refactored
-	def mobile_ratio
-		data = {}
-		profile.mobile.each do |obj|
-			if obj.is_mobile == "No"
-				data[:is_not_mobile] = obj.visits.to_f
-			elsif obj.is_mobile == "Yes"
-				data[:is_mobile] = obj.visits.to_f
-			end
-		end
-		ratio = ( data[:is_mobile] / ( data[:is_mobile] + data[:is_not_mobile] )) * 100
-		ratio.round(2)
-	end
+
 
 
 	def mobile_ratio_previous_period
@@ -93,28 +82,37 @@ class Dashboard < ActiveRecord::Base
 
 	def results(metric_name, options)
 		params = params(options)
-		if options[:variation] == true
-			results = variation(metric_name, params)
-		else
-			results = method(metric_name).call(params)
+		results = method(metric_name).call(params)
 		end
 	end
 
 	def params(options)
 		params = {}
-		if options[:page_path]
+		if options[:variation] == true
+			dates = previous_period_dates
+			params{present:{}, past: {}}
+			if options[:page_path]
+				params[:present][:filters] = params[:past][:filters] = { :page_path.eql => options[:page_path] }
+				params[:past][:start_date] = dates[:start_date]
+				params[:past][:end_date] = dates[:end_date]
+			end
+		elsif options[:page_path]
 			params[:filters] = { :page_path.eql => options[:page_path] }
 		end
 		params
 	end
 
-	def variation(metric_name, params)
-		current_data = method(metric_name).call(params)
-		params << previous_period_dates
+	def variation(metric_name, options={})
+		options[:variation] = true
+		params = params(options)
+
+		if options[:secondary_metric]
+			present_period_data = method(metric_name).call(params[:present]).method(options[:secondary_metric]).call
+			past_period_data = method(metric_name).call(params[:past])
+		past_period_params
+		past_data 
 		call(somemethod, )
 	end
-
-
 
 	def visits(params={})
 		profile.visits(params)
@@ -124,8 +122,22 @@ class Dashboard < ActiveRecord::Base
 		profile.pages(params).sort { |a,b| a.pageviews.to_i <=> b.pageviews.to_i}.reverse.take(10)
 	end
 
-	def mobile(*page_path)
-		page_path.present? ? params = {filters: { :page_path.eql => page_path.first }} : params = {}
+
+	# to refactor
+	def mobile_ratio(params={})
+		data = {}
+		profile.mobile(params).each do |result|
+			if result.is_mobile == "No"
+				data[:is_not_mobile] = result.visits.to_f
+			elsif result.is_mobile == "Yes"
+				data[:is_mobile] = result.visits.to_f
+			end
+		end
+		ratio = ( data[:is_mobile] / ( data[:is_mobile] + data[:is_not_mobile] )) * 100
+		ratio.round(2)
+	end
+
+	def mobile(params={})
 		profile.mobile(params)
 	end
 

@@ -17,14 +17,16 @@
 
 		<div class="span3">
 			<li>
-				4:15 <%= image_tag "downarrow.svg", 'data-original-title' => "Test", :class => "arrows" %>
+					<%= format_time(@dashboard.metric(:snapshot, page_path: @page_path).avg_time_on_site)  %>
+				<%= image_tag "downarrow.svg", 'data-original-title' => "Test", :class => "arrows" %>
 				<p>Avg Time on Page<p> 
 			</li>
 		</div>
 
 		<div class="span3">
 			<li>
-				17% <%= image_tag "uparrow.svg", 'data-original-title' => "Test", :class => "arrows" %>
+				<%= @dashboard.metric(:mobile_ratio, page_path: @page_path) %>%	
+				<%= image_tag "uparrow.svg", 'data-original-title' => "Test", :class => "arrows" %>
 				<p>From Mobile<p>
 			</li>
 		</div>

@@ -87,13 +87,13 @@ class Dashboard < ActiveRecord::Base
 
 # metrics
 
-	def metric(metric_name, *options = {})
-		results = build_result(metric_name, params, options)
+	def metric(metric_name, options={})
+		results = results(metric_name, options)
 	end
 
 	def results(metric_name, options)
 		params = params(options)
-		if options[:variation].true?
+		if options[:variation] == true
 			results = variation(metric_name, params)
 		else
 			results = method(metric_name).call(params)
@@ -108,20 +108,19 @@ class Dashboard < ActiveRecord::Base
 		params
 	end
 
-	def variation(metric, params)
-		current_data = method(metric).call(params)
+	def variation(metric_name, params)
+		current_data = method(metric_name).call(params)
 		params << previous_period_dates
 		call(somemethod, )
 	end
 
-	def visits
-	  page_path.present? ? params = {filters: { :page_path.eql => page_path.first }} : params = {}
+	def visits(params)
 		profile.visits(params)
 	end
 
 	def pages(*page_path)
 		page_path.present? ? params = {filters: { :page_path.eql => page_path.first }} : params = {}
-		profile.pages.sort { |a,b| a.pageviews.to_i <=> b.pageviews.to_i}.reverse.take(10)
+		profile.pages(params).sort { |a,b| a.pageviews.to_i <=> b.pageviews.to_i}.reverse.take(10)
 	end
 
 	def mobile(*page_path)
@@ -129,13 +128,11 @@ class Dashboard < ActiveRecord::Base
 		profile.mobile(params)
 	end
 
-	def sources(*page_path)
-		page_path.present? ? params = {filters: { :page_path.eql => page_path.first }} : params = {}
+	def sources(params)
 		profile.sources(params).sort { |a,b| a.visits.to_i <=> b.visits.to_i}.reverse.take(10)
 	end
 
-	def snapshot(*page_path)
-		page_path.present? ? params = {filters: { :page_path.eql => page_path.first }} : params = {}
+	def snapshot(params)
 		profile.snapshot(params).first
 	end
 

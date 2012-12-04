@@ -17,7 +17,7 @@ $(function () {
                 series: {
                     pointStart: 0,
                     lineWidth: 0,
-                    pointStart: Date.UTC(<%= render_point_start(@dashboard.visits) %>), // sets formatting for date and time
+                    pointStart: Date.UTC(<%= render_point_start(@dashboard.metric(:visits)) %>), // sets formatting for date and time
                     pointInterval: 24 * 3600 * 1000 // one day
                 }
             },
@@ -48,7 +48,7 @@ $(function () {
                 showInLegend: false, 
                 name: 'Visits',
                 color: '#8ebfe7',
-                data: <%= render_js_array(@dashboard.visits, :visits) %>
+                data: <%= render_js_array(@dashboard.metric(:visits), :visits) %>
             }],
             credits:{enabled:false}
         });

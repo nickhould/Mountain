@@ -4,7 +4,7 @@
 	<ul>
 		<div class="span3">
 			<li>
-		    <%= @dashboard.snapshot.pageviews %> 
+		    <%= @dashboard.metric(:snapshot).pageviews %> 
 		    <%= image_tag arrow(@dashboard, :pageviews), 'data-original-title' => formatted_variation(@dashboard, :pageviews), :class => "arrows" %> 
 				<p>Views<p>
 			</li>
@@ -12,7 +12,7 @@
 
 		<div class="span3">
 			<li>
-				<%= @dashboard.snapshot.visitors %> 
+				<%= @dashboard.metric(:snapshot).visitors %> 
 				<%= image_tag arrow(@dashboard, :visitors),'data-original-title' => formatted_variation(@dashboard, :visitors), :class => "arrows" %>
 				<p>Visitors<p>
 			</li>
@@ -20,7 +20,7 @@
 
 		<div class="span3">
 			<li>
-				<%= format_time(@dashboard.snapshot.avg_time_on_site) %> 
+				<%= format_time(@dashboard.metric(:snapshot).avg_time_on_site) %> 
 				<%= image_tag arrow(@dashboard, :avg_time_on_site),'data-original-title' => formatted_variation(@dashboard, :avg_time_on_site), :class => "arrows"%>
 				<p>Avg Time on Site<p>
 			</li>

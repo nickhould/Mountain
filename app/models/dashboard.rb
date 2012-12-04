@@ -114,12 +114,13 @@ class Dashboard < ActiveRecord::Base
 		call(somemethod, )
 	end
 
-	def visits(params)
+
+
+	def visits(params={})
 		profile.visits(params)
 	end
 
-	def pages(*page_path)
-		page_path.present? ? params = {filters: { :page_path.eql => page_path.first }} : params = {}
+	def pages(params={})
 		profile.pages(params).sort { |a,b| a.pageviews.to_i <=> b.pageviews.to_i}.reverse.take(10)
 	end
 
@@ -128,32 +129,29 @@ class Dashboard < ActiveRecord::Base
 		profile.mobile(params)
 	end
 
-	def sources(params)
+	def sources(params={})
 		profile.sources(params).sort { |a,b| a.visits.to_i <=> b.visits.to_i}.reverse.take(10)
 	end
 
-	def snapshot(params)
+	def snapshot(params={})
 		profile.snapshot(params).first
 	end
 
-	def next_page_path(page_path)
-		next_page_path = profile.nextpage(filters: { :previous_page_path.eql => page_path })
+	def next_page_path(params={})
+		next_page_path = profile.nextpage(params)
 		next_page_path = next_page_path.sort { |a,b| a.pageviews.to_i <=> b.pageviews.to_i }.reverse.take(4)
 	end
 
-	def exits(*page_path)
-		page_path.present? ? params = {filters: { :page_path.eql => page_path.first }} : params = {}
+	def exits(params={})
 		exits = profile.exits(params).first
 	end
 
-	def keywords(*page_path)
-		page_path.present? ? params = {filters: { :page_path.eql => page_path.first }} : params = {}
+	def keywords(params={})
 		keywords = profile.keywords(params)
 		keywords = keywords.sort { |a,b| a.visits.to_i <=> b.visits.to_i }.reverse.take(5)
 	end
 
-	def pageviews(*page_path)
-		page_path.present? ? params = {filters: { :page_path.eql => page_path.first }} : params = {}
+	def pageviews(params={})
 		pageviews = profile.pageviews(params).first
 	end
 end

@@ -5,7 +5,7 @@
 	    <th>Keywords</th>  
 	    <th>Visits</th>    
 	  </tr> 
-	<% @dashboard.keywords(@page_path).each do |keyword| %> 
+	<% @dashboard.metric(:keywords, page_path: @page_path).each do |keyword| %> 
 	  <tr>  
 	    <td><%= keyword.keyword %></td>  
 	    <td><%= keyword.visits %></td>   

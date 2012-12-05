@@ -26,7 +26,6 @@ class Dashboard < ActiveRecord::Base
 	def web_properties
 		@ga.web_properties	
 	end
-
 # To be refactored
 
 	def mobile_ratio_previous_period

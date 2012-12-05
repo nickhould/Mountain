@@ -1,31 +1,46 @@
-	require 'uri'
+require 'uri'
 class Dashboard < ActiveRecord::Base
   attr_accessible :name, :web_property_id, :user_id
-
+  
   belongs_to :user
 
-	validates_presence_of :name, :web_property_id, :user_id
+  validates_presence_of :name, :web_property_id, :user_id
 
-	# API Call
-	def datasource(token, secret)
-		@ga ||= GoogleAnalytics.new(token, secret)
-	end
+  # API Call
+  def datasource(token, secret)
+    @ga ||= GoogleAnalytics.new(token, secret)
+  end
 
-	def profile
-		@profile ||= @ga.profile(self.web_property_id)
-	end
+  def profile
+    @profile ||= @ga.profile(self.web_property_id)
+  end
 
-	def accounts
-		@ga.accounts
-	end
+  def accounts
+    @ga.accounts
+  end
 
-	def web_property
-		@ga.web_property(self.web_property_id)
-	end
+  def web_property
+    @ga.web_property(self.web_property_id)
+  end
 
-	def web_properties
-		@ga.web_properties	
-	end
+  def web_properties
+    @ga.web_properties	
+  end
+
+  def previous_period_dates
+    {
+      start_date: 61.days.ago,
+      end_date: 31.days.ago,
+    }
+  end
+
+  def params
+    @params
+  end
+
+  def params=(params)
+    @params = params
+  end
 
 # To be refactored
 
@@ -39,11 +54,11 @@ class Dashboard < ActiveRecord::Base
 				data[:is_mobile] = obj.visits.to_f
 			end
 		end
-		ratio = ( data[:is_mobile] / ( data[:is_mobile] + data[:is_not_mobile] )) * 100
+		( data[:is_mobile] / ( data[:is_mobile] + data[:is_not_mobile] )) * 100
 	end
 
 	def mobile_ratio_variation
-		variation = mobile_ratio - mobile_ratio_previous_period
+		mobile_ratio - mobile_ratio_previous_period
 	end
 
 	def formatted_mobile_variation
@@ -75,31 +90,29 @@ class Dashboard < ActiveRecord::Base
 # metrics
 
 	def metric(metric_name, options={})
-		results = results(metric_name, options)
+	  results(metric_name, options)
 	end
 
 	def results(metric_name, options)
-		params = params(options)
-		results = method(metric_name).call(params)
+          params = params(options)
+	  method(metric_name).call(params)
 	end
 
-	def params(options)
-		params = {}
-		if options[:variation] == true
-			params = params_previous_period_dates
-			if options[:page_path]
-				params[:filters] = { :page_path.eql => options[:page_path] }
-			end
-		elsif options[:page_path]
-			params[:filters] = { :page_path.eql => options[:page_path] }
-		end
-		params
-	end
+        # @dashboard.params
+        # @dashboard.params(true, '/path')
+	def params(variation = false, page_path = nil)
+    	  params = {}
+          params.merge(previous_period_dates) if variation
+          params[:filters] = page_path_filter(page_path) if page_path
+          @params = params
+        end
+
+        def page_path_filter(path)
+          { :page_path.eql => path }
+        end
 
 	def variation(:metric, options={})
-		
-
-
+	  options
 	end
 
 	def visits(params={})
@@ -111,20 +124,21 @@ class Dashboard < ActiveRecord::Base
 	end
 
 	def mobile_ratio(params={})
-		data = {}
-		profile.mobile(params).each do |result|
-			if result.is_mobile == "No"
-				data[:is_not_mobile] = result.visits.to_f
-			elsif result.is_mobile == "Yes"
-				data[:is_mobile] = result.visits.to_f
-			end
-		end
-		ratio = ( data[:is_mobile] / ( data[:is_mobile] + data[:is_not_mobile] )) * 100
-		ratio.round(2)
+	  mobile, not_mobile = mobile(params)
+          (mobile / (not_mobile + mobile) * 100).round(2)
 	end
 
 	def mobile(params={})
-		profile.mobile(params)
+	  mobile = 0
+	  not_mobile = 0
+	  profile.mobile(params).each do |result|
+            if result.is_mobile == 'Yes'
+              mobile = result.visits.to_f
+            else
+              not_mobile = result.visits.to_f
+            end
+          end
+          [mobile, not_mobile]
 	end
 
 	def sources(params={})
@@ -141,15 +155,15 @@ class Dashboard < ActiveRecord::Base
 	end
 
 	def exits(params={})
-		exits = profile.exits(params).first
+	  profile.exits(params).first
 	end
 
 	def keywords(params={})
-		keywords = profile.keywords(params)
-		keywords = keywords.sort { |a,b| a.visits.to_i <=> b.visits.to_i }.reverse.take(5)
+	  keywords = profile.keywords(params)
+	  keywords.sort { |a,b| a.visits.to_i <=> b.visits.to_i }.reverse.take(5)
 	end
 
 	def pageviews(params={})
-		pageviews = profile.pageviews(params).first
+	  profile.pageviews(params).first
 	end
 end

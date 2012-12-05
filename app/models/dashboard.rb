@@ -1,4 +1,4 @@
-require 'uri'
+require 'uri' # consider moving this require to your application.rb
 class Dashboard < ActiveRecord::Base
   attr_accessible :name, :web_property_id, :user_id
   

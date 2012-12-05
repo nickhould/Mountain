@@ -1,35 +1,31 @@
 module DashboardsHelper
 	def render_js_array(results, element)
-		rendered_array = []
-		results.each do |result|
-			rendered_array << result.method(element).call.to_i
-		end
-		rendered_array.to_json
+	  rendered_array = []
+	  results.each do |result|
+	    rendered_array << result.method(element).call.to_i
+	  end
+	  rendered_array.to_json
 	end
 
 	def render_point_start(results)
-		result = results.first.date.to_date
-		start = "#{result.year}, #{result.month - 1}, #{result.day}" 
+	  result = results.first.date.to_date
+	  "#{result.year}, #{result.month - 1}, #{result.day}"
 	end
 
 	def arrow_for_single_metric(metric)
-		if metric.to_i > 0 
-			return ("uparrow.svg")
-		else
-			return ("downarrow.svg")
-		end
+	  if metric.to_i > 0 
+	    return ("uparrow.svg")
+	  else
+	    return ("downarrow.svg")
+	  end
 	end
 
 	def arrow(object, method)
-		if variation_positive?(object, method)
-			return ("uparrow.svg")
-		else
-			return ("downarrow.svg")
-		end
+	  variation_positive?(object, method) ? "uparrow.svg" : "downarrow.svg"
 	end
 
 	def data_pres(object, method)
-		object.snapshot.method(method).call
+	  object.snapshot.method(method).call
 	end
 
 	def data_prev(object, method)

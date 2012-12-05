@@ -29,8 +29,6 @@ class Dashboard < ActiveRecord::Base
 
 # To be refactored
 
-
-
 	def mobile_ratio_previous_period
 		dates = previous_period_dates
 		data = {}
@@ -59,7 +57,7 @@ class Dashboard < ActiveRecord::Base
 		end
 	end
 
-	def previous_period_dates
+	def params_previous_period_dates
 		previous_period_dates = {}
 		end_date = previous_period_dates[:end_date] = 31.days.ago
 		previous_period_dates[:start_date] = 30.days.ago(end_date)
@@ -83,18 +81,14 @@ class Dashboard < ActiveRecord::Base
 	def results(metric_name, options)
 		params = params(options)
 		results = method(metric_name).call(params)
-		end
 	end
 
 	def params(options)
 		params = {}
 		if options[:variation] == true
-			dates = previous_period_dates
-			params{present:{}, past: {}}
+			params = params_previous_period_dates
 			if options[:page_path]
-				params[:present][:filters] = params[:past][:filters] = { :page_path.eql => options[:page_path] }
-				params[:past][:start_date] = dates[:start_date]
-				params[:past][:end_date] = dates[:end_date]
+				params[:filters] = { :page_path.eql => options[:page_path] }
 			end
 		elsif options[:page_path]
 			params[:filters] = { :page_path.eql => options[:page_path] }
@@ -102,16 +96,10 @@ class Dashboard < ActiveRecord::Base
 		params
 	end
 
-	def variation(metric_name, options={})
-		options[:variation] = true
-		params = params(options)
+	def variation(:metric, options={})
+		
 
-		if options[:secondary_metric]
-			present_period_data = method(metric_name).call(params[:present]).method(options[:secondary_metric]).call
-			past_period_data = method(metric_name).call(params[:past])
-		past_period_params
-		past_data 
-		call(somemethod, )
+
 	end
 
 	def visits(params={})
@@ -122,8 +110,6 @@ class Dashboard < ActiveRecord::Base
 		profile.pages(params).sort { |a,b| a.pageviews.to_i <=> b.pageviews.to_i}.reverse.take(10)
 	end
 
-
-	# to refactor
 	def mobile_ratio(params={})
 		data = {}
 		profile.mobile(params).each do |result|

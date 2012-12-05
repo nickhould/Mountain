@@ -3,7 +3,6 @@ body {
   font-family: 'Open Sans', sans-serif;
   color: #333333;
   background-color: #ffffff;
-  padding: 80px;
 }
 
 .table td, .table th {
@@ -38,6 +37,10 @@ footer a:hover{
 
 /* Navigation
 -------------------------------------------------- */
+.navbar {
+  width: 100%;
+}
+
 .navbar .brand {
   font-family: 'Open Sans', sans-serif;
   font-weight: 600;
@@ -246,4 +249,5 @@ body .blue-bg {
   margin: 5px;
 }
 
-
+/* Media Queries
+-------------------------------------------------- */

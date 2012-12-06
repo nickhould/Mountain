@@ -5,6 +5,11 @@ body {
   background-color: #ffffff;
 }
 
+.container-fluid {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
 .table td, .table th {
     border: none;
 }
@@ -33,6 +38,17 @@ footer a{
 
 footer a:hover{
   color: #fff;
+}
+
+body .mtn{
+position: absolute;
+margin: 0 auto;
+right: 0;
+left: 0;
+height: 100px;
+text-align: center;
+background-image: url("mtns.svg") no-repeat center bottom;
+vertical-align: baseline;
 }
 
 /* Navigation
@@ -191,19 +207,6 @@ footer a:hover{
 
 /* Home Page
 -------------------------------------------------- */
-body .mtn{
-position: absolute;
-display: block;
-margin: 0 auto;
-width: 100%;
-right: 0;
-left: 0;
-height: 200px;
-padding-top: 200px;
-background-image: url("mtns.svg");
-background-repeat: repeat-x;
-text-align: center;
-}
 
 body .blue-bg {
   background-color: #8ebfe7;
@@ -228,8 +231,14 @@ body .blue-bg {
 
 /* About Page
 -------------------------------------------------- */
+.about .span4 {
+  text-align: center;
+  margin: 0;
+}
+
 .about img {
   width: 150px;
+  text-align: center;
 }
 
 .about h1 {
@@ -251,3 +260,9 @@ body .blue-bg {
 
 /* Media Queries
 -------------------------------------------------- */
+@media (max-width: 480px) {
+  .btn .btn-flat .btn-nav a{
+    width: 370px;
+  }
+
+}

@@ -5,7 +5,7 @@
 		<div class="span3">
 			<li>
 		    <%= @dashboard.snapshot.pageviews %> 
-		    <%= image_tag arrow(@dashboard, :pageviews), 'data-original-title' => formatted_variation(@dashboard, :pageviews), :class => "arrows" %> 
+		    <%= image_tag arrow(@dashboard.variation(:snapshot, :pageviews)), 'data-original-title' =>format_var(@dashboard.variation(:snapshot, :pageviews)), :class => "arrows" %> 
 				<p>Views<p>
 			</li>
 		</div>
@@ -13,15 +13,15 @@
 		<div class="span3">
 			<li>
 				<%= @dashboard.snapshot.visitors %> 
-				<%= image_tag arrow(@dashboard, :visitors),'data-original-title' => formatted_variation(@dashboard, :visitors), :class => "arrows" %>
+				<%= image_tag arrow(@dashboard.variation(:snapshot, :visitors)),'data-original-title' => format_var(@dashboard.variation(:snapshot, :visitors)), :class => "arrows" %>
 				<p>Visitors<p>
-			</li>
+			</li>t
 		</div>
 
 		<div class="span3">
 			<li>
 				<%= format_time(@dashboard.snapshot.avg_time_on_site) %> 
-				<%= image_tag arrow(@dashboard, :avg_time_on_site),'data-original-title' => formatted_variation(@dashboard, :avg_time_on_site), :class => "arrows"%>
+				<%= image_tag arrow(@dashboard.variation(:snapshot, :avg_time_on_site)),'data-original-title' => format_var( @dashboard.variation(:snapshot, :avg_time_on_site) ), :class => "arrows"%>
 				<p>Avg Time on Site<p>
 			</li>
 		</div>
@@ -29,7 +29,7 @@
 		<div class="span3">
 			<li>
 				<%= @dashboard.mobile_ratio %>% 
-				<%= image_tag arrow_for_single_metric(@dashboard.mobile_ratio_variation),'data-original-title' => @dashboard.formatted_mobile_variation, :class => "arrows"%>
+				<%= image_tag arrow(@dashboard.variation_absolute(:mobile_ratio)),'data-original-title' => format_var( @dashboard.variation_absolute(:mobile_ratio)), :class => "arrows"%>
 				<p>From Mobile<p>
 			</li>
 		</div>

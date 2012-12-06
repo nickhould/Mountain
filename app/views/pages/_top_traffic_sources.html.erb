@@ -5,7 +5,7 @@
 	    <th>Source</th>  
 	    <th>Visitors</th>    
 	  </tr> 
-	<% @dashboard.metric(:sources, page_path: @page_path).each do |source| %> 
+	<% @dashboard.results(:sources, @page_path).each do |source| %> 
 	  <tr>  
 	    <td><%= source.source %></td>  
 	    <td><%= source.visits %></td>   

@@ -20,9 +20,30 @@ module DashboardsHelper
 	  end
 	end
 
-	def arrow(object, method)
-	  variation_positive?(object, method) ? "uparrow.svg" : "downarrow.svg"
+	# def arrow(object, method)
+	#   variation_positive?(object, method) ? 
+	# end
+
+	def arrow(variation)
+		positive?(variation) ? "uparrow.svg" : "downarrow.svg"
 	end
+
+	def positive?(number)
+		number.to_f > 0 ? true : false
+	end
+
+	def format_var(variation)
+		if positive?(variation)
+			"+" + variation.to_s + "%"
+		else
+			variation.to_s + "%"
+		end
+	end
+
+
+
+
+
 
 	def data_pres(object, method)
 	  object.snapshot.method(method).call
@@ -39,9 +60,7 @@ module DashboardsHelper
 		data
 	end
 
-	def positive?(number)
-		number > 0 ? true : false
-	end
+
 
 	def negative?(number)
 		number < 0 ? true : false

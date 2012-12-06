@@ -11,6 +11,10 @@ class Dashboard < ActiveRecord::Base
     @ga ||= GoogleAnalytics.new(token, secret)
   end
 
+  def params=(params)
+    @params = params
+  end
+
   def profile
     @profile ||= @ga.profile(self.web_property_id)
   end
@@ -34,13 +38,7 @@ class Dashboard < ActiveRecord::Base
     }
   end
 
-  def params
-    @params
-  end
 
-  def params=(params)
-    @params = params
-  end
 
 # To be refactored
 
@@ -89,81 +87,118 @@ class Dashboard < ActiveRecord::Base
 
 # metrics
 
-	def metric(metric_name, options={})
-	  results(metric_name, options)
+	def results(metric_name, page_path = nil, variation = false)
+    params = params(page_path, variation)
+	  method(metric_name).call
 	end
 
-	def results(metric_name, options)
-          params = params(options)
-	  method(metric_name).call(params)
+	def params(page_path = nil, variation = false)
+    params = {}
+    params = params.merge(previous_period_dates) if variation
+    params[:filters] = page_path_filter(page_path) if page_path
+    @params = params
+  end
+
+  def variation(metric_name, secondary_metric=nil, page_path=nil)
+  	if secondary_metric
+  		calculate_variation(variation_with_secondary_metric(metric_name, secondary_metric, page_path)) 
+  	else
+			calculate_variation(variation_results(metric, page_path))
+		end
+  end
+
+  def past_result(metric, page_path=nil)
+  	results(metric_name, page_path, true)
+  end
+
+  def present_result(metric, page_path=nil)
+		results(metric_name, page_path, false)
+  end
+
+  def variation_results(metric, page_path=nil)
+  end
+
+  def variation_absolute(metric_name, page_path=nil)
+		calculate_absolute_variation(variation_results_single(metric_name, page_path))
+  end
+
+  def variation_method_calling
+
+  end
+
+  def variation_results_single(metric_name, page_path)
+  	past_result = results(metric_name, page_path, true)
+  	present_result = results(metric_name, page_path, false)
+  	[past_result, present_result]
+  end
+
+  def variation_results(metric_name, page_path)
+  	past_result = results(metric_name, page_path, true).method(metric_name).call
+  	present_result = results(metric_name, page_path, false).method(metric_name).call
+  	[past_result, present_result]
+  end
+
+  def variation_with_secondary_metric(metric_name, secondary_metric, page_path = nil)
+  	past_result = results(metric_name, page_path, true).method(secondary_metric).call
+  	present_result = results(metric_name, page_path, false).method(secondary_metric).call
+  	[past_result, present_result]
+  end
+
+  def calculate_variation(result_set)
+  	past_result, present_result = result_set
+  	( ( ( present_result.to_f - past_result.to_f ) / past_result.to_f ) * 100 ).round(2)
+  end
+
+  def calculate_absolute_variation(result_set)
+		past_result, present_result = result_set
+		( present_result - past_result ).round(2)
+  end
+
+  def page_path_filter(path)
+    { :page_path.eql => path }
+  end
+
+	def visits
+		profile.visits(@params)
 	end
 
-        # @dashboard.params
-        # @dashboard.params(true, '/path')
-	def params(variation = false, page_path = nil)
-    	  params = {}
-          params.merge(previous_period_dates) if variation
-          params[:filters] = page_path_filter(page_path) if page_path
-          @params = params
-        end
-
-        def page_path_filter(path)
-          { :page_path.eql => path }
-        end
-
-	def variation(:metric, options={})
-	  options
+	def pages
+		profile.pages(@params).sort { |a,b| a.pageviews.to_i <=> b.pageviews.to_i}.reverse.take(10)
 	end
 
-	def visits(params={})
-		profile.visits(params)
+	def mobile_ratio
+	  not_mobile, is_mobile = mobile
+    (is_mobile.to_f / (not_mobile.to_f + is_mobile.to_f) * 100).round(2)
+	end
+	def mobile
+	  results = profile.mobile(@params).to_a
+	  # not mobile visits, mobile visits
+	  [results.first.visits, results.last.visits]
+  end
+	
+	def sources
+		profile.sources(@params).sort { |a,b| a.visits.to_i <=> b.visits.to_i}.reverse.take(10)
 	end
 
-	def pages(params={})
-		profile.pages(params).sort { |a,b| a.pageviews.to_i <=> b.pageviews.to_i}.reverse.take(10)
+	def snapshot
+		profile.snapshot(@params).first
 	end
 
-	def mobile_ratio(params={})
-	  mobile, not_mobile = mobile(params)
-          (mobile / (not_mobile + mobile) * 100).round(2)
-	end
-
-	def mobile(params={})
-	  mobile = 0
-	  not_mobile = 0
-	  profile.mobile(params).each do |result|
-            if result.is_mobile == 'Yes'
-              mobile = result.visits.to_f
-            else
-              not_mobile = result.visits.to_f
-            end
-          end
-          [mobile, not_mobile]
-	end
-
-	def sources(params={})
-		profile.sources(params).sort { |a,b| a.visits.to_i <=> b.visits.to_i}.reverse.take(10)
-	end
-
-	def snapshot(params={})
-		profile.snapshot(params).first
-	end
-
-	def next_page_path(params={})
-		next_page_path = profile.nextpage(params)
+	def next_page_path
+		next_page_path = profile.nextpage(@params)
 		next_page_path = next_page_path.sort { |a,b| a.pageviews.to_i <=> b.pageviews.to_i }.reverse.take(4)
 	end
 
-	def exits(params={})
-	  profile.exits(params).first
+	def exits
+	  profile.exits(@params).first
 	end
 
-	def keywords(params={})
-	  keywords = profile.keywords(params)
+	def keywords
+	  keywords = profile.keywords(@params)
 	  keywords.sort { |a,b| a.visits.to_i <=> b.visits.to_i }.reverse.take(5)
 	end
 
-	def pageviews(params={})
-	  profile.pageviews(params).first
+	def pageviews
+	  profile.pageviews(@params).first
 	end
 end

@@ -9,8 +9,6 @@ class DashboardsController < ApplicationController
   # GET /dashboards.json
   def index
     @dashboards = current_user.dashboards
-
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @dashboards }

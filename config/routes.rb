@@ -1,7 +1,6 @@
 Dashboardly::Application.routes.draw do
 
   get "pages/show"
-
   resources :users
 
   root :to => 'staticpages#home'
@@ -17,7 +16,7 @@ Dashboardly::Application.routes.draw do
   get '/login' => 'staticpages#login'
 
   get '/about' => 'staticpages#about'
-
+  get '/test' => 'staticpages#test'
 end
   # The priority is based upon order of creation:
   # first created -> highest priority.

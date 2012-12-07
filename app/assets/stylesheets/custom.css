@@ -193,7 +193,7 @@ vertical-align: baseline;
 
 /* Navigation
 -------------------------------------------------- */
-.btn-group {
+.drop a{
   color: #000
     -webkit-transition-property:background-color;
     -moz-transition-property:background-color;
@@ -209,7 +209,7 @@ vertical-align: baseline;
     transition-timing-function: ease;
 }
 
-.btn-group:hover{
+.drop a:hover {
   color: #000;
   list-style: none;
   text-decoration: none;

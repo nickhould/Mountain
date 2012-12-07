@@ -160,7 +160,7 @@ vertical-align: baseline;
   transition-timing-function: ease;  
 }
 
-/* Snapshot
+/* Snapshot Partial
 -------------------------------------------------- */
 .bignums .span3{
   text-align: center;
@@ -191,6 +191,11 @@ vertical-align: baseline;
   padding:0 10 0 10;
 }
 
+/* Navigation
+-------------------------------------------------- */
+.dropdown-menu li {
+  color: #cfcfcf;
+}
 
 /* Scaffold Views
 -------------------------------------------------- */
@@ -204,6 +209,7 @@ vertical-align: baseline;
   text-align: center;
   width: 250px;
 }
+
 
 /* Home Page
 -------------------------------------------------- */
@@ -261,7 +267,7 @@ body .blue-bg {
 /* Media Queries
 -------------------------------------------------- */
 @media (max-width: 480px) {
-  .btn .btn-flat .btn-nav a{
+  .btn .btn-flat .btn-nav a {
     width: 370px;
   }
 

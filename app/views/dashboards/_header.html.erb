@@ -1,1 +1,15 @@
-<h1><%= @dashboard.profile.title %></h1>
+<h1 class="pull-left"><%= @dashboard.profile.title %></h1>
+
+<div class="pull-right btn-group">
+<button class="btn btn-large btn-flat">Edit</button>
+  <button class="btn btn-large btn-flat">Change Website</button>
+  <button class="btn btn-large dropdown-toggle btn-flat" data-toggle="dropdown">
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu btn-flat">
+    <!-- dropdown menu links -->
+    <li><%= link_to "home", root_url %></li>
+    <li><%= link_to "home", root_url %></li>
+    <li><%= link_to "home", root_url %></li>
+  </ul>
+</div>

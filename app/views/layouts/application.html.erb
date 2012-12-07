@@ -8,7 +8,8 @@
 	<%= render 'layouts/excanvas' %>
 	<%= render 'layouts/fonts' %>
 	<%= render 'layouts/favicon' %>
-  <%= csrf_meta_tags %>
+   <%= csrf_meta_tags %>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
 <body>
@@ -19,6 +20,17 @@
 		<% end %>
 	<%= yield %>
 
+<!-- Start Sam's Witchcraft -->
+<!-- Start Footer -->
+<div class="mtn">
+	<div class="blue-bg">
+		<div class="row-fluid">
+			<footer>
+				<p>Built with love by <a href="https://twitter.com/starterleague">@StarterLeague</a> students in Chicago.</p>
+			</footer>
+		</div>
+	</div>
+</div>
 </body>
 </html>
 

@@ -3,7 +3,11 @@ body {
   font-family: 'Open Sans', sans-serif;
   color: #333333;
   background-color: #ffffff;
-  padding: 80px;
+}
+
+.container-fluid {
+  max-width: 960px;
+  margin: 0 auto;
 }
 
 .table td, .table th {
@@ -21,9 +25,38 @@ body {
   vertical-align: center;
 }
 
+/* Footer
+-------------------------------------------------- */
+footer {
+  bottom: 0px;
+  padding-top: 50px;
+}
+
+footer a{
+  color: #fff;
+}
+
+footer a:hover{
+  color: #fff;
+}
+
+body .mtn{
+position: absolute;
+margin: 0 auto;
+right: 0;
+left: 0;
+height: 100px;
+text-align: center;
+background-image: url("mtns.svg") no-repeat center bottom;
+vertical-align: baseline;
+}
 
 /* Navigation
 -------------------------------------------------- */
+.navbar {
+  width: 100%;
+}
+
 .navbar .brand {
   font-family: 'Open Sans', sans-serif;
   font-weight: 600;
@@ -34,6 +67,11 @@ body {
   font-size: 24px;
   color: #fff;
   text-shadow: none;
+}
+
+.navbar .brand small {
+  font-size: 16px;
+  color: #afafaf;
 }
 
 .navbar-inner {
@@ -52,7 +90,7 @@ body {
   font-size: 14px;
   text-shadow:none;
   margin-top: 60px; 
-  margin-right: 10px;
+  margin-right: 5px;
   padding: 5px;
   background-color: #3d3d3d;
     -webkit-transition-property:background-color;
@@ -122,7 +160,7 @@ body {
   transition-timing-function: ease;  
 }
 
-/* Snapshot
+/* Snapshot Partial
 -------------------------------------------------- */
 .bignums .span3{
   text-align: center;
@@ -153,6 +191,11 @@ body {
   padding:0 10 0 10;
 }
 
+/* Navigation
+-------------------------------------------------- */
+.dropdown-menu li {
+  color: #cfcfcf;
+}
 
 /* Scaffold Views
 -------------------------------------------------- */
@@ -167,21 +210,9 @@ body {
   width: 250px;
 }
 
+
 /* Home Page
 -------------------------------------------------- */
-body .mtn{
-position: absolute;
-display: block;
-margin: 0 auto;
-width: 100%;
-right: 0;
-left: 0;
-height: 200px;
-padding-top: 200px;
-background-image: url("mtns.svg");
-background-repeat: repeat-x;
-text-align: center;
-}
 
 body .blue-bg {
   background-color: #8ebfe7;
@@ -202,4 +233,42 @@ body .blue-bg {
 .marketing .span4 p {
   margin-left: 10px;
   margin-right: 10px;
+}
+
+/* About Page
+-------------------------------------------------- */
+.about .span4 {
+  text-align: center;
+  margin: 0;
+}
+
+.about img {
+  width: 150px;
+  text-align: center;
+}
+
+.about h1 {
+  margin-bottom: 0;
+  font-size: 60px;
+  line-height: 1;
+  letter-spacing: -1px;
+  color: inherit;
+  text-align: center;
+}
+
+.about h2 {
+  line-height: 18px;
+}
+
+.about h2 small{
+  margin: 5px;
+}
+
+/* Media Queries
+-------------------------------------------------- */
+@media (max-width: 480px) {
+  .btn .btn-flat .btn-nav a {
+    width: 370px;
+  }
+
 }

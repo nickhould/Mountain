@@ -92,6 +92,7 @@ class Dashboard < ActiveRecord::Base
 	  method(metric_name).call
 	end
 
+
 	def params(page_path = nil, variation = false)
     params = {}
     params = params.merge(previous_period_dates) if variation
@@ -99,59 +100,74 @@ class Dashboard < ActiveRecord::Base
     @params = params
   end
 
-  def variation(metric_name, secondary_metric=nil, page_path=nil)
+  def variation(metric_name, secondary_metric=nil, page_path=nil, single_metric = false)
   	if secondary_metric
   		calculate_variation(variation_with_secondary_metric(metric_name, secondary_metric, page_path)) 
+  	elsif single_metric
+  		calculate_variation([past_result(metric_name, page_path), present_result(metric_name, page_path)])
   	else
-			calculate_variation(variation_results(metric, page_path))
+			calculate_variation(variation_with_metric(metric_name, page_path))
 		end
   end
 
-  def past_result(metric, page_path=nil)
+  def past_result(metric_name, page_path=nil)
   	results(metric_name, page_path, true)
   end
 
-  def present_result(metric, page_path=nil)
+  def present_result(metric_name, page_path=nil)
 		results(metric_name, page_path, false)
   end
 
-  def variation_results(metric, page_path=nil)
+  def var_results(metric, page_path=nil)
+  	[past_result(metric, page_path), present_result(metric, page_path)]
   end
 
   def variation_absolute(metric_name, page_path=nil)
-		calculate_absolute_variation(variation_results_single(metric_name, page_path))
+		calculate_absolute_variation(var_results(metric_name, page_path))
   end
 
-  def variation_method_calling
+  # def variation_without_metric(metric_name, page_path)
+  # 	past_result = results(metric_name, page_path, true)
+  # 	present_result = results(metric_name, page_path, false)
+  # 	[past_result, present_result]
+  # end
 
-  end
 
-  def variation_results_single(metric_name, page_path)
-  	past_result = results(metric_name, page_path, true)
-  	present_result = results(metric_name, page_path, false)
-  	[past_result, present_result]
-  end
 
-  def variation_results(metric_name, page_path)
-  	past_result = results(metric_name, page_path, true).method(metric_name).call
-  	present_result = results(metric_name, page_path, false).method(metric_name).call
-  	[past_result, present_result]
+  def variation_with_metric(metric_name, page_path)
+  	past, present = var_results(metric_name, page_path)
+  	past = past.method(metric_name).call
+  	present = present.method(metric_name).call
+  	[past, present]
   end
 
   def variation_with_secondary_metric(metric_name, secondary_metric, page_path = nil)
-  	past_result = results(metric_name, page_path, true).method(secondary_metric).call
-  	present_result = results(metric_name, page_path, false).method(secondary_metric).call
-  	[past_result, present_result]
+  	past, present = var_results(metric_name, page_path)
+  	if past && present
+  		past = past.method(secondary_metric).call
+  		present = present.method(secondary_metric).call
+  		[past, present]
+  	else
+  		nil
+  	end
   end
 
   def calculate_variation(result_set)
   	past_result, present_result = result_set
-  	( ( ( present_result.to_f - past_result.to_f ) / past_result.to_f ) * 100 ).round(2)
+  	if past_result && present_result
+  		( ( ( present_result.to_f - past_result.to_f ) / past_result.to_f ) * 100 ).round(2)
+  	else
+  		nil
+  	end
   end
 
   def calculate_absolute_variation(result_set)
 		past_result, present_result = result_set
-		( present_result - past_result ).round(2)
+  	if past_result && present_result
+			( present_result.to_f - past_result.to_f ).round(2)
+		else
+			nil
+		end
   end
 
   def page_path_filter(path)
@@ -168,12 +184,20 @@ class Dashboard < ActiveRecord::Base
 
 	def mobile_ratio
 	  not_mobile, is_mobile = mobile
-    (is_mobile.to_f / (not_mobile.to_f + is_mobile.to_f) * 100).round(2)
+	  if not_mobile && is_mobile
+	  	(is_mobile.to_f / (not_mobile.to_f + is_mobile.to_f) * 100).round(2)
+	  else
+	  	nil
+	  end
 	end
 	def mobile
 	  results = profile.mobile(@params).to_a
 	  # not mobile visits, mobile visits
-	  [results.first.visits, results.last.visits]
+	  if results.first && results.last
+	  	[results.first.visits, results.last.visits]
+	  else
+	  	nil
+	  end
   end
 	
 	def sources

@@ -11,9 +11,9 @@
 
 		 <div class="span3">
 			<li>	
-					<%= @dashboard.results(:snapshot, @page_path).visits %> 
-					<%= image_tag arrow(@dashboard.variation(:snapshot, :visits, @page_path)), 'data-original-title' => format_var(@dashboard.variation(:snapshot, :pageviews, @page_path)), :class => "arrows" %>
-				<p>Visits</p>
+				<%= @dashboard.results(:snapshot, @page_path).visitors %> 
+				<%= image_tag arrow(@dashboard.variation(:snapshot, :visitors, @page_path)), 'data-original-title' => format_var(@dashboard.variation(:snapshot, :visitors, @page_path)), :class => "arrows" %>
+				<p>Visitors</p>
 			</li>
 		</div>
 

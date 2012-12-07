@@ -13,11 +13,15 @@ module DashboardsHelper
 	end
 
 	def arrow_for_single_metric(metric)
-	  if metric.to_i > 0 
-	    return ("uparrow.svg")
-	  else
-	    return ("downarrow.svg")
-	  end
+	  if metric
+		  if metric.to_i > 0 
+		    return ("uparrow.svg")
+		  elsif metric.to_i < 0
+		    return ("downarrow.svg")
+		  end
+		else
+			nil
+		end
 	end
 
 	# def arrow(object, method)
@@ -25,7 +29,11 @@ module DashboardsHelper
 	# end
 
 	def arrow(variation)
-		positive?(variation) ? "uparrow.svg" : "downarrow.svg"
+		if variation
+			positive?(variation) ? "uparrow.svg" : "downarrow.svg"
+		else
+			nil
+		end	
 	end
 
 	def positive?(number)
@@ -33,10 +41,14 @@ module DashboardsHelper
 	end
 
 	def format_var(variation)
-		if positive?(variation)
-			"+" + variation.to_s + "%"
+		if variation.to_f != 0
+			if positive?(variation)
+				"+" + variation.to_s + "%"
+			else
+				variation.to_s + "%"
+			end
 		else
-			variation.to_s + "%"
+			nil
 		end
 	end
 

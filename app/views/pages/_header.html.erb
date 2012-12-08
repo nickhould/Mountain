@@ -1,1 +1,17 @@
-<h1>Page Details <small><%= @page_path %></small></h1>
+<h1 class="pull-left">Page Details <small><%= @page_path %></small></h1>
+
+<div class="pull-right btn-group">
+
+	<%= link_to "Edit", edit_dashboard_url, :class => "btn btn-large btn-flat drop"%>
+ 	
+ 	<div class="btn btn-large dropdown-toggle btn-flat" data-toggle="dropdown" data-toggle="dropdown" href="#">
+    Change Website
+    <span class="caret"></span>
+ 	</div>
+	  <ul class="dropdown-menu btn-flat">
+	    <!-- dropdown menu links -->
+	    <li><%= link_to "home", root_url %></li>
+	    <li><%= link_to "home", root_url %></li>
+	    <li><%= link_to "home", root_url %></li>
+	  </ul>
+</div>

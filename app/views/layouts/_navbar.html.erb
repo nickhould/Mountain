@@ -1,18 +1,18 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
-    <div class="span1">
+    <div class="span1 brand-mq">
       <%= link_to image_tag("dashboardly_logo.svg", :width => 50), root_url %>    
     </div>
 
-    <a class="brand" href="/">Mountain <small>BETA</small></a>
-      <ul class="nav pull-right navigatiovn">
+    <a class="span2 brand brand-mq" href="/"> Mountain <small>BETA</small></a>
+      <ul class="nav pull-right">
 
       <% if current_user? %>
-        <li class="btn btn-flat btn-nav"><%= link_to "Dashboards", dashboards_url %></li>
+        <li class="btn btn-flat btn-nav"><%= link_to "Dashboard", dashboards_url %></li>
       <% end %>
-<!-- Change routing url once static pages are made. -->
         <li class="btn btn-flat btn-nav"><%= link_to "About", about_url %></li> 
         <li class="btn btn-flat btn-nav"><%= link_to "Tumblr", "http://mountainmetrics.tumblr.com/" %></li>
+        <li class="btn btn-flat btn-nav btn-demo"><%= link_to "Demo", "http://mountainmetrics.tumblr.com/" %></li>
 
       <% if current_user? %>
         <li class="btn btn-danger btn-flat signin">

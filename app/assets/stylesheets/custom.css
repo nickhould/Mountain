@@ -1,5 +1,5 @@
 body {
-  margin: 0;
+  margin: 0 auto;
   font-family: 'Open Sans', sans-serif;
   color: #333333;
   background-color: #ffffff;
@@ -57,7 +57,7 @@ vertical-align: baseline;
   width: 100%;
 }
 
-.navbar .brand {
+.navbar-inner .brand {
   font-family: 'Open Sans', sans-serif;
   font-weight: 600;
   display: block;
@@ -69,7 +69,7 @@ vertical-align: baseline;
   text-shadow: none;
 }
 
-.navbar .brand small {
+.navbar-inner .brand small {
   font-size: 16px;
   color: #afafaf;
 }
@@ -97,10 +97,10 @@ vertical-align: baseline;
     -moz-transition-property:background-color;
     -o-transition-property:background-color;
     transition-property:background-color;
-    -webkit-transition-duration:0.3s;
-    -moz-transition-duration:0.3s;
-    -o-transition-duration:0.3s;
-    transition-duration:0.3s;
+    -webkit-transition-duration:0.5s;
+    -moz-transition-duration:0.5s;
+    -o-transition-duration:0.5s;
+    transition-duration:0.5s;
     -webkit-transition-timing-function: ease;
     -moz-transition-timing-function: ease;
     -o-transition-timing-function: ease;
@@ -113,10 +113,10 @@ vertical-align: baseline;
     -moz-transition-property:background-color;
     -o-transition-property:background-color;
     transition-property:background-color;
-    -webkit-transition-duration:0.3s;
-    -moz-transition-duration:0.3s;
-    -o-transition-duration:0.3s;
-    transition-duration:0.3s;
+    -webkit-transition-duration:0.5s;
+    -moz-transition-duration:0.5s;
+    -o-transition-duration:0.5s;
+    transition-duration:0.5s;
     -webkit-transition-timing-function: ease;
     -moz-transition-timing-function: ease;
     -o-transition-timing-function: ease;
@@ -135,10 +135,10 @@ vertical-align: baseline;
     -moz-transition-property:background-color;
     -o-transition-property:background-color;
     transition-property:background-color;
-    -webkit-transition-duration:0.3s;
-    -moz-transition-duration:0.3s;
-    -o-transition-duration:0.3s;
-    transition-duration:0.3s;
+    -webkit-transition-duration:0.5s;
+    -moz-transition-duration:0.5s;
+    -o-transition-duration:0.5s;
+    transition-duration:0.5s;
     -webkit-transition-timing-function: ease;
     -moz-transition-timing-function: ease;
     -o-transition-timing-function: ease;
@@ -150,10 +150,10 @@ vertical-align: baseline;
   -moz-transition-property:background-color;
   -o-transition-property:background-color;
   transition-property:background-color;
-  -webkit-transition-duration:0.3s;
-  -moz-transition-duration:0.3s;
-  -o-transition-duration:0.3s;
-  transition-duration:0.3s;
+  -webkit-transition-duration:0.5s;
+  -moz-transition-duration:0.5s;
+  -o-transition-duration:0.5s;
+  transition-duration:0.5s;
   -webkit-transition-timing-function: ease;
   -moz-transition-timing-function: ease;
   -o-transition-timing-function: ease;
@@ -193,8 +193,39 @@ vertical-align: baseline;
 
 /* Navigation
 -------------------------------------------------- */
-.dropdown-menu li {
-  color: #cfcfcf;
+.drop a{
+  color: #000
+    -webkit-transition-property:background-color;
+    -moz-transition-property:background-color;
+    -o-transition-property:background-color;
+    transition-property:background-color;
+    -webkit-transition-duration:0.5s;
+    -moz-transition-duration:0.5s;
+    -o-transition-duration:0.5s;
+    transition-duration:0.5s;
+    -webkit-transition-timing-function: ease;
+    -moz-transition-timing-function: ease;
+    -o-transition-timing-function: ease;
+    transition-timing-function: ease;
+}
+
+.drop a:hover {
+  color: #000;
+  list-style: none;
+  text-decoration: none;
+    -webkit-transition-property:background-color;
+    -moz-transition-property:background-color;
+    -o-transition-property:background-color;
+    transition-property:background-color;
+    -webkit-transition-duration:0.5s;
+    -moz-transition-duration:0.5s;
+    -o-transition-duration:0.5s;
+    transition-duration:0.5s;
+    -webkit-transition-timing-function: ease;
+    -moz-transition-timing-function: ease;
+    -o-transition-timing-function: ease;
+    transition-timing-function: ease;
+
 }
 
 /* Scaffold Views
@@ -249,7 +280,7 @@ body .blue-bg {
 
 .about h1 {
   margin-bottom: 0;
-  font-size: 60px;
+  font-size: 3.50em;
   line-height: 1;
   letter-spacing: -1px;
   color: inherit;
@@ -267,8 +298,22 @@ body .blue-bg {
 /* Media Queries
 -------------------------------------------------- */
 @media (max-width: 480px) {
-  .btn .btn-flat .btn-nav a {
-    width: 370px;
+  .navbar {
+    width: 110%;
+  }
+
+  .brand-mq {
+    text-align: center;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 782px){
+  .navbar {
+    width: 106%;
+  }
+
+  .brand-mq {
+    float: left;
   }
 
 }

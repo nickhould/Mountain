@@ -45,12 +45,15 @@ position: absolute;
 margin: 0 auto;
 right: 0;
 left: 0;
-bottom: 0;
 height: 100px;
 text-align: center;
 background-image: url("mtns.svg") no-repeat center bottom;
 vertical-align: baseline;
 z-index: -100;
+}
+
+footer .blue-bg {
+  background-color: #8ebfe7;
 }
 
 /* Navigation
@@ -220,11 +223,6 @@ z-index: -100;
 
 /* Home Page
 -------------------------------------------------- */
-
-body .blue-bg {
-  background-color: #8ebfe7;
-  height: 100%;
-}
 
 .hero-unit {
   padding: 20px;

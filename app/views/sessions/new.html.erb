@@ -1,7 +1,19 @@
-<h1>Sign In!</h1>
+<div class="row-fluid form-override">	
+	<h1>Sign In</h2>
+	<hr>
 
-<%= form_tag '/sessions' do %>
-  <div class="field"><%= label_tag :email %><%= text_field_tag :email %></div>
-  <div class="field"><%= label_tag :password %><%= password_field_tag :password %></div>
-  <%= submit_tag 'Log in!' %>
-<% end %>
+	<form>
+  		<fieldset>
+			<%= form_tag '/sessions' do %>
+			  <div class="field">
+			  	<%= text_field_tag :email, nil, :placeholder => "Email"  %>
+			  </div>
+			  <div class="field">
+			  	<%= password_field_tag :password, nil, :placeholder => "password" %>
+			  </div>
+			</br>
+			  <button type="submit" class="btn btn-large btn-flat">Sign In</button>
+			<% end %>
+		</fieldset>
+	</form>
+</div>

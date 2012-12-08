@@ -9,9 +9,14 @@ class ApplicationController < ActionController::Base
   end
 
   def at_least_one_dashboard
-    if Dashboard.count == 0
+    if current_user.dashboards.count == 0
       redirect_to new_dashboard_url, notice: "Please create a dashboard."
     end
+  end
+
+  def google_authorized
+    auth = current_user.authorizations.find_by_provider("google")
+    redirect_to root_path unless auth
   end
   
 	protected

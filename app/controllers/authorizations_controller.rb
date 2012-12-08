@@ -1,4 +1,6 @@
 class AuthorizationsController < ApplicationController
+  before_filter :signed_in_user
+
   # GET /authorizations
   # GET /authorizations.json
   def index
@@ -40,14 +42,19 @@ class AuthorizationsController < ApplicationController
   # POST /authorizations
   # POST /authorizations.json
   def create
-    @authorization = Authorization.new(params[:authorization])
     auth = request.env["omniauth.auth"]
     google_token = session[:google_token] = auth.credentials.token
     google_secret= session[:google_secret] = auth.credentials.secret
-    @user = User.from_omniauth(auth, google_token, google_secret)
-    session[:user_id] = @user.id
-    redirect_to new_dashboard_url, notice: "Signed in!"
-
+    
+    api_key = "tKHc-DDjWZu3mern4k1u7ndN"
+    consumer = OAuth::Consumer.new('472837297406.apps.googleusercontent.com', api_key, {
+        :site => 'https://www.google.com',
+        :request_token_path => '/accounts/OAuthGetRequestToken',
+        :access_token_path => '/accounts/OAuthGetAccessToken',
+        :authorize_path => '/accounts/OAuthAuthorizeToken'
+      })
+    access_token = OAuth::AccessToken.new(consumer, google_token, google_secret)
+    @authorization = current_user.authorizations.new(access_token: access_token, provider: "google", uid: auth.uid)
 
     respond_to do |format|
       if @authorization.save

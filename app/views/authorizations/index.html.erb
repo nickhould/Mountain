@@ -1,28 +1,8 @@
-
-<h1>Listing authorizations</h1>
-
-<table>
-  <tr>
-    <th>Provider</th>
-    <th>User</th>
-    <th>Access token</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @authorizations.each do |authorization| %>
-  <tr>
-    <td><%= authorization.provider %></td>
-    <td><%= authorization.user_id %></td>
-    <td><%= authorization.access_token %></td>
-    <td><%= link_to 'Show', authorization %></td>
-    <td><%= link_to 'Edit', edit_authorization_path(authorization) %></td>
-    <td><%= link_to 'Destroy', authorization, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Authorization', new_authorization_path %>
+<h1>Authorize your accounts</h1>
+<ul>
+  <% unless current_user.authorizations.find_by_id("google") %>
+    <li>1.<a href="/auth/google">Add your Google Analytics account</a></li>
+  <% else %>
+    <li>1. <strong>Your Google Analytics account is authorized.</strong></li>
+  <% end %>
+</ul>

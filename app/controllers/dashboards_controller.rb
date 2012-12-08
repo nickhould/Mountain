@@ -3,7 +3,7 @@ class DashboardsController < ApplicationController
   before_filter :signed_in_user
   before_filter :at_least_one_dashboard, only: :index
   before_filter :authorized_user, only: [:show, :update, :edit, :destroy]
-
+  before_filter :google_authorized
   # GET /dashboards
   # GET /dashboards.json
   def index

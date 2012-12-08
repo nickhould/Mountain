@@ -22,7 +22,7 @@ Dashboardly::Application.routes.draw do
 
 
   # Omniauth 
-  match "/auth/:provider/callback" => "sessions#create"
+  match "/auth/:provider/callback" => "authorizations#create"
   match '/auth/failure', to: redirect('/')
 end
 

@@ -1,5 +1,7 @@
 Dashboardly::Application.routes.draw do
 
+  resources :authorizations
+
   get "pages/show"
   resources :users
 

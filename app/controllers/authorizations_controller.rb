@@ -41,6 +41,13 @@ class AuthorizationsController < ApplicationController
   # POST /authorizations.json
   def create
     @authorization = Authorization.new(params[:authorization])
+    auth = request.env["omniauth.auth"]
+    google_token = session[:google_token] = auth.credentials.token
+    google_secret= session[:google_secret] = auth.credentials.secret
+    @user = User.from_omniauth(auth, google_token, google_secret)
+    session[:user_id] = @user.id
+    redirect_to new_dashboard_url, notice: "Signed in!"
+
 
     respond_to do |format|
       if @authorization.save

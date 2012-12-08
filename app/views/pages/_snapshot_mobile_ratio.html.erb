@@ -1,0 +1,5 @@
+<li>
+  <%= @dashboard.results(:mobile_ratio, @page_path) %>% 
+  <%= image_tag arrow(@dashboard.variation_absolute(:mobile_ratio, @page_path)), 'data-original-title' => format_var(@dashboard.variation_absolute(:mobile_ratio, @page_path)), :class => "arrows" %>
+  <p>From Mobile<p>
+</li>

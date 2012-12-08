@@ -1,44 +1,20 @@
 <h2>Snapshot <small>Data for the last 30 days.</small></h2>
 <div class="bignums">
 	<ul>
-		 <div class="span3">
-			<li>
-		    <%= @dashboard.results(:snapshot, @page_path).pageviews %> 
-		    <%= image_tag arrow(@dashboard.variation(:snapshot, :pageviews, @page_path)), 'data-original-title' => format_var(@dashboard.variation(:snapshot, :pageviews, @page_path)), :class => "arrows" %>
-				<p>Views<p> 
-			</li>
-		</div>
-
-		 <div class="span3">
-			<li>	
-				<%= @dashboard.results(:snapshot, @page_path).visitors %> 
-				<%= image_tag arrow(@dashboard.variation(:snapshot, :visitors, @page_path)), 'data-original-title' => format_var(@dashboard.variation(:snapshot, :visitors, @page_path)), :class => "arrows" %>
-				<p>Visitors</p>
-			</li>
+		<div class="span3">
+			<%= render 'snapshot_pageviews' %>
 		</div>
 
 		<div class="span3">
-			<li>
-					<%= format_time(@dashboard.results(:snapshot, @page_path).avg_time_on_site)  %>
-				<%= image_tag arrow(@dashboard.variation(:snapshot, :avg_time_on_site, @page_path)), 'data-original-title' => format_var(@dashboard.variation(:snapshot, :avg_time_on_site, @page_path)), :class => "arrows" %>
-				<p>Avg Time on Page<p> 
-			</li>
+			<%= render 'snapshot_visitors' %>
 		</div>
 
 		<div class="span3">
-			<li>
-				<%= @dashboard.results(:mobile_ratio, @page_path) %>%	
-				<%= image_tag arrow(@dashboard.variation_absolute(:mobile_ratio, @page_path)), 'data-original-title' => format_var(@dashboard.variation_absolute(:mobile_ratio, @page_path)), :class => "arrows" %>
-				<p>From Mobile<p>
-			</li>
+			<%= render 'snapshot_avg_time_on_site' %>
+		</div>
+
+		<div class="span3">
+			<%= render 'snapshot_mobile_ratio' %>
 		</div>
 	</ul>
 </div>
-
-<!-- jQuery for Tooltips -->
-<script type="text/javascript">
-$(document).ready(function(){
-	$('.arrows').tooltip(function(){
-	});
-});
-</script>

@@ -3,35 +3,19 @@
 	<div class="bignums">
 	<ul>
 		<div class="span3">
-			<li>
-		    <%= @dashboard.snapshot.pageviews %> 
-		   	<%= render "arrow" %>
-				<p>Views<p>
-			</li>
+			<%= render "snapshot_pageviews" %>
 		</div>
 
 		<div class="span3">
-			<li>
-				<%= @dashboard.snapshot.visitors %> 
-				<%= image_tag arrow(@dashboard.variation(:snapshot, :visitors)),'data-original-title' => format_var(@dashboard.variation(:snapshot, :visitors)), :class => "arrows" %>
-				<p>Visitors<p>
-			</li>
+			<%= render 'snapshot_visitors' %>
 		</div>
 
 		<div class="span3">
-			<li>
-				<%= format_time(@dashboard.snapshot.avg_time_on_site) %> 
-				<%= image_tag arrow(@dashboard.variation(:snapshot, :avg_time_on_site)),'data-original-title' => format_var( @dashboard.variation(:snapshot, :avg_time_on_site) ), :class => "arrows"%>
-				<p>Avg Time on Site<p>
-			</li>
+			<%= render 'snapshot_avg_time_on_site' %>
 		</div>
 
 		<div class="span3">
-			<li>
-				<%= @dashboard.mobile_ratio %>% 
-				<%= image_tag arrow(@dashboard.variation_absolute(:mobile_ratio)),'data-original-title' => format_var( @dashboard.variation_absolute(:mobile_ratio)), :class => "arrows"%>
-				<p>From Mobile<p>
-			</li>
+			<%= render 'snapshot_mobile_ratio' %>
 		</div>
 <div class="row-fluid">
 	<div class="span3">

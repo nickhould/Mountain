@@ -38,53 +38,6 @@ class Dashboard < ActiveRecord::Base
     }
   end
 
-
-
-# To be refactored
-
-	def mobile_ratio_previous_period
-		dates = previous_period_dates
-		data = {}
-		profile.mobile(dates).each do |obj|
-			if obj.is_mobile == "No"
-				data[:is_not_mobile] = obj.visits.to_f
-			elsif obj.is_mobile == "Yes"
-				data[:is_mobile] = obj.visits.to_f
-			end
-		end
-		( data[:is_mobile] / ( data[:is_mobile] + data[:is_not_mobile] )) * 100
-	end
-
-	def mobile_ratio_variation
-		mobile_ratio - mobile_ratio_previous_period
-	end
-
-	def formatted_mobile_variation
-		variation = mobile_ratio_variation
-		if variation > 0
-			variation = "+" + variation.round(2).to_s + "%"
-			return variation
-		else
-			variation = variation.round(2).to_s + "%"
-			return variation.to_s
-		end
-	end
-
-	def params_previous_period_dates
-		previous_period_dates = {}
-		end_date = previous_period_dates[:end_date] = 31.days.ago
-		previous_period_dates[:start_date] = 30.days.ago(end_date)
-		previous_period_dates
-	end
-
-	def snapshot_previous_period
-		dates = previous_period_dates
-		start_date = dates[:start_date]
-		end_date = dates[:end_date]
-		profile.snapshot(start_date: start_date, end_date: end_date).first
-	end
-
-
 # metrics
 
 	def results(metric_name, page_path = nil, variation = false)
@@ -136,16 +89,16 @@ class Dashboard < ActiveRecord::Base
 
   def variation_with_metric(metric_name, page_path)
   	past, present = var_results(metric_name, page_path)
-  	past = past.method(metric_name).call
-  	present = present.method(metric_name).call
+  	past = past.try(metric_name)
+  	present = present.try(metric_name)
   	[past, present]
   end
 
   def variation_with_secondary_metric(metric_name, secondary_metric, page_path = nil)
   	past, present = var_results(metric_name, page_path)
   	if past && present
-  		past = past.method(secondary_metric).call
-  		present = present.method(secondary_metric).call
+  		past = past.try(secondary_metric)
+  		present = present.try(secondary_metric)
   		[past, present]
   	else
   		nil

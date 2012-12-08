@@ -32,7 +32,7 @@ module DashboardsHelper
 		if variation
 			positive?(variation) ? "uparrow.svg" : "downarrow.svg"
 		else
-			nil
+			"circle.svg"
 		end	
 	end
 
@@ -41,21 +41,18 @@ module DashboardsHelper
 	end
 
 	def format_var(variation)
-		if variation.to_f != 0
-			if positive?(variation)
-				"+" + variation.to_s + "%"
-			else
-				variation.to_s + "%"
+		if variation
+			if variation.to_f != 0
+				if positive?(variation)
+					"+" + variation.to_s + "%"
+				else
+					variation.to_s + "%"
+				end
 			end
 		else
-			nil
+			"No variation"
 		end
 	end
-
-
-
-
-
 
 	def data_pres(object, method)
 	  object.snapshot.method(method).call

@@ -9,7 +9,7 @@ gem 'omniauth-google', :git => 'git://github.com/davidkpham/omniauth-google.git'
 gem 'certified'
 gem 'newrelic_rpm'
 gem 'thin'
-gem 'pry'
+gem 'pry-rails'
 
 group :development, :test do
   gem 'sqlite3', '1.3.5'

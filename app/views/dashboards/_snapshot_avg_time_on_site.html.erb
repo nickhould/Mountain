@@ -1,0 +1,5 @@
+<li>
+  <%= format_time(@dashboard.snapshot.try(:avg_time_on_site)) %> 
+  <%= image_tag arrow(@dashboard.variation(:snapshot, :avg_time_on_site)),'data-original-title' => format_var( @dashboard.variation(:snapshot, :avg_time_on_site) ), :class => "arrows"%>
+  <p>Avg Time on Site<p>
+</li>

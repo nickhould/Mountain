@@ -280,7 +280,7 @@ body .blue-bg {
 
 .about h1 {
   margin-bottom: 0;
-  font-size: 60px;
+  font-size: 3.50em;
   line-height: 1;
   letter-spacing: -1px;
   color: inherit;
@@ -310,6 +310,10 @@ body .blue-bg {
 @media (min-width: 481px) and (max-width: 782px){
   .navbar {
     width: 106%;
+  }
+
+  .brand-mq {
+    float: left;
   }
 
 }

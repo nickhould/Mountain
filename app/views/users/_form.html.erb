@@ -11,19 +11,19 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
-  </div>
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<form>
+  <fieldset>
+    <div class="field">
+      <%= f.text_field :email, :placeholder => "Your Email" %>
+    </div>
+    <div class="field">
+      <%= f.password_field :password, :placeholder => "Create Password" %>
+    </div>
+    <div class="field">
+      <%= f.password_field :password_confirmation, :placeholder => "Confirm Password" %></br>
+    </div>
+  </br>
+    <button type="submit" class="btn btn-large btn-flat">Submit</button>
+  </fieldset>
+</form>
 <% end %>

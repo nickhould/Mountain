@@ -45,10 +45,12 @@ position: absolute;
 margin: 0 auto;
 right: 0;
 left: 0;
+bottom: 0;
 height: 100px;
 text-align: center;
 background-image: url("mtns.svg") no-repeat center bottom;
 vertical-align: baseline;
+z-index: -100;
 }
 
 /* Navigation
@@ -191,44 +193,8 @@ vertical-align: baseline;
   padding:0 10 0 10;
 }
 
-/* Navigation
--------------------------------------------------- */
-.drop a{
-  color: #000
-    -webkit-transition-property:background-color;
-    -moz-transition-property:background-color;
-    -o-transition-property:background-color;
-    transition-property:background-color;
-    -webkit-transition-duration:0.5s;
-    -moz-transition-duration:0.5s;
-    -o-transition-duration:0.5s;
-    transition-duration:0.5s;
-    -webkit-transition-timing-function: ease;
-    -moz-transition-timing-function: ease;
-    -o-transition-timing-function: ease;
-    transition-timing-function: ease;
-}
 
-.drop a:hover {
-  color: #000;
-  list-style: none;
-  text-decoration: none;
-    -webkit-transition-property:background-color;
-    -moz-transition-property:background-color;
-    -o-transition-property:background-color;
-    transition-property:background-color;
-    -webkit-transition-duration:0.5s;
-    -moz-transition-duration:0.5s;
-    -o-transition-duration:0.5s;
-    transition-duration:0.5s;
-    -webkit-transition-timing-function: ease;
-    -moz-transition-timing-function: ease;
-    -o-transition-timing-function: ease;
-    transition-timing-function: ease;
-
-}
-
-/* Scaffold Views
+/* Form Fields
 -------------------------------------------------- */
 .form-template {
   -webkit-border-radius: 20px;
@@ -239,6 +205,16 @@ vertical-align: baseline;
   padding: 40px 90px 40px 90px;
   text-align: center;
   width: 250px;
+}
+
+
+.form-override {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.form-override .btn{
+  padding: 15px 85px 15px 85px;
 }
 
 

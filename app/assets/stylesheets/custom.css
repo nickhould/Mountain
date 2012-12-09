@@ -327,7 +327,13 @@ z-index: -100;
   }
 
   .brand-mq {
-    float: left;
+    text-align: center;
+  }
+
+  .navbar .nav.pull-right {
+    float: none;
+    text-align: center;
+    margin-left: 20%;
   }
 
 }

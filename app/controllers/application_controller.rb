@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
 
   def google_authorized
     auth = current_user.authorizations.find_by_provider("google")
-    redirect_to root_path unless auth
+    redirect_to root_path, notice: "Please authorize your Google Account." unless auth
   end
   
 	protected
@@ -26,5 +26,13 @@ class ApplicationController < ActionController::Base
 
   def decode_url_from_params(url)
   	URI.decode(Base64.decode64(url))
+  end
+
+  def google_token
+    current_user.authorizations.find_by_provider("google").token
+  end
+
+  def google_secret
+    current_user.authorizations.find_by_provider("google").secret
   end
 end

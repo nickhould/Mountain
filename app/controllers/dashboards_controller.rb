@@ -18,7 +18,7 @@ class DashboardsController < ApplicationController
   # GET /dashboards/1.json
   def show
     @dashboard = current_user.dashboards.find_by_id(params[:id])
-    @dashboard.datasource(session[:google_token], session[:google_secret])
+    @dashboard.datasource(google_token, google_secret)
     @dashboards = current_user.dashboards
     respond_to do |format|
       format.html # show.html.erb
@@ -30,7 +30,9 @@ class DashboardsController < ApplicationController
   # GET /dashboards/new.json
   def new
     @dashboard = current_user.dashboards.new
-    @profiles = @ga.profiles
+    @dashboard.datasource(google_token, google_secret)
+    @profiles =  @dashboard.profiles
+
      # @profiles = current_user.profiles
 
     respond_to do |format|

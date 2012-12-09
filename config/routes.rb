@@ -10,6 +10,8 @@ Dashboardly::Application.routes.draw do
     resources :pages, :only => [ :show ]
   end
 
+  match "/google" => "authorizations#google"
+
 
   #Sessions
   delete '/signout', to: 'sessions#destroy', as: :sign_out

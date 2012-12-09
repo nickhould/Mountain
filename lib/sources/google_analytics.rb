@@ -3,8 +3,8 @@ require 'metrics'
 class GoogleAnalytics
 
 	def initialize(token, secret)
-		@token = token
-		@secret = secret
+    @token = token
+    @secret = secret
 	end
 
 	def accounts
@@ -43,8 +43,12 @@ class GoogleAnalytics
         :access_token_path => '/accounts/OAuthGetAccessToken',
         :authorize_path => '/accounts/OAuthAuthorizeToken'
       })
-     garbsession = Garb::Session.new
-     garbsession.access_token = OAuth::AccessToken.new(consumer, @token, @secret)
-     garbsession
+    garbsession = Garb::Session.new
+    garbsession.access_token = OAuth::AccessToken.new(consumer, @token, @secret)
+    garbsession
 	end
+
+  def access_token
+    access_token = garbsession.access_token
+  end
 end

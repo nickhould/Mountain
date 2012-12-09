@@ -42,24 +42,19 @@ class AuthorizationsController < ApplicationController
   # POST /authorizations
   # POST /authorizations.json
   def create
-    auth = request.env["omniauth.auth"]
-    google_token = session[:google_token] = auth.credentials.token
-    google_secret= session[:google_secret] = auth.credentials.secret
+    # auth = request.env["omniauth.auth"]
+    # google_token = session[:google_token] = auth.credentials.token
+    # google_secret= session[:google_secret] = auth.credentials.secret
     
-    api_key = "tKHc-DDjWZu3mern4k1u7ndN"
-    consumer = OAuth::Consumer.new('472837297406.apps.googleusercontent.com', api_key, {
-        :site => 'https://www.google.com',
-        :request_token_path => '/accounts/OAuthGetRequestToken',
-        :access_token_path => '/accounts/OAuthGetAccessToken',
-        :authorize_path => '/accounts/OAuthAuthorizeToken'
-      })
-    access_token = OAuth::AccessToken.new(consumer, google_token, google_secret)
-    @authorization = current_user.authorizations.new(access_token: access_token, provider: "google", uid: auth.uid)
+    auth = request.env["omniauth.auth"]
+    token = auth.credentials.token
+    secret = auth.credentials.secret
+    @authorization = current_user.authorizations.new(token: token, secret: secret, provider: "google")
 
     respond_to do |format|
       if @authorization.save
         format.html { redirect_to @authorization, notice: 'Authorization was successfully created.' }
-        format.json { render json: @authorization, status: :created, location: @authorization }
+        format.json { render json: @authorization, status: :credentialseated, location: @authorization }
       else
         format.html { render action: "new" }
         format.json { render json: @authorization.errors, status: :unprocessable_entity }
@@ -93,5 +88,20 @@ class AuthorizationsController < ApplicationController
       format.html { redirect_to authorizations_url }
       format.json { head :no_content }
     end
+  end
+
+  def google
+    api_key = "tKHc-DDjWZu3mern4k1u7ndN"
+    @consumer = OAuth::Consumer.new('472837297406.apps.googleusercontent.com', api_key, {
+        :site => 'https://www.google.com',
+        :request_token_path => '/accounts/OAuthGetRequestToken',
+        :access_token_path => '/accounts/OAuthGetAccessToken',
+        :authorize_path => '/accounts/OAuthAuthorizeToken'
+      })
+    @callback_url = "http://127.0.0.1:3000/oauth/callback"
+    # @request_token = @consumer.get_request_token(:oauth_callback => @callback_url)
+    #session[:request_token] = @request_token
+    redirect_to @consumer.get_request_token(:oauth_callback => @callback_url).authorize_url(:oauth_callback => @callback_url)
+
   end
 end

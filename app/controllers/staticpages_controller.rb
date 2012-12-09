@@ -12,9 +12,6 @@ class StaticpagesController < ApplicationController
 	end
 
 	def test
-	  @dashboard = current_user.dashboards.first
-    @dashboard.datasource(session[:google_token], session[:google_secret])
-    @dashboards = current_user.dashboards
 	end
 
 	def create_garb_session

@@ -50,7 +50,7 @@ footer a:hover{
   color: #fff;
 }
 
-footer .mtn{
+.mtn {
 position: absolute;
 margin: 0 auto;
 right: 0;
@@ -181,7 +181,24 @@ z-index: -100;
 /* DROPDOWN MENU */
 .btn-group > .btn, .btn-group > .dropdown-menu {
   background-color: #f1f1f1;
+  -webkit-transition-property:background-color;
+  -moz-transition-property:background-color;
+  -o-transition-property:background-color;
+  transition-property:background-color;
+  -webkit-transition-duration:0.5s;
+  -moz-transition-duration:0.5s;
+  -o-transition-duration:0.5s;
+  transition-duration:0.5s;
+  -webkit-transition-timing-function: ease;
+  -moz-transition-timing-function: ease;
+  -o-transition-timing-function: ease;
+  transition-timing-function: ease;  
 }
+
+.btn-group > .btn:hover {
+  background-color: #c5c5c5;
+}
+
 
 /* SNAPSHOT PARTIAL */
 

@@ -24,4 +24,7 @@ class Authorization < ActiveRecord::Base
     find_by_provider("google").first.secret
   end
 
+  def google
+    find_by_provider("google")
+  end
 end

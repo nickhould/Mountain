@@ -92,4 +92,10 @@ class DashboardsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+protected
+  def authorized_user
+    dashboard = current_user.dashboards.find_by_id(params[:id])
+    redirect_to root_path unless dashboard
+  end
 end

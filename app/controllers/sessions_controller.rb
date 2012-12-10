@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     @user = User.find_by_email(params[:email])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      redirect_to root_url, notice: "Signed in"
+      redirect_to dashboards_url, notice: "Signed in"
     else
       flash[:notice] = "Bad email address or password."
       render 'new'

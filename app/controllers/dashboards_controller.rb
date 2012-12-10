@@ -44,7 +44,7 @@ class DashboardsController < ApplicationController
   # GET /dashboards/1/edit
   def edit
     @dashboard = Dashboard.find(params[:id])
-    @profiles = @ga.profiles
+    @profiles = @dashboard.profiles
   end
 
   # POST /dashboards
@@ -57,7 +57,7 @@ class DashboardsController < ApplicationController
         format.html { redirect_to @dashboard, notice: 'Dashboard was successfully created.' }
         format.json { render json: @dashboard, status: :created, location: @dashboard }
       else
-        @profiles = @ga.profiles
+        @profiles = @dashboard.profiles
         format.html { render action: "new" }
         format.json { render json: @dashboard.errors, status: :unprocessable_entity }
       end

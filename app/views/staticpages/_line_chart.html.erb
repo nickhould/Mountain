@@ -1,0 +1,58 @@
+<h2>Visits</h2>
+
+<script type="text/javascript">
+$(function () {
+    var chart;
+    $(document).ready(function() {
+        chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'container',
+                // height: 300,    
+                // See dashboard show view to edit height.
+                type: 'area',
+                marginRight: 130,
+                marginBottom: 25
+            },
+            plotOptions: {
+                series: {
+                    pointStart: 0,
+                    lineWidth: 0,
+                    pointStart: Date.UTC(2012, 10, 10), // sets formatting for date and time
+                    pointInterval: 24 * 3600 * 1000 // one day
+                }
+            },
+            title: {
+                text: '',
+                x: 0 //center
+            },
+            xAxis: {
+                type: 'datetime' // sets x-axis to date format
+            },
+            yAxis: {
+                title: {
+                    text: 'Pageviews'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'top',
+                borderWidth: 0
+            },
+            series: [{
+                showInLegend: false, 
+                name: 'Visits',
+                color: '#8ebfe7',
+                data: [400, 300, 200, 275, 122, 600, 200, 101, 201, 263, 507, 417, 213, 210, 690, 410, 611, 488, 313, 328, 333, 232, 544, 244, 566, 377, 622, 167, 800, 610,  727]
+            }],
+            credits:{enabled:false}
+        });
+    });
+    
+});
+</script>

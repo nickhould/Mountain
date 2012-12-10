@@ -14,7 +14,6 @@ class StaticpagesController < ApplicationController
 	def test
 	end
 
-	def create_garb_session
-    @ga = GoogleAnalytics.new(session[:google_token], session[:google_secret]) 
-  end
+	def demo
+	end
 end

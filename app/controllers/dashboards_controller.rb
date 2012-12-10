@@ -43,7 +43,8 @@ class DashboardsController < ApplicationController
 
   # GET /dashboards/1/edit
   def edit
-    @dashboard = Dashboard.find(params[:id])
+    @dashboard = current_user.dashboards.find_by_id(params[:id])
+    @dashboard.datasource(google_token, google_secret)
     @profiles = @dashboard.profiles
   end
 
@@ -51,6 +52,7 @@ class DashboardsController < ApplicationController
   # POST /dashboards.json
   def create
     @dashboard = current_user.dashboards.new(params[:dashboard])
+    @dashboard.datasource(google_token, google_secret)
 
     respond_to do |format|
       if @dashboard.save
@@ -68,13 +70,14 @@ class DashboardsController < ApplicationController
   # PUT /dashboards/1.json
   def update
     @dashboard = Dashboard.find(params[:id])
+    @dashboard.datasource(google_token, google_secret)
 
     respond_to do |format|
       if @dashboard.update_attributes(params[:dashboard])
         format.html { redirect_to @dashboard, notice: 'Dashboard was successfully updated.' }
         format.json { head :no_content }
       else
-        @profiles = @ga.profiles
+        @profiles = @dashboard.profiles
         format.html { render action: "edit" }
         format.json { render json: @dashboard.errors, status: :unprocessable_entity }
       end

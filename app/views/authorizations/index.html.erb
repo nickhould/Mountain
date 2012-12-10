@@ -1,8 +1,20 @@
-<h1>Authorize your accounts</h1>
-<ul>
-  <% unless current_user.authorizations.find_by_provider("google") %>
-    <li>1.<a href="/auth/google">Add your Google Analytics account</a></li>
-  <% else %>
-    <li>1. <strong>Your Google Analytics account is authorized.</strong></li>
-  <% end %>
-</ul>
+<div class="row-fluid form-override">
+	<h1>Link Your Accounts</h1>
+	<hr>
+	<div class="span4 offset4">
+		<p>Mountain pulls data from your Tumblr, and Google Analytics account. Click the buttons below to link your account and get started.</p>
+
+		<ul>
+		  <% unless current_user.authorizations.find_by_provider("google") %>
+		    <li>
+		    	<a href="/auth/google" class="btn btn-large btn-flat">Link Google Analytics</a>
+		    </li>
+		  <% else %>
+		    <li>
+		    	<a href="/auth/google" class="btn btn-large btn-success btn-flat">Google Analytics Linked</a>
+		    </li>
+
+		  <% end %>
+		</ul>
+	</div>
+</div>

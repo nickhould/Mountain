@@ -11,19 +11,21 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :provider %><br />
-    <%= f.text_field :provider %>
-  </div>
-  <div class="field">
-    <%= f.label :user_id %><br />
-    <%= f.number_field :user_id %>
-  </div>
-  <div class="field">
-    <%= f.label :access_token %><br />
-    <%= f.text_field :access_token %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+<div class="row-fluid form-override">
+  <fieldset>
+    <div class="field">
+      <%= f.text_field :provider, :placeholder => "Provider" %><br />
+    </div>
+  <br />  
+    <div class="field">
+      <%= f.number_field :user_id, :placeholder => "User ID" %>
+    </div>
+  <br />  
+    <div class="field">
+      <%= f.text_field :access_token, :placeholder => "Access Token" %>
+    </div>
+  <br />
+    <button type="submit" class="btn btn-large btn-flat">Sign In</button>
+  <% end %>
+  </fieldset>
+</div>

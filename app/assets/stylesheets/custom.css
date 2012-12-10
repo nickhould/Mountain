@@ -225,7 +225,12 @@ z-index: -100;
 .form-override {
   margin: 0 auto;
   text-align: center;
-  padding-bottom: 10%;
+  padding-bottom: 12%;
+  list-style: none;
+}
+
+.form-override ul {
+  list-style: none;
 }
 
 .form-override .btn{

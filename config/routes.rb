@@ -20,7 +20,7 @@ Dashboardly::Application.routes.draw do
   #Static pages
   get '/about' => 'staticpages#about'
   get '/test' => 'staticpages#test'
-
+  get '/demo' => 'staticpages#demo', as: :demo
 
 
   # Omniauth 

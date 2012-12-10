@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   def at_least_one_dashboard
     if current_user.dashboards.count == 0
-      redirect_to new_dashboard_url, notice: "Please create a dashboard."
+      redirect_to new_dashboard_url
     end
   end
 

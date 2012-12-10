@@ -1,3 +1,5 @@
+<div class="row-fluid form-override"> 
+
 <%= form_for(@dashboard) do |f| %>
   <% if @dashboard.errors.any? %>
     <div id="error_explanation">
@@ -17,9 +19,9 @@
   <div class="field">   
     <%= collection_select(:dashboard, :web_property_id, @profiles, :web_property_id, :title, :prompt => "Website Profiles" )%>
   </div>
+  <br>
 
-
-  <div class="actions">
-    <%= f.submit :class => "btn btn-large btn-primary btn-flat" %>
-  </div>
+  <button type="submit" class="btn btn-large btn-flat">Submit</button>
 <% end %>
+
+</div>

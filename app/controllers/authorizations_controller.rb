@@ -4,7 +4,7 @@ class AuthorizationsController < ApplicationController
   # GET /authorizations
   # GET /authorizations.json
   def index
-    @authorizations = Authorization.all
+    @google_auth = current_user.authorizations.find_by_provider("google")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -53,7 +53,7 @@ class AuthorizationsController < ApplicationController
 
     respond_to do |format|
       if @authorization.save
-        format.html { redirect_to @authorization, notice: 'Authorization was successfully created.' }
+        format.html { redirect_to authorizations_url, notice: 'Authorization was successfully created.' }
         format.json { render json: @authorization, status: :credentialseated, location: @authorization }
       else
         format.html { render action: "new" }

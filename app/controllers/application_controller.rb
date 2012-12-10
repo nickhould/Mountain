@@ -3,11 +3,6 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   helper_method :encode_url_for_params
 
-  def authorized_user
-    dashboard = current_user.dashboards.find_by_id(params[:id])
-    redirect_to root_path unless dashboard
-  end
-
   def at_least_one_dashboard
     if current_user.dashboards.count == 0
       redirect_to new_dashboard_url, notice: "Please create a dashboard."
@@ -16,7 +11,7 @@ class ApplicationController < ActionController::Base
 
   def google_authorized
     auth = current_user.authorizations.find_by_provider("google")
-    redirect_to root_path, notice: "Please authorize your Google Account." unless auth
+    redirect_to authorizations_path, notice: "Please authorize your Google Account." unless auth
   end
   
 	protected

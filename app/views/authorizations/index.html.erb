@@ -3,6 +3,8 @@
   <% unless current_user.authorizations.find_by_provider("google") %>
     <li>1.<a href="/auth/google">Add your Google Analytics account</a></li>
   <% else %>
-    <li>1. <strong>Your Google Analytics account is authorized.</strong></li>
+    <li>1. <strong>Your Google Analytics account is authorized. <%= link_to 'Revoke access', @google_auth , method: :delete %></strong></li>
   <% end %>
 </ul>
+
+

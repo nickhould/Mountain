@@ -176,8 +176,15 @@ z-index: -100;
   transition-timing-function: ease;  
 }
 
-/* Snapshot Partial
+/* Dashboard Show
 -------------------------------------------------- */
+/* DROPDOWN MENU */
+.btn-group > .btn, .btn-group > .dropdown-menu {
+  background-color: #f1f1f1;
+}
+
+/* SNAPSHOT PARTIAL */
+
 .bignums .span3{
   text-align: center;
 }
@@ -213,6 +220,7 @@ z-index: -100;
 .form-template {
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
+  -o-border-radius: 20px;
   border-radius: 20px;
   background-color:#FFF;
   margin-top: 80px;

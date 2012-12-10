@@ -1,11 +1,11 @@
-<div class="row-fluid">
-	<div class="offset4 span4">
+
+<div class="row-fluid form-override center"> 
   <h2>Dashboards</h2>
 	<hr>
   <table class="table table-striped">
     <tr>
       <th>Name</th>
-      <th></th>
+      <th>Edit</th>
     </tr>
 
   <% @dashboards.each do |dashboard| %>
@@ -18,7 +18,5 @@
     </tr>
   </table>
 
-  <%= button_to "New dashboard", new_dashboard_path, method: :get, :class => "btn btn-large btn-primary btn-flat" %>
-
-  </div>
+  <%= button_to "New Dashboard", new_dashboard_path, method: :get, :class => "btn btn-large btn-flat" %>
 </div>

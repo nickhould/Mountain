@@ -7,7 +7,7 @@
 			<ul>
 			  <% unless google_auth %>
 			    <li>
-			    	<%= link_to "Link Google Analytics", google_auth_url, class: "span2 btn btn-large btn-flat"  %>
+			    	<%= link_to "Link Google Analytics", google_auth_url, class: "btn btn-large btn-flat"  %>
 			    </li>
 			  <% else %>
 			    <li>
@@ -16,11 +16,11 @@
 			  <% end %>
 			  <% unless tumblr_auth %>
 			    <li>
-			    	<%= link_to "Link Tumblr", tumblr_auth_url, class: "span2 btn btn-large btn-flat"  %>
+			    	<%= link_to "Link Tumblr Account", tumblr_auth_url, class: "btn btn-large btn-flat"  %>
 			    </li>
 			  <% else %>
 			    <li>
-			    	<%= link_to "Tumblr Linked", tumblr_auth, class: "btn btn-large btn-success btn-flat", method: :delete %>
+			    	<%= link_to "Tumblr Account Linked", tumblr_auth, class: "btn btn-large btn-success btn-flat", method: :delete %>
 			    </li>
 			  <% end %>
 			</ul>

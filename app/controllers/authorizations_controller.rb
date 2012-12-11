@@ -1,8 +1,8 @@
 class AuthorizationsController < ApplicationController
   before_filter :signed_in_user
-
   # GET /authorizations
   # GET /authorizations.json
+
   def index
     @google_auth = current_user.authorizations.find_by_provider("google")
 
@@ -55,8 +55,12 @@ class AuthorizationsController < ApplicationController
 
     respond_to do |format|
       if @authorization.save
+        if authorized_all_providers? 
+          format.html { redirect_to default_dashboard_url }
+        else
         format.html { redirect_to authorizations_url, notice: 'Authorization was successfully created.' }
-        format.json { render json: @authorization, status: :credentialseated, location: @authorization }
+          format.json { render json: @authorization, status: :credentialseated, location: @authorization }
+        end
       else
         format.html { render action: "new" }
         format.json { render json: @authorization.errors, status: :unprocessable_entity }
@@ -105,5 +109,11 @@ class AuthorizationsController < ApplicationController
     #session[:request_token] = @request_token
     redirect_to @consumer.get_request_token(:oauth_callback => @callback_url).authorize_url(:oauth_callback => @callback_url)
 
+  end
+
+  protected
+
+  def authorized_all_providers? 
+    google_authorized? && tumblr_authorized? ? true : false
   end
 end

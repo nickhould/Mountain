@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   include SessionsHelper
-  helper_method :encode_url_for_params
+  helper_method :encode_url_for_params, :default_dashboard_url
 
   def at_least_one_dashboard
     if current_user.dashboards.count == 0
@@ -9,9 +9,30 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def google_authorized
-    auth = current_user.authorizations.find_by_provider("google")
-    redirect_to authorizations_path, notice: "Please authorize your Google Account." unless auth
+  def tumblr_authorized?
+    current_user.authorizations.find_by_provider("tumblr") ? true : false 
+  end
+
+  def google_authorized?
+    current_user.authorizations.find_by_provider("google") ? true : false
+  end
+
+  def authorized_all_providers
+    unless google_authorized? && tumblr_authorized?
+      redirect_to authorizations_path, notice: "Please authorize your Google Account."
+    end 
+  end
+
+  def default_dashboard_url
+    if current_user && current_user.dashboards.first && current_user.dashboards.first.id
+      dashboard_url(current_user.dashboards.first.id)
+    else
+        new_dashboard_url
+    end
+  end
+
+  def already_signed_in
+    redirect_to default_dashboard_url if current_user 
   end
   
 	protected

@@ -1,6 +1,7 @@
 <h1 class="pull-left"><%= @dashboard.name %> <small><%= @dashboard.profile.title %></small></h1>
 
 <div class="pull-right btn-group">
+  <%= link_to "Authorizations", authorizations_url, :class => "btn btn-large btn-flat drop"%>
 
 	<%= link_to "New", new_dashboard_url, :class => "btn btn-large btn-flat drop"%>
 

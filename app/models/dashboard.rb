@@ -1,10 +1,10 @@
 require 'uri' # consider moving this require to your application.rb
 class Dashboard < ActiveRecord::Base
-  attr_accessible :name, :web_property_id, :user_id
+  attr_accessible :name, :web_property_id, :user_id, :tumblog_url
   
   belongs_to :user
 
-  validates_presence_of :name, :web_property_id, :user_id
+  validates_presence_of :name, :web_property_id, :user_id, :tumblog_url
 
   # API Call
   def datasource(token, secret)

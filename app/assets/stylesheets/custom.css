@@ -51,15 +51,22 @@ footer a:hover{
 }
 
 .mtn {
-position: absolute;
-margin: 0 auto;
-right: 0;
-left: 0;
-height: 100px;
-text-align: center;
-background-image: url("mtns.svg") no-repeat center bottom;
-vertical-align: baseline;
-z-index: -100;
+  position: absolute;
+  display: block;
+  margin: 0 auto;
+  right: 0;
+  left: 0;
+  height: 200px;
+  padding-top: 200px;
+  text-align: center;
+  background-image: url("mtns.svg");
+  background-repeat: repeat-x;
+  text-align: center;
+}
+
+.blue-bg {
+  background-color: #8EBFE7;
+  height: 100%;
 }
 
 

@@ -31,7 +31,7 @@ module DashboardsHelper
 			"circle.svg"
 		end	
 	end
-
+	
 	def positive?(number)
 		number.to_f > 0 ? true : false
 	end

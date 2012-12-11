@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
     if current_user && current_user.dashboards.first && current_user.dashboards.first.id
       dashboard_url(current_user.dashboards.first.id)
     else
-        new_dashboard_url
+      new_dashboard_url
     end
   end
 
@@ -50,5 +50,13 @@ class ApplicationController < ActionController::Base
 
   def google_secret
     current_user.authorizations.find_by_provider("google").secret
+  end
+
+  def tumblr_token
+    current_user.authorizations.find_by_provider("tumblr").token
+  end
+
+  def tumblr_secret
+    current_user.authorizations.find_by_provider("tumblr").secret
   end
 end

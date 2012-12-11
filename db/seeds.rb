@@ -9,7 +9,7 @@
 
 User.destroy_all
 
-User.create(email: "admin@mountainmetrics.com",
+u = User.create(email: "admin@mountainmetrics.com",
             password: "dashboardly",
             password_confirmation: "dashboardly")
 

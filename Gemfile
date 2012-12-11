@@ -14,7 +14,7 @@ gem 'thin'
 gem 'pry-rails'
 gem 'figaro', :git => 'git://github.com/jspradlin/figaro.git'
 gem 'heroku'
-gem 'rack-cache', '1.2'
+gem 'tumblr_client'
 
 group :development, :test do
   gem 'sqlite3', '1.3.5'

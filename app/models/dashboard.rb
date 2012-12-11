@@ -5,7 +5,7 @@ class Dashboard < ActiveRecord::Base
   belongs_to :user
   validates_presence_of :name, :web_property_id, :user_id, :tumblog_
 
-  # API Call
+  # Google Analytics Account Management
   def datasource(token, secret)
     @ga ||= GoogleAnalytics.new(token, secret)
   end
@@ -41,7 +41,7 @@ class Dashboard < ActiveRecord::Base
     }
   end
 
-# metrics
+  # Google Analytics Metrics
 
 	def results(metric_name, page_path = nil, variation = false)
     params = params(page_path, variation)
@@ -81,14 +81,6 @@ class Dashboard < ActiveRecord::Base
   def variation_absolute(metric_name, page_path=nil)
 		calculate_absolute_variation(var_results(metric_name, page_path))
   end
-
-  # def variation_without_metric(metric_name, page_path)
-  # 	past_result = results(metric_name, page_path, true)
-  # 	present_result = results(metric_name, page_path, false)
-  # 	[past_result, present_result]
-  # end
-
-
 
   def variation_with_metric(metric_name, page_path)
   	past, present = var_results(metric_name, page_path)
@@ -181,4 +173,7 @@ class Dashboard < ActiveRecord::Base
 	def pageviews
 	  profile.pageviews(@params).first
 	end
+
+  # Tumblr API 
+ 
 end

@@ -3,6 +3,7 @@
 
 api_key = "tKHc-DDjWZu3mern4k1u7ndN"
 Rails.application.config.middleware.use OmniAuth::Builder do
-	provider :google, '472837297406.apps.googleusercontent.com', api_key, scope: 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.google.com/analytics/feeds/'
-  provider :tumblr, "wKKJaFBh5fAM1tI9xc4l3QNdBQs6Qdczk4C91a3PlLDgx5LFoL", "s7JxIwrNQRlLmUpAqXW14RK0li435g2391quzltIsn5mmt5g6F"
+	provider :google, Figaro.env.google_app_url, Figaro.env.google_api_key, scope: 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.google.com/analytics/feeds/'
+  provider :tumblr, Figaro.env.tumblr_key, Figaro.env.tumblr_secret
 end
+

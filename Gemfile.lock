@@ -126,6 +126,8 @@ GEM
     omniauth-oauth (1.0.1)
       oauth
       omniauth (~> 1.0)
+    omniauth-tumblr (1.1)
+      omniauth-oauth (~> 1.0)
     pg (0.12.2)
     polyglot (0.3.3)
     pry (0.9.10)
@@ -227,6 +229,7 @@ DEPENDENCIES
   newrelic_rpm
   oauth
   omniauth-google!
+  omniauth-tumblr
   pg (= 0.12.2)
   pry-rails
   rails (= 3.2.8)

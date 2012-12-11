@@ -49,7 +49,9 @@ class AuthorizationsController < ApplicationController
     auth = request.env["omniauth.auth"]
     token = auth.credentials.token
     secret = auth.credentials.secret
-    @authorization = current_user.authorizations.new(token: token, secret: secret, uid: auth.uid, provider: "google")
+    @authorization = current_user.authorizations.new(token: token, secret: secret, uid: auth.uid, provider: auth.provider)
+    
+    
 
     respond_to do |format|
       if @authorization.save

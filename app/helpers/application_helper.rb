@@ -5,7 +5,7 @@ module ApplicationHelper
 	end
 
   def default_dashboard_url
-    if current_user.dashboards.first
+    if current_user && current.user.try(:dashboards)
       dashboard_url(current_user.dashboards.first)
     else
       new_dashboard_url

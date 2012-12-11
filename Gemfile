@@ -12,6 +12,7 @@ gem 'certified'
 gem 'newrelic_rpm'
 gem 'thin'
 gem 'pry-rails'
+gem 'settingslogic'
 
 group :development, :test do
   gem 'sqlite3', '1.3.5'

@@ -2,10 +2,11 @@
 	<h1>About Mountain</h1>
 	<p>Mountain is the only way to see metrics for your Tumblr account. Whether your managing a major brand, composing beautiful long-form, or sharing cat pictures, Mountain helps you see how people interact with your content.</p>
 
-	<div class="row-fluid">
-		<a href="users/new" class="btn btn-danger btn-flat signup">Join Mountain</a>
-	</div>
-
+	<% unless current_user? %>
+		<div class="row-fluid">
+			<a href="users/new" class="btn btn-danger btn-flat signup">Join Mountain</a>
+		</div>
+	<% end %>
 	<%= image_tag "mountainmac.png" %>
 </div>
 

@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
 
   def authorized_all_providers
     unless google_authorized? && tumblr_authorized?
-      redirect_to authorizations_path, notice: "Please authorize your Google Account."
+      redirect_to authorizations_path, notice: "Please authorize your Google and Tumblr Account."
     end 
   end
 

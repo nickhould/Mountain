@@ -10,6 +10,7 @@ body {
   float: none; 
   margin-left: auto; 
   margin-right: auto; 
+  text-align: center;
 }
 
 .container-fluid {
@@ -397,7 +398,7 @@ footer a:hover{
 }
 
 .feature img {
-  width: 250px;
+  width: 200px;
   margin: 0 auto;
   text-align: center;
 }

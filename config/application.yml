@@ -1,0 +1,19 @@
+# Add application configuration variables here, as shown below.
+#
+# PUSHER_APP_ID: "2954"
+# PUSHER_KEY: 7381a978f7dd7f9a1117
+# PUSHER_SECRET: abdc3b896a0ffb85d373
+# STRIPE_API_KEY: EdAvEPVEC3LuaTg5Q3z6WbDVqZlcBQ8Z
+# STRIPE_PUBLIC_KEY: pk_BRgD57O8fHja9HxduJUszhef6jCyS
+
+development:
+  GOOGLE_API_KEY: tKHc-DDjWZu3mern4k1u7ndN
+  GOOGLE_APP_URL: 472837297406.apps.googleusercontent.com
+  TUMBLR_KEY: kC4YKjoqtQG6mM5zIp0lhLyTU5sEhGYZJJOD3m5GPdfA87gHJW
+  TUMBLR_SECRET: eCT4dF311LDxmBZSWZ7E7hLPZg3Jj8i7CXLIMBfI7gNj4BjlIU
+production:
+  GOOGLE_API_KEY: tKHc-DDjWZu3mern4k1u7ndN
+  GOOGLE_APP_URL: 472837297406.apps.googleusercontent.com
+  TUMBLR_KEY: wKKJaFBh5fAM1tI9xc4l3QNdBQs6Qdczk4C91a3PlLDgx5LFoL
+  TUMBLR_SECRET: s7JxIwrNQRlLmUpAqXW14RK0li435g2391quzltIsn5mmt5g6F
+

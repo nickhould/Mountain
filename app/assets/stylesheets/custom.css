@@ -264,9 +264,8 @@ z-index: -100;
 }
 
 .form-override .btn{
-  width: 300px;
   margin-top: 20px;
-  padding: 15px 55px 15px 55px;
+  padding: 15px 85px 15px 85px;
   -webkit-transition-property:background-color;
   -moz-transition-property:background-color;
   -o-transition-property:background-color;
@@ -294,6 +293,24 @@ z-index: -100;
   -moz-transition-timing-function: ease;
   -o-transition-timing-function: ease;
   transition-timing-function: ease;  
+}
+
+.form-override .btn-success{
+  width: 300px;
+  margin-top: 20px;
+  padding: 15px 55px 15px 55px;
+  -webkit-transition-property:background-color;
+  -moz-transition-property:background-color;
+  -o-transition-property:background-color;
+  transition-property:background-color;
+  -webkit-transition-duration:0.5s;
+  -moz-transition-duration:0.5s;
+  -o-transition-duration:0.5s;
+  transition-duration:0.5s;
+  -webkit-transition-timing-function: ease;
+  -moz-transition-timing-function: ease;
+  -o-transition-timing-function: ease;
+  transition-timing-function: ease; 
 }
 
 

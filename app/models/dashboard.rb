@@ -3,8 +3,7 @@ class Dashboard < ActiveRecord::Base
   attr_accessible :name, :web_property_id, :user_id, :tumblog_url
   
   belongs_to :user
-
-  validates_presence_of :name, :web_property_id, :user_id, :tumblog_url
+  validates_presence_of :name, :web_property_id, :user_id, :tumblog_
 
   # API Call
   def datasource(token, secret)

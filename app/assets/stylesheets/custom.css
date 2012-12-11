@@ -183,6 +183,42 @@ footer a:hover{
   transition-timing-function: ease;  
 }
 
+.signup {
+  color: #fff;
+  font-size: 18px;
+  text-align: center;
+  text-shadow:none;
+  margin-top: 20px;
+  padding: 25px 85px 25px 85px;
+    -webkit-transition-property:background-color;
+    -moz-transition-property:background-color;
+    -o-transition-property:background-color;
+    transition-property:background-color;
+    -webkit-transition-duration:0.5s;
+    -moz-transition-duration:0.5s;
+    -o-transition-duration:0.5s;
+    transition-duration:0.5s;
+    -webkit-transition-timing-function: ease;
+    -moz-transition-timing-function: ease;
+    -o-transition-timing-function: ease;
+    transition-timing-function: ease;
+}
+
+.signup:hover {
+    -webkit-transition-property:background-color;
+    -moz-transition-property:background-color;
+    -o-transition-property:background-color;
+    transition-property:background-color;
+    -webkit-transition-duration:0.5s;
+    -moz-transition-duration:0.5s;
+    -o-transition-duration:0.5s;
+    transition-duration:0.5s;
+    -webkit-transition-timing-function: ease;
+    -moz-transition-timing-function: ease;
+    -o-transition-timing-function: ease;
+    transition-timing-function: ease;
+}
+
 /* Dashboard Show
 -------------------------------------------------- */
 /* DROPDOWN MENU */

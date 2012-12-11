@@ -6,5 +6,8 @@ class User < ActiveRecord::Base
   has_many :dashboards
   has_many :authorizations
 
+  def has_dashboard?
+    self.dashboards.any?
+  end
 
 end

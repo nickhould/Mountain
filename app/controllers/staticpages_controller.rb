@@ -12,28 +12,21 @@ class StaticpagesController < ApplicationController
 	def test
 		# client = Tumblr.new
 		# @posts = client.posts("chicagohistorymuseum.tumblr.com", offset: 50, limit: 50)
-		@tumblr = TumblrData.new(tumblr_token, tumblr_secret)
-		@blogs = @tumblr.blogs
+		tumblr = TumblrData.new(tumblr_token, tumblr_secret)
+		current_user.create_blogs_from_tumblr(tumblr_token, tumblr_secret)
+		# raise @tumblr.blogs.inspect
+		@blog = current_user.blogs_from_tumblr.first
+		@posts_all = tumblr.posts(@blog.url)["posts"]
+
+	end
+
+	def test_keep
+		current_user.create_blogs_from_tumblr(tumblr_token, tumblr_secret)
 	end
 
 	def demo
 	end
 
 	def demo_page
-	end
-
-	def create_blogs
-		configure_tumblr
-		client = Tumblr.new
-		blogs = client.info["user"]["blogs"]	
-		blogs.each do |blog|
-			Tumblog.create(
-				url: blog["url"],
-				title: blog["title"],
-				followers: blog["followers"],
-				posts: blog["posts"],
-				updated: blog["updated"]
-				)
-		end
 	end
 end

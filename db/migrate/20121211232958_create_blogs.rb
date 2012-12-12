@@ -5,7 +5,7 @@ class CreateBlogs < ActiveRecord::Migration
       t.string :title
       t.integer :posts
       t.integer :followers
-      t.integer :update
+      t.integer :written_at
       t.integer :authorization_id
 
       t.timestamps

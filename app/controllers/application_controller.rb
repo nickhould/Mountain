@@ -1,4 +1,4 @@
-class ApplicationController < ActionController::Base
+  class ApplicationController < ActionController::Base
   protect_from_forgery
   include SessionsHelper
   helper_method :encode_url_for_params, :default_dashboard_url

@@ -2,21 +2,12 @@ class PostDataSet < ActiveRecord::Base
   attr_accessible :notes, :uid, :post_id
   belongs_to :post
 
-  def self.initialize_tumblr(token, secret)
-    @tumblr = TumblrData.new(token, secret)
-  end
-
-  def self.create_all_from_tumblr(token, secret, blog_url)
-    initialize_tumblr(token, secret)
-    @tumblr.posts(blog_url)["posts"].each do |tumblr_post|
-      find_or_create_from_tumblr(tumblr_post)
-    end
-  end
 
    # TODO - validate : if post && post.post_data_set.posted_at != tumblr_post["date"] 
   def self.find_or_create_from_tumblr(tumblr_post)
     post = find_from_post(tumblr_post)
-    if post && post.post_data_set.posted_at != tumblr_post["date"] 
+    if post && post.post_data_sets.posted_at != tumblr_post["date"] 
+      # find most recent data set
       create_from_post(tumblr_post)
     elsif !post
       post.create_from_tumblr(tumblr_post)

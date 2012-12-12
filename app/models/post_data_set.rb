@@ -4,13 +4,15 @@ class PostDataSet < ActiveRecord::Base
 
 
    # TODO - validate : if post && post.post_data_set.posted_at != tumblr_post["date"] 
+  
+
+
   def self.find_or_create_from_tumblr(tumblr_post)
     post = find_from_post(tumblr_post)
-    if post && post.post_data_sets.posted_at != tumblr_post["date"] 
-      # find most recent data set
-      create_from_post(tumblr_post)
+    if post && !post.post_data_sets.find_by_created_at(Date.today) 
+      post.post_data_sets.create_from_post(tumblr_post)
     elsif !post
-      post.create_from_tumblr(tumblr_post)
+      post.find_or_create_from_tumblr(tumblr_post)
     end
   end
 

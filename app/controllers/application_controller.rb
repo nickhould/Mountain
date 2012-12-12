@@ -32,7 +32,7 @@
   end
 
   def already_signed_in
-    redirect_to default_dashboard_url if current_user 
+    redirect_to default_dashboard_url if signed_in?
   end
   
 	protected

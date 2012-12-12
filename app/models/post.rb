@@ -10,8 +10,11 @@ class Post < ActiveRecord::Base
 
   def self.create_all_from_tumblr(token, secret, blog_url)
     initialize_tumblr(token, secret)
-    @tumblr.posts(blog_url)["posts"].each do |tumblr_post|
-      find_or_create_from_tumblr(tumblr_post)
+    posts = @tumblr.posts(blog_url)
+    unless posts.empty?
+      posts["posts"].each do |tumblr_post|
+        find_or_create_from_tumblr(tumblr_post)
+      end
     end
   end
 

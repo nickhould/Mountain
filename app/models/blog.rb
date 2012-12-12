@@ -11,8 +11,11 @@ class Blog < ActiveRecord::Base
 
   def self.create_all_from_tumblr(token, secret)
     initialize_tumblr(token, secret)
-    @tumblr.blogs.each do |tumblr_blog|
-      find_or_create_from_tumblr(tumblr_blog)
+    blogs = @tumblr.blogs
+    unless blogs.empty?
+      blogs.each do |tumblr_blog|
+        find_or_create_from_tumblr(tumblr_blog)
+      end
     end
   end
 

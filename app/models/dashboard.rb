@@ -1,9 +1,11 @@
 require 'uri' # consider moving this require to your application.rb
 class Dashboard < ActiveRecord::Base
-  attr_accessible :name, :web_property_id, :user_id, :tumblog_url
+  attr_accessible :name, :web_property_id, :user_id, :blog_id
   
   belongs_to :user
-  validates_presence_of :name, :web_property_id, :user_id, :tumblog_
+  belongs_to :blog
+
+  validates_presence_of :name, :web_property_id, :user_id, :blog_id
 
   # Google Analytics Account Management
   def datasource(token, secret)
@@ -172,8 +174,5 @@ class Dashboard < ActiveRecord::Base
 
 	def pageviews
 	  profile.pageviews(@params).first
-	end
-
-  # Tumblr API 
- 
+	end 
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121212050910) do
+ActiveRecord::Schema.define(:version => 20121212070047) do
 
   create_table "authorizations", :force => true do |t|
     t.string   "provider"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(:version => 20121212050910) do
     t.integer  "authorization_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.string   "name"
   end
 
   create_table "dashboards", :force => true do |t|
@@ -38,14 +39,13 @@ ActiveRecord::Schema.define(:version => 20121212050910) do
     t.datetime "updated_at",      :null => false
     t.string   "web_property_id"
     t.integer  "user_id"
-    t.string   "tumblog_url"
+    t.integer  "blog_id"
   end
 
   create_table "posts", :force => true do |t|
     t.integer  "blog_id"
     t.string   "url"
     t.string   "title"
-    t.integer  "notes"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

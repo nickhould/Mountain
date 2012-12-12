@@ -96,24 +96,14 @@ class AuthorizationsController < ApplicationController
     end
   end
 
-  def google
-    api_key = "tKHc-DDjWZu3mern4k1u7ndN"
-    @consumer = OAuth::Consumer.new('472837297406.apps.googleusercontent.com', api_key, {
-        :site => 'https://www.google.com',
-        :request_token_path => '/accounts/OAuthGetRequestToken',
-        :access_token_path => '/accounts/OAuthGetAccessToken',
-        :authorize_path => '/accounts/OAuthAuthorizeToken'
-      })
-    @callback_url = "http://127.0.0.1:3000/oauth/callback"
-    # @request_token = @consumer.get_request_token(:oauth_callback => @callback_url)
-    #session[:request_token] = @request_token
-    redirect_to @consumer.get_request_token(:oauth_callback => @callback_url).authorize_url(:oauth_callback => @callback_url)
-
-  end
-
   protected
 
   def authorized_all_providers? 
     google_authorized? && tumblr_authorized? ? true : false
   end
+
+  def new_authorization_from_tumblr? 
+    !google_authorized? && tumblr_authorized? ? true : false
+  end
+
 end

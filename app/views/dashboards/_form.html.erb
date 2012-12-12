@@ -19,10 +19,10 @@
   <div class="field">   
     <%= collection_select(:dashboard, :web_property_id, @profiles, :web_property_id, :title, :prompt => "Website Profiles" )%>
   </div>
-    <div class="field ">
-    <%= f.text_field :tumblog_url, :placeholder => 'Tumblog.url', :class => 'form-textfield' %>
+    <div class="field">   
+    <%= collection_select(:dashboard, :blog_id, @blogs, :id, :title, :prompt => "Tumblog name" )%>
   </div>
-  <br>
+
 
   <button type="submit" class="btn btn-large btn-flat">Submit</button>
 <% end %>

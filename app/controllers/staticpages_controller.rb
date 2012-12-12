@@ -16,8 +16,7 @@ class StaticpagesController < ApplicationController
 		current_user.create_blogs_from_tumblr(tumblr_token, tumblr_secret)
 		# raise @tumblr.blogs.inspect
 		@blog = current_user.blogs_from_tumblr.first
-		@posts = tumblr.posts(@blog.url)["posts"]
-
+		@posts = @blog.create_posts_from_tumblr(tumblr_token, tumblr_secret)
 	end
 
 	def test_keep

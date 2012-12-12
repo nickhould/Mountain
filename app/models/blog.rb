@@ -30,6 +30,10 @@ class Blog < ActiveRecord::Base
     end
   end
 
+  def create_posts_from_tumblr(token, secret)
+    posts.create_all_from_tumblr(token, secret, url)
+  end
+
   def self.parse_url(url)
     url = Domainatrix.parse(url)
     url.subdomain + url.host

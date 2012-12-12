@@ -40,5 +40,14 @@ class Blog < ActiveRecord::Base
   def self.parse_url(url)
     url = Domainatrix.parse(url)
     url.subdomain + url.host
-  end    
+  end
+
+  # Metrics
+
+  def total_notes
+    posts.inject do |sum, post|
+      notes_for_post = post.post_data_sets.last.notes.to_i 
+      sum + notes_for_post
+    end
+  end  
 end

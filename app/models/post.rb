@@ -23,8 +23,8 @@ class Post < ActiveRecord::Base
     if post.blank?
       post = create_from_tumblr(tumblr_post)
       post.create_data_set_from_post(tumblr_post) 
-    else
-      post_data_sets.find_or_create_from_tumblr(tumblr_post)
+    elsif post
+      post.update_data_set_from_tumblr(post, tumblr_post)
     end
   end
 
@@ -42,7 +42,7 @@ class Post < ActiveRecord::Base
     post_data_sets.create_from_post(tumblr_post)
   end
 
-  def update_data_set_from_tumblr
-    post_data_sets.create_all_from_tumblr(token, secret, blog_url)
+  def update_data_set_from_tumblr(post, tumblr_post)
+    post_data_sets.update_from_post(post, tumblr_post)
   end
 end

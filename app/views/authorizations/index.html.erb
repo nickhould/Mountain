@@ -5,6 +5,16 @@
 			<p>Mountain pulls data from your Tumblr, and Google Analytics account. Link your accounts to get started.</p>
 
 			<ul>
+			<% unless tumblr_auth %>
+			    <li>
+			    	<%= link_to "Link Tumblr Account", tumblr_auth_url, class: "btn btn-large btn-flat"  %>
+			    </li>
+			  <% else %>
+			    <li>
+			    	<%= link_to "Tumblr Account Linked", tumblr_auth, class: "btn btn-large btn-success btn-flat", method: :delete %>
+			    </li>
+
+			  <% end %>
 			  <% unless google_auth %>
 			    <li>
 			    	<%= link_to "Link Google Analytics", google_auth_url, class: "btn btn-large btn-flat"  %>
@@ -12,15 +22,6 @@
 			  <% else %>
 			    <li>
 			    	<%= link_to "Google Analytics Linked", google_auth, class: "btn btn-large btn-success btn-flat", method: :delete %>
-			    </li>
-			  <% end %>
-			  <% unless tumblr_auth %>
-			    <li>
-			    	<%= link_to "Link Tumblr Account", tumblr_auth_url, class: "btn btn-large btn-flat"  %>
-			    </li>
-			  <% else %>
-			    <li>
-			    	<%= link_to "Tumblr Account Linked", tumblr_auth, class: "btn btn-large btn-success btn-flat", method: :delete %>
 			    </li>
 			  <% end %>
 			</ul>

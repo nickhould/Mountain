@@ -1,11 +1,17 @@
 require 'uri' # consider moving this require to your application.rb
 class Dashboard < ActiveRecord::Base
+  after_save :create_all_post_from_blog
   attr_accessible :name, :web_property_id, :user_id, :blog_id
   
   belongs_to :user
   belongs_to :blog
 
   validates_presence_of :name, :web_property_id, :user_id, :blog_id
+
+
+  def create_all_post_from_blog
+    blog.create_posts_from_tumblr(user.tumblr_token, user.tumblr_secret)
+  end
 
   # Google Analytics Account Management
   def datasource(token, secret)

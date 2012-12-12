@@ -10,7 +10,14 @@ class User < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
    
 
-  
+  def tumblr_token
+    authorization_from_tumblr.token
+  end
+
+  def tumblr_secret
+    authorization_from_tumblr.secret
+  end
+
   def authorization_from_tumblr
     self.authorizations.find_by_provider("tumblr")
   end

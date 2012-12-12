@@ -2,9 +2,5 @@
 	<h1>test</h2>
 
 <% @posts.each do |post| %>
-id: <%= post["id"] %><br>
-post_url :<%= post["post_url"] %><br>
-date:<%= post["date"] %><br>
-type: <%= post["type"] %><br>
-title: <%= post["title"] %><br>
-<% end  %>
+  <%= post.inspect %><br>
+<% end %>

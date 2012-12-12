@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121212073505) do
+ActiveRecord::Schema.define(:version => 20121212083021) do
 
   create_table "authorizations", :force => true do |t|
     t.string   "provider"
@@ -42,6 +42,14 @@ ActiveRecord::Schema.define(:version => 20121212073505) do
     t.integer  "blog_id"
   end
 
+  create_table "post_data_sets", :force => true do |t|
+    t.string   "uid"
+    t.integer  "notes"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "post_id"
+  end
+
   create_table "posts", :force => true do |t|
     t.integer  "blog_id"
     t.string   "url"
@@ -49,8 +57,8 @@ ActiveRecord::Schema.define(:version => 20121212073505) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "uid"
-    t.string   "type"
     t.datetime "posted_at"
+    t.string   "type_of"
   end
 
   create_table "users", :force => true do |t|

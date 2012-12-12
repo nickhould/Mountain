@@ -56,7 +56,7 @@ class AuthorizationsController < ApplicationController
     respond_to do |format|
       if @authorization.save
         if authorized_all_providers? 
-          format.html { redirect_to default_dashboard_url }
+          format.html { redirect_to default_dashboard_url, notice: 'Authorization was successfully created. It\'s now time to create your first dashboard!' }
         else
         format.html { redirect_to authorizations_url, notice: 'Authorization was successfully created.' }
           format.json { render json: @authorization, status: :credentialseated, location: @authorization }

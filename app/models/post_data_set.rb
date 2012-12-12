@@ -7,7 +7,7 @@ class PostDataSet < ActiveRecord::Base
   def self.update_from_post(post, tumblr_post)
     if post && !post.post_data_sets.find_by_created_at(Date.today) 
       post.post_data_sets.create_from_post(tumblr_post)
-    ends
+    end
   end
 
   def self.create_from_post(tumblr_post)

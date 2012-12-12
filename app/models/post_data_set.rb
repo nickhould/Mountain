@@ -5,7 +5,7 @@ class PostDataSet < ActiveRecord::Base
 
    # TODO - validate : if post && post.post_data_set.posted_at != tumblr_post["date"] 
   def self.update_from_post(post, tumblr_post)
-    if post && !post.post_data_sets.find_by_created_at(Date.today) 
+    if post && !post.post_data_sets.find_by_created_at_and_uid(Date.today, tumblr_post["id"]) 
       post.post_data_sets.create_from_post(tumblr_post)
     end
   end

@@ -3,3 +3,5 @@ class AddUidToPosts < ActiveRecord::Migration
     add_column :posts, :uid, :string
   end
 end
+
+

@@ -12,7 +12,7 @@ class PostDataSet < ActiveRecord::Base
 
   def self.create_from_post(tumblr_post)
     create! do |data_set|
-      data_set.uid        = tumblr_post["id"] 
+      data_set.uid        = tumblr_post["id"].to_s   
       data_set.notes      = tumblr_post["note_count"]
     end 
   end

@@ -1,5 +1,5 @@
 class Blog < ActiveRecord::Base
-  attr_accessible :authorization_id, :title, :update, :url, :name, :written_at
+  attr_accessible :authorization_id, :title, :url, :name, :written_at
 
   belongs_to :authorization
   has_many :posts

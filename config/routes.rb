@@ -14,12 +14,14 @@ Dashboardly::Application.routes.draw do
 
   match "/google" => "authorizations#google"
 
+  # Dashboard
+  get '/refresh_blogs' => 'dashboards#refresh_blogs', as: :refresh_blogs
 
-  #Sessions
+  # Sessions
   delete '/signout', to: 'sessions#destroy', as: :sign_out
   get '/signin' => 'sessions#new', as: :sign_in
 
-  #Static pages
+  # Static pages
   get '/about' => 'staticpages#about'
   get '/test' => 'staticpages#test'
   get '/demo' => 'staticpages#demo', as: :demo

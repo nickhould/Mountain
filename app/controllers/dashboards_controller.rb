@@ -4,7 +4,7 @@ class DashboardsController < ApplicationController
   before_filter :at_least_one_dashboard, only: :index
   before_filter :authorized_user, only: [:show, :update, :edit, :destroy]
   before_filter :authorized_all_providers
-  
+
   # GET /dashboards
   # GET /dashboards.json
   def index
@@ -101,9 +101,15 @@ class DashboardsController < ApplicationController
     end
   end
 
+
+  def refresh_blogs
+    current_user.authorization_from_tumblr.blogs.create_all_from_tumblr(tumblr_token, tumblr_secret)
+    redirect_to new_dashboard_url, notice: "Your Tumblr Blogs have been refreshed."
+  end
 protected
   def authorized_user
     dashboard = current_user.dashboards.find_by_id(params[:id])
     redirect_to root_path unless dashboard
   end
+
 end

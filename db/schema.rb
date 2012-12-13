@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121212190432) do
+ActiveRecord::Schema.define(:version => 20121213185724) do
 
   create_table "authorizations", :force => true do |t|
     t.string   "provider"
@@ -21,6 +21,13 @@ ActiveRecord::Schema.define(:version => 20121212190432) do
     t.string   "uid"
     t.string   "token"
     t.string   "secret"
+  end
+
+  create_table "blog_data_sets", :force => true do |t|
+    t.integer  "followers"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "blog_id"
   end
 
   create_table "blogs", :force => true do |t|

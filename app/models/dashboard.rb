@@ -29,6 +29,10 @@ class Dashboard < ActiveRecord::Base
     end
   end
 
+  def followers
+    blog.followers
+  end
+
   # Google Analytics Account Management
   def datasource(token, secret)
     @ga ||= GoogleAnalytics.new(token, secret)

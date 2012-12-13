@@ -1,13 +1,23 @@
 class Blog < ActiveRecord::Base
-  attr_accessible :authorization_id, :title, :update, :url, :name
+  attr_accessible :authorization_id, :title, :update, :url, :name, :written_at
 
   belongs_to :authorization
   has_many :posts
   has_many :dashboards
+  has_many :blog_data_sets
 
   def self.initialize_tumblr(token, secret)
     @tumblr = TumblrData.new(token, secret)
   end
+
+
+  # Posts
+
+  def create_posts_from_tumblr(token, secret)
+    posts.create_all_from_tumblr(token, secret, url)
+  end
+
+  # Blogs 
 
   def self.create_all_from_tumblr(token, secret)
     initialize_tumblr(token, secret)
@@ -21,7 +31,12 @@ class Blog < ActiveRecord::Base
 
   def self.find_or_create_from_tumblr(tumblr_blog)
     blog = find_by_url_and_name(tumblr_blog["url"], tumblr_blog["name"])
-    blog ? nil : create_from_tumblr(tumblr_blog)
+    unless blog
+      blog = create_from_tumblr(tumblr_blog)
+      blog.create_data_set_from_blog(tumblr_blog)
+    else
+      blog.update_data_set_from_tumblr(blog, tumblr_blog)
+    end
   end
 
   def self.create_from_tumblr(tumblr_blog)
@@ -33,9 +48,15 @@ class Blog < ActiveRecord::Base
     end
   end
 
-  def create_posts_from_tumblr(token, secret)
-    posts.create_all_from_tumblr(token, secret, url)
+  def create_data_set_from_blog(tumblr_blog)
+    blog_data_sets.create_from_blog(tumblr_blog)
   end
+
+  def update_data_set_from_tumblr(blog, tumblr_blog)
+    blog_data_sets.update_from_blog(blog, tumblr_blog)
+  end
+
+
 
   # Metrics
 
@@ -52,5 +73,12 @@ class Blog < ActiveRecord::Base
 
   def total_posts
     posts.count
+  end
+
+  def followers
+    followers = 0 
+    if blog_data_sets.any?
+      followers = blog_data_sets.last.followers 
+    end
   end
 end

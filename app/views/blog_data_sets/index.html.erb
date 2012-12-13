@@ -1,0 +1,25 @@
+<h1>Listing blog_data_sets</h1>
+
+<table>
+  <tr>
+    <th>Post</th>
+    <th>Followers</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @blog_data_sets.each do |blog_data_set| %>
+  <tr>
+    <td><%= blog_data_set.post_id %></td>
+    <td><%= blog_data_set.followers %></td>
+    <td><%= link_to 'Show', blog_data_set %></td>
+    <td><%= link_to 'Edit', edit_blog_data_set_path(blog_data_set) %></td>
+    <td><%= link_to 'Destroy', blog_data_set, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Blog data set', new_blog_data_set_path %>

@@ -1,5 +1,7 @@
 Dashboardly::Application.routes.draw do
 
+  resources :blog_data_sets
+
   root :to => 'staticpages#home'
 
   resources :authorizations

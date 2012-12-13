@@ -1,7 +1,9 @@
 <div class="row-fluid form-override">	
 	<h1>test</h2>
 
-<%= @posts %>
+<% @blogs.each do |blog| %>
+<%= blog.inspect %>
+<% end %>
 
 
 <!--   def self.create_all_from_tumblr(token, secret, blog_url)

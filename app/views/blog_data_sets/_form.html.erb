@@ -1,0 +1,25 @@
+<%= form_for(@blog_data_set) do |f| %>
+  <% if @blog_data_set.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@blog_data_set.errors.count, "error") %> prohibited this blog_data_set from being saved:</h2>
+
+      <ul>
+      <% @blog_data_set.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :post_id %><br />
+    <%= f.number_field :post_id %>
+  </div>
+  <div class="field">
+    <%= f.label :followers %><br />
+    <%= f.number_field :followers %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

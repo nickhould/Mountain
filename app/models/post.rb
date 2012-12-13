@@ -19,6 +19,7 @@ class Post < ActiveRecord::Base
   end
 
   def self.find_or_create_from_tumblr(tumblr_post)
+    # tried to find by uid but "method not found" in production
     post = find_by_url(tumblr_post["url"])  
     if post.blank?
       post = create_from_tumblr(tumblr_post)

@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Post:</b>
+  <%= @blog_data_set.post_id %>
+</p>
+
+<p>
+  <b>Followers:</b>
+  <%= @blog_data_set.followers %>
+</p>
+
+
+<%= link_to 'Edit', edit_blog_data_set_path(@blog_data_set) %> |
+<%= link_to 'Back', blog_data_sets_path %>

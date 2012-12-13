@@ -47,6 +47,7 @@ class DashboardsController < ApplicationController
     @dashboard = current_user.dashboards.find_by_id(params[:id])
     @dashboard.datasource(google_token, google_secret)
     @profiles = @dashboard.profiles
+    @blogs = current_user.blogs_from_tumblr
   end
 
   # POST /dashboards
@@ -61,6 +62,7 @@ class DashboardsController < ApplicationController
         format.json { render json: @dashboard, status: :created, location: @dashboard }
       else
         @profiles = @dashboard.profiles
+        @blogs = current_user.blogs_from_tumblr
         format.html { render action: "new" }
         format.json { render json: @dashboard.errors, status: :unprocessable_entity }
       end
@@ -79,6 +81,7 @@ class DashboardsController < ApplicationController
         format.json { head :no_content }
       else
         @profiles = @dashboard.profiles
+        @blogs = current_user.blogs_from_tumblr
         format.html { render action: "edit" }
         format.json { render json: @dashboard.errors, status: :unprocessable_entity }
       end

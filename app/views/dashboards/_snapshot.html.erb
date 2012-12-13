@@ -21,21 +21,24 @@
 <div class="row-fluid">
 	<div class="span3">
 		<li>
-		   322 <%= image_tag "circle.svg",'data-original-title' => "Available after 30 days", :class => "arrows" %>
+		   	<%= @dashboard.total_notes %>
+		   	<%= image_tag "circle.svg",'data-original-title' => "Available after 30 days", :class => "arrows" %>
 			<p>Total Notes<p>
 		</li>
 	</div>
 
 	<div class="span3">
 		<li>
-			214 <%= image_tag "circle.svg",'data-original-title' => "Available after 30 days", :class => "arrows" %>
-			<p>Avg Number of Posts<p>
+			<%= @dashboard.total_posts %> 
+			<%= image_tag "circle.svg",'data-original-title' => "Available after 30 days", :class => "arrows" %>
+			<p>Number of Posts<p>
 		</li>
 	</div>
 
 	<div class="span3">
 		<li>
-			108 <%= image_tag "circle.svg",'data-original-title' => "Available after 30 days", :class => "arrows" %>
+			<%= @dashboard.average_notes_per_post %>
+			<%= image_tag "circle.svg",'data-original-title' => "Available after 30 days", :class => "arrows" %>
 			<p>Avg Notes per Post<p>
 		</li>
 	</div>

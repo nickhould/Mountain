@@ -4,6 +4,7 @@ class DashboardsController < ApplicationController
   before_filter :at_least_one_dashboard, only: :index
   before_filter :authorized_user, only: [:show, :update, :edit, :destroy]
   before_filter :authorized_all_providers
+  
   # GET /dashboards
   # GET /dashboards.json
   def index

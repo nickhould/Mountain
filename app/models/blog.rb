@@ -20,13 +20,13 @@ class Blog < ActiveRecord::Base
   end
 
   def self.find_or_create_from_tumblr(tumblr_blog)
-    blog = find_by_url_and_name(parse_url(tumblr_blog["url"]), tumblr_blog["name"])
+    blog = find_by_url_and_name(tumblr_blog["url"], tumblr_blog["name"])
     blog ? nil : create_from_tumblr(tumblr_blog)
   end
 
   def self.create_from_tumblr(tumblr_blog)
     create! do |blog|
-      blog.url        = parse_url(tumblr_blog["url"])
+      blog.url        = tumblr_blog["url"]
       blog.title      = tumblr_blog["title"]
       blog.name       = tumblr_blog["name"]
       blog.written_at = tumblr_blog["updated"]
@@ -37,17 +37,20 @@ class Blog < ActiveRecord::Base
     posts.create_all_from_tumblr(token, secret, url)
   end
 
-  def self.parse_url(url)
-    url = Domainatrix.parse(url)
-    url.subdomain + url.host
-  end
-
   # Metrics
 
   def total_notes
-    posts.inject do |sum, post|
-      notes_for_post = post.post_data_sets.last.notes.to_i 
-      sum + notes_for_post
+    total = 0
+    if posts 
+      posts.each do |post|
+        notes_for_post = post.post_data_sets.last.notes
+        total += notes_for_post
+      end
     end
-  end  
+    total
+  end
+
+  def total_posts
+    posts.count
+  end
 end

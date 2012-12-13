@@ -13,12 +13,44 @@ class TumblrData
     end
   end
 
+  def blog(url)
+    blog = @client.info["user"]["blogs"].select do |blog|
+      blog["url"] == url
+    end
+    blog ? blog.first : nil
+  end
+
+
+  def total_posts(url)
+    blog = blog(url)
+    total_posts_number = blog["posts"]
+  end
+
   def blogs
     @client.info["user"]["blogs"]  
   end
 
-  def posts(url, options = {})
-    @client.posts(url)
+  def posts(url)
+    @client.posts(parse_url(url))
+  end
+
+  def all_posts(url)
+    blog = blog(url)
+    total_posts_number = blog["posts"]
+    url = parse_url(blog["url"])
+    limit = 45
+    offset = 0  
+    posts = []
+    while offset < total_posts_number
+      posts << @client.posts(url, offset: offset, limit: limit)
+      offset += limit
+    end
+    posts.first["posts"]
+  end
+
+  def parse_url(url)
+    url = Domainatrix.parse(url)
+    url.subdomain + url.host
   end
 end
 

@@ -4,7 +4,7 @@
   <% if @dashboard.errors.any? %>
   <div class="alert alert-error">
     <div id="error_explanation">
-      <button type="button" class="close" data-dismiss="alert">&times;</button><strong>Oops! It looks like you have <%= pluralize(@user.errors.count, "error") %>.</strong>
+      <button type="button" class="close" data-dismiss="alert">&times;</button><strong>Oops! It looks like you have <%= pluralize(@dashboard.errors.count, "error") %>.</strong>
 
       <ul>
       <% @dashboard.errors.full_messages.each do |msg| %>
@@ -14,6 +14,9 @@
     </div>
     </div>
   <% end %>
+
+  <h2>Select Tumblr Blog</h2>
+  <hr>  
 
   <div class="field ">
     <%= f.text_field :name, :placeholder => 'Dashboard Name', :class => 'form-textfield' %>

@@ -42,7 +42,7 @@ class TumblrData
     offset = 0  
     posts = []
     while posts.length < total_posts_number 
-      @client.posts("chicagohistorymuseum.tumblr.com", offset: offset, limit: limit)["posts"].each do |post|
+      @client.posts(url, offset: offset, limit: limit)["posts"].each do |post|
         post = [ post ]
         posts << post
       end

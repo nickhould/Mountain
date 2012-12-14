@@ -1,5 +1,10 @@
 Dashboardly::Application.routes.draw do
 
+  constraints(:host => /mountainmetrics.com/) do
+    root :to => redirect("http://www.mountainmetrics.com")
+    match '/*path', :to => redirect {|params| "http://www.mountainmetrics.com/#{params[:path]}"}
+  end
+
   resources :blog_data_sets
 
   root :to => 'staticpages#home'

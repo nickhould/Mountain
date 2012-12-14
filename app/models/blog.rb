@@ -72,7 +72,7 @@ class Blog < ActiveRecord::Base
   end
 
   def total_posts
-    posts.count
+    posts.count if posts.any?
   end
 
   def followers

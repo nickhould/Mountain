@@ -45,7 +45,7 @@ class TumblrData
       posts << @client.posts(url, offset: offset, limit: limit)
       offset += limit
     end
-    posts.first["posts"]
+    posts.first["posts"] unless posts.first.blank?
   end
 
   def parse_url(url)

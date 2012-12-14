@@ -49,7 +49,7 @@ module DashboardsHelper
 			"No variation"
 		end
 	end
-
+	
 	def negative?(number)
 		number < 0 ? true : false
 	end

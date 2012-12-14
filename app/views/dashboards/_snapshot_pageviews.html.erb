@@ -1,4 +1,5 @@
 <li>
+
   <%= @dashboard.snapshot.try(:pageviews) %> 
   <%= image_tag arrow(@dashboard.variation(:snapshot, :pageviews)), 'data-original-title' =>format_var(@dashboard.variation(:snapshot, :pageviews)), :class => "arrows" %> 
   <p>Views<p>

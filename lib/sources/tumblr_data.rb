@@ -31,27 +31,35 @@ class TumblrData
   end
 
   def posts(url)
-    @client.posts(parse_url(url))
+    @client.posts(parse_url(url))["posts"]
   end
 
   def all_posts(url)
     blog = blog(url)
-    total_posts_number = blog["posts"]
+    total_posts_number = blog["posts"].to_i
     url = parse_url(blog["url"])
     limit = 45
     offset = 0  
     posts = []
-    while offset < total_posts_number
-      posts << @client.posts(url, offset: offset, limit: limit)
+    while posts.length < total_posts_number 
+      @client.posts("chicagohistorymuseum.tumblr.com", offset: offset, limit: limit)["posts"].each do |post|
+        post = [ post ]
+        posts << post
+      end
       offset += limit
     end
-    posts.first["posts"] unless posts.first.blank?
+    posts
   end
 
   def parse_url(url)
     url = Domainatrix.parse(url)
-    url.subdomain + url.host
+    if url.domain == "tumblr"
+      url.host
+    else
+      url.subdomain + url.host
+    end
   end
 end
 
 
+Domainatrix.parse("http://chicagohistorymuseum.tumblr.com/")

@@ -13,15 +13,15 @@ class Post < ActiveRecord::Base
     posts = @tumblr.all_posts(blog_url)
     unless posts.blank?
       posts.each do |tumblr_post|
-        find_or_create_from_tumblr(tumblr_post)
+        find_or_create_from_tumblr(tumblr_post.first)
       end
     end
   end
 
   def self.find_or_create_from_tumblr(tumblr_post)
     # tried to find by uid but "method not found" in production
-    post = find_by_url(tumblr_post["url"])  
-    if post.blank?
+    post = find_by_url(tumblr_post["post_url"])  
+    if !post
       post = create_from_tumblr(tumblr_post)
       post.create_data_set_from_post(tumblr_post) 
     elsif post

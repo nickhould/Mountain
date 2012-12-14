@@ -62,21 +62,20 @@ class Blog < ActiveRecord::Base
 
   def total_notes
     total = 0
-    if posts 
+    if posts.any? 
       posts.each do |post|
         notes_for_post = post.post_data_sets.last.notes
-        total += notes_for_post
+        total += notes_for_post.to_i
       end
     end
     total
   end
 
   def total_posts
-    posts.count if posts.any?
+    posts.any? ? posts.count : 0
   end
 
   def followers
-    followers = 0 
     if blog_data_sets.any?
       followers = blog_data_sets.last.followers 
     end

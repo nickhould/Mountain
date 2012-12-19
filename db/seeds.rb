@@ -9,8 +9,8 @@
 
 User.destroy_all
 
-u = User.create(email: "admin@mountainmetrics.com",
-            password: "dashboardly",
-            password_confirmation: "dashboardly")
+u = User.create(email: "admin@example.com",
+            password: "your-password-here",
+            password_confirmation: "your-password-here")
 
 puts "#{User.count} user(s) created."

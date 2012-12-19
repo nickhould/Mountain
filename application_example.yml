@@ -1,0 +1,12 @@
+
+production:
+  GOOGLE_API_KEY: # Your Google Api Key goes here. (production)
+  GOOGLE_APP_URL: # Your Google App URL goes here. (production)
+  TUMBLR_KEY: # Your Tumblr API key goes here. (production)
+  TUMBLR_SECRET: # Your Tumblr Secret key goes here. (production)
+development:
+  GOOGLE_API_KEY: # Your Google Api Key goes here. (development)
+  GOOGLE_APP_URL: # Your Google App URL goes here. (development)
+  TUMBLR_KEY: # Your Tumblr API key goes here. (development)
+  TUMBLR_SECRET: # Your Tumblr Secret key goes here. (development)
+

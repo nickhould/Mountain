@@ -60,6 +60,3 @@ class TumblrData
     end
   end
 end
-
-
-Domainatrix.parse("http://chicagohistorymuseum.tumblr.com/")

@@ -14,7 +14,7 @@ class Dashboard < ActiveRecord::Base
   end
 
   def total_notes
-    total = blog.total_notes
+    blog.total_notes
   end
 
   def total_posts

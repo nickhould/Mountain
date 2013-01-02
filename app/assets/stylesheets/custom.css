@@ -511,6 +511,7 @@ footer a:hover{
     height: 400px;
     width: 4000px;
     background: url("cloud-scroll.svg");
+    background-repeat: repeat-x;
     position: absolute;
     top: 0;
     left: 0;
@@ -533,7 +534,7 @@ footer a:hover{
         -webkit-transform: translateX(0);  
     }    
     100% { 
-        -webkit-transform: translateX(-100%);  
+        -webkit-transform: translateX(-50%);  
     }
 }
 @-moz-keyframes moveSlideshow {
@@ -541,7 +542,7 @@ footer a:hover{
         -moz-transform:    translateX(0); 
     }    
     100% { 
-        -moz-transform:    translateX(-100%); 
+        -moz-transform:    translateX(-50%); 
     }
 }​
 

@@ -523,16 +523,26 @@ footer a:hover{
 
     -webkit-animation: moveSlideshow 60s linear infinite;
     -moz-animation:    moveSlideshow 60s linear infinite;
-    
+
+    /* Hey browser, use your GPU */
+   -webkit-transform: translate3d(0, 0, 0);
 }
 
 @-webkit-keyframes moveSlideshow {
-    0% { left: 0; }
-    100% { left: -1684px; }
+    0%   { 
+        -webkit-transform: translateX(0);  
+    }    
+    100% { 
+        -webkit-transform: translateX(-100%);  
+    }
 }
 @-moz-keyframes moveSlideshow {
-    0% { left: 0; }
-    100% { left: -1684px; }
+    0%   { 
+        -moz-transform:    translateX(0); 
+    }    
+    100% { 
+        -moz-transform:    translateX(-100%); 
+    }
 }​
 
 /* Media Queries

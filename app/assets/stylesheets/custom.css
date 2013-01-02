@@ -459,6 +459,26 @@ footer a:hover{
   text-align: center;
 }
 
+/* Landing Page
+-------------------------------------------------- */
+.landing-form {  
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -o-border-radius: 20px;
+  border-radius: 20px;
+  background-color: #555555;
+  color: #fff;
+  padding: 50px;
+}
+
+.landing-form h2{  
+  padding-top: 10px;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 20px;
+}
+
+
 
 /* Media Queries
 -------------------------------------------------- */

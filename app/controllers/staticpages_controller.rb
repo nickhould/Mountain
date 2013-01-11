@@ -28,4 +28,7 @@ class StaticpagesController < ApplicationController
 
 	def demo_page
 	end
+
+	def landing
+	end
 end

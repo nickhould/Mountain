@@ -27,7 +27,7 @@ class TumblrData
   end
 
   def blogs
-    @client.info["user"]["blogs"]  
+    @client.info["user"]["blogs"] if @client.info["user"]
   end
 
   def posts(url)

@@ -45,17 +45,17 @@ class AuthorizationsController < ApplicationController
     # auth = request.env["omniauth.auth"]
     # google_token = session[:google_token] = auth.credentials.token
     # google_secret= session[:google_secret] = auth.credentials.secret
-    
+
     auth = request.env["omniauth.auth"]
     token = auth.credentials.token
     secret = auth.credentials.secret
     @authorization = current_user.authorizations.new(token: token, secret: secret, uid: auth.uid, provider: auth.provider)
-    
-    
+
+
 
     respond_to do |format|
       if @authorization.save
-        if authorized_all_providers? 
+        if authorized_all_providers?
           format.html { redirect_to default_dashboard_url, notice: 'Authorization was successfully created. It\'s now time to create your first dashboard!' }
         else
         format.html { redirect_to authorizations_url, notice: 'Authorization was successfully created.' }
@@ -98,11 +98,11 @@ class AuthorizationsController < ApplicationController
 
   protected
 
-  def authorized_all_providers? 
+  def authorized_all_providers?
     google_authorized? && tumblr_authorized? ? true : false
   end
 
-  def new_authorization_from_tumblr? 
+  def new_authorization_from_tumblr?
     !google_authorized? && tumblr_authorized? ? true : false
   end
 

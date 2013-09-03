@@ -30,8 +30,6 @@ class Blog < ActiveRecord::Base
   def self.create_all_from_tumblr(token, secret)
     initialize_tumblr(token, secret)
     blogs = @tumblr.blogs
-    puts @tumblr.info.inspect
-    puts blogs
     unless blogs.blank?
       blogs.each do |tumblr_blog|
         find_or_create_from_tumblr(tumblr_blog)

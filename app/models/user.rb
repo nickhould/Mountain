@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
-   
+
 
   def tumblr_token
     authorization_from_tumblr.token
@@ -19,11 +19,11 @@ class User < ActiveRecord::Base
   end
 
   def authorization_from_tumblr
-    self.authorizations.find_by_provider("tumblr")
+    self.authorizations.find_by_provider("tumblr") if authorizations
   end
 
   def authorization_from_google
-    self.authorizations.find_by_provider("google")
+    self.authorizations.find_by_provider("google") if authorizations
   end
 
   def create_blogs_from_tumblr(tumblr_token, tumblr_secret)
@@ -32,5 +32,5 @@ class User < ActiveRecord::Base
 
   def blogs_from_tumblr
     authorization_from_tumblr.blogs.all
-  end              
+  end
 end

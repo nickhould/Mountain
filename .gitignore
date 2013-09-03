@@ -18,3 +18,6 @@
 /config/application.yml
 /db/migrate/20121213203930_remove_update_from_blogs.rb
 /db/migrate/20121213204057_add_written_at_to_blogs.rb
+
+# ENV
+config/initializers/omniauth_tokens.rb

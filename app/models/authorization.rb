@@ -17,5 +17,4 @@ class Authorization < ActiveRecord::Base
   def from_tumblr?
     provider.downcase == "tumblr"
   end
-
 end

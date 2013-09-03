@@ -8,7 +8,7 @@ class GoogleAnalytics
 	end
 
 	def accounts
-		Garb::Management::Account.all(garbsession)	
+		Garb::Management::Account.all(garbsession)
 	end
 
 	def web_properties
@@ -16,7 +16,7 @@ class GoogleAnalytics
 	end
 
 	def web_property(web_property_id)
-		web_property = Garb::Management::WebProperty.all(garbsession).detect do |p| 
+		Garb::Management::WebProperty.all(garbsession).detect do |p|
 			p.id == web_property_id
 		end
 	end
@@ -26,7 +26,7 @@ class GoogleAnalytics
 	end
 
 	def profile(web_property_id)
-		profile = Garb::Management::Profile.all(garbsession).detect do |p| 
+		Garb::Management::Profile.all(garbsession).detect do |p|
 			p.web_property_id == web_property_id
 		end
 	end
@@ -49,6 +49,6 @@ class GoogleAnalytics
 	end
 
   def access_token
-    access_token = garbsession.access_token
+    garbsession.access_token
   end
 end

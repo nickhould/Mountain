@@ -13,15 +13,25 @@ class Blog < ActiveRecord::Base
 
   # Posts
 
-  def create_posts_from_tumblr(token, secret)
+  def self.token
+    authorization.token if respond_to?(:authorization)
+  end
+
+  def self.secret
+    authorization.secret if respond_to?(:authorization)
+  end
+
+  def create_posts_from_tumblr(token=token, secret=secret)
     posts.create_all_from_tumblr(token, secret, url)
   end
 
-  # Blogs 
+  # Blogs
 
   def self.create_all_from_tumblr(token, secret)
     initialize_tumblr(token, secret)
     blogs = @tumblr.blogs
+    puts @tumblr.info.inspect
+    puts blogs
     unless blogs.blank?
       blogs.each do |tumblr_blog|
         find_or_create_from_tumblr(tumblr_blog)
@@ -62,7 +72,7 @@ class Blog < ActiveRecord::Base
 
   def total_notes
     total = 0
-    if posts.any? 
+    if posts.any?
       posts.each do |post|
         notes_for_post = post.post_data_sets.last.notes
         total += notes_for_post.to_i
@@ -77,7 +87,7 @@ class Blog < ActiveRecord::Base
 
   def followers
     if blog_data_sets.any?
-      followers = blog_data_sets.last.followers 
+      followers = blog_data_sets.last.followers
     end
   end
 end

@@ -64,10 +64,7 @@ class Blog < ActiveRecord::Base
     blog_data_sets.update_from_blog(blog, tumblr_blog)
   end
 
-
-
   # Metrics
-
   def total_notes
     total = 0
     if posts.any?
@@ -85,7 +82,7 @@ class Blog < ActiveRecord::Base
 
   def followers
     if blog_data_sets.any?
-      followers = blog_data_sets.last.followers
+      blog_data_sets.last.followers
     end
   end
 end

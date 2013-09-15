@@ -39,9 +39,9 @@ class TumblrData
     total_posts_number = blog["posts"].to_i
     url = parse_url(blog["url"])
     limit = 45
-    offset = 0  
+    offset = 0
     posts = []
-    while posts.length < total_posts_number 
+    while posts.length < total_posts_number
       @client.posts(url, offset: offset, limit: limit)["posts"].each do |post|
         post = [ post ]
         posts << post

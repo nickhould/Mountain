@@ -2,7 +2,6 @@
 <html>
 <head>
   <title>Mountain Metrics</title>
-  <%= render 'layouts/analytics' %>
   <%= render 'layouts/tracking' %>
 	<%= javascript_include_tag "application" %>
 	<%= stylesheet_link_tag    "application", media: "all" %>
@@ -14,7 +13,7 @@
 
 </head>
 <body>
-	
+
 	<%= render 'layouts/navbar' %>
 		<% flash.each do |key, value| %>
 			<%= content_tag(:div, value, class: "alert  alert-#{key}") %>

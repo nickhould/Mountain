@@ -10,6 +10,11 @@ class User < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
 
 
+
+  def self.update_blogs
+    all.each { |user| create_all_blogs_from_tumblr(user) }
+  end
+
   def tumblr_token
     authorization_from_tumblr.token
   end
@@ -33,4 +38,11 @@ class User < ActiveRecord::Base
   def blogs_from_tumblr
     authorization_from_tumblr.blogs.all
   end
+
+protected
+  def self.create_all_blogs_from_tumblr(user)
+    auth = user.authorization_from_tumblr
+    auth.create_all_blogs_from_tumblr if auth
+  end
+
 end

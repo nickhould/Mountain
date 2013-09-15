@@ -8,7 +8,6 @@ class Authorization < ActiveRecord::Base
   validates :token, :secret, :provider, :uid, :presence => true
   validates :provider, :uniqueness => {:scope => :user_id,
                                        :message => "already authorized for this provider." }
-
   def create_all_blogs_from_tumblr
     blogs.create_all_from_tumblr(token, secret)
   end

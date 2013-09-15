@@ -1,4 +1,4 @@
-  class ApplicationController < ActionController::Base
+class ApplicationController < ActionController::Base
   protect_from_forgery
   include SessionsHelper
   helper_method :encode_url_for_params, :default_dashboard_url
@@ -10,17 +10,25 @@
   end
 
   def tumblr_authorized?
-    current_user.authorizations.find_by_provider("tumblr") ? true : false 
+    current_user.authorizations.find_by_provider("tumblr") ? true : false
   end
 
   def google_authorized?
     current_user.authorizations.find_by_provider("google") ? true : false
   end
 
+  def just_signed_up
+    flash[:just_signed_up]
+  end
+
   def authorized_all_providers
-    unless google_authorized? && tumblr_authorized?
+    google_authorized? && tumblr_authorized? ? true : false
+  end
+
+  def can_access_dashboard
+    unless authorized_all_providers || just_signed_up
       redirect_to authorizations_path, notice: "Please authorize your Google and Tumblr Account."
-    end 
+    end
   end
 
   def default_dashboard_url
@@ -34,7 +42,7 @@
   def already_signed_in
     redirect_to default_dashboard_url if signed_in?
   end
-  
+
 	protected
   def encode_url_for_params(url)
   	URI.encode(Base64.encode64(url))
@@ -45,18 +53,18 @@
   end
 
   def google_token
-    current_user.authorizations.find_by_provider("google").token
+    current_user.authorizations.find_by_provider("google").token if google_authorized?
   end
 
   def google_secret
-    current_user.authorizations.find_by_provider("google").secret
+    current_user.authorizations.find_by_provider("google").secret if google_authorized?
   end
 
   def tumblr_token
-    current_user.authorizations.find_by_provider("tumblr").token
+    current_user.authorizations.find_by_provider("tumblr").token if tumblr_authorized?
   end
 
   def tumblr_secret
-    current_user.authorizations.find_by_provider("tumblr").secret
+    current_user.authorizations.find_by_provider("tumblr").secret if tumblr_authorized?
   end
 end

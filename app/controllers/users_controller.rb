@@ -47,7 +47,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        session[:user_id] = @user.id
+        signed_up
         format.html { redirect_to authorizations_url, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
@@ -83,5 +83,14 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url }
       format.json { head :no_content }
     end
+  end
+
+
+  protected
+
+  def signed_up
+    session[:user_id] = @user.id
+    session[:user_email] = @user.email
+    flash[:track], flash[:just_signed_up] = [ "signed_up" ], true
   end
 end

@@ -39,6 +39,46 @@ class User < ActiveRecord::Base
     authorization_from_tumblr.blogs.all
   end
 
+  def identify_properties
+    {
+      email: email,
+      created: created_at,
+      created_at: created_at,
+      updated_at: updated_at,
+      has_dashboard: has_dashboard?,
+      dashboard_count: dashboard_count,
+      has_authorization: has_authorization?,
+      authorization_count: authorization_count,
+      has_blog: has_blog?,
+      blog_count: blog_count
+    }.to_json
+  end
+
+  def has_dashboard?
+    dashboards.any? ? true : false
+  end
+
+  def dashboard_count
+    has_dashboard? ? dashboards.count : 0
+  end
+
+  def has_authorization?
+    authorizations.any? ? true : false
+  end
+
+  def authorization_count
+    has_authorization? ? authorizations.count : 0
+  end
+
+  def has_blog?
+    ( authorization_from_tumblr && authorization_from_tumblr.blogs ) ? true : false
+  end
+
+  def blog_count
+    has_blog? ? authorization_from_tumblr.blogs.count : 0
+  end
+
+
 protected
   def self.create_all_blogs_from_tumblr(user)
     auth = user.authorization_from_tumblr

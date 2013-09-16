@@ -2,6 +2,17 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   include SessionsHelper
   helper_method :encode_url_for_params, :default_dashboard_url
+  before_filter :initialize_tracker
+  after_filter :update_flash_with_tracker
+
+  def initialize_tracker
+    @tracker = Track.new
+  end
+
+  def update_flash_with_tracker
+    flash[:track] = @tracker.events
+  end
+
 
   def at_least_one_dashboard
     if current_user.dashboards.count == 0

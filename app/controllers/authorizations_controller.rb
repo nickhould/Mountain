@@ -55,6 +55,7 @@ class AuthorizationsController < ApplicationController
 
     respond_to do |format|
       if @authorization.save
+        @tracker.track("created_new_authorization")
         if authorized_all_providers?
           format.html { redirect_to default_dashboard_url, notice: 'Authorization was successfully created. It\'s now time to create your first dashboard!' }
         else

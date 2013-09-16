@@ -47,7 +47,9 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        signed_up
+        session[:user_id] = @user.id
+        flash[:just_signed_up] = true
+        @tracker.track("signed_up")
         format.html { redirect_to authorizations_url, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
@@ -64,6 +66,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
+        @tracker.track("edited_account")
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
@@ -78,19 +81,10 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-
+    @tracker.track("deleted_account")
     respond_to do |format|
       format.html { redirect_to users_url }
       format.json { head :no_content }
     end
-  end
-
-
-  protected
-
-  def signed_up
-    session[:user_id] = @user.id
-    session[:user_email] = @user.email
-    flash[:track], flash[:just_signed_up] = [ "signed_up" ], true
   end
 end

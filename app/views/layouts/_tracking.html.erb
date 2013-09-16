@@ -3,7 +3,6 @@
   analytics.load("g3xhaxculv");
 </script>
 
-<!-- "#{session[:user_email]}" || "#{current_user.email}" -->
 <% if current_user %>
   <script type="text/javascript">
     analytics.identify(<%= current_user.id %>,

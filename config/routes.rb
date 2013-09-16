@@ -34,7 +34,7 @@ Dashboardly::Application.routes.draw do
   get '/landing' => 'staticpages#landing'
 
 
-  # Omniauth 
+  # Omniauth
   match "/auth/:provider/callback" => "authorizations#create"
   match '/auth/failure', to: redirect('/')
 end

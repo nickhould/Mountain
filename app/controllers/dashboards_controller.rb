@@ -59,6 +59,7 @@ class DashboardsController < ApplicationController
 
     respond_to do |format|
       if @dashboard.save
+        @tracker.track("created_new_dashboard")
         format.html { redirect_to @dashboard, notice: 'Dashboard was successfully created.' }
         format.json { render json: @dashboard, status: :created, location: @dashboard }
       else
@@ -106,6 +107,7 @@ class DashboardsController < ApplicationController
     current_user.authorization_from_tumblr.blogs.create_all_from_tumblr(tumblr_token, tumblr_secret)
     redirect_to new_dashboard_url, notice: "Your Tumblr Blogs have been refreshed."
   end
+
 protected
   def authorized_user
     dashboard = current_user.dashboards.find_by_id(params[:id])

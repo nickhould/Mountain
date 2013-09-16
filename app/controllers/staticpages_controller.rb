@@ -1,12 +1,15 @@
 class StaticpagesController < ApplicationController
-	
+
 	def home
+		@tracker.track("viewed_home_page")
 	end
 
 	def login
+		@tracker.track("viewed_login_page")
 	end
 
 	def about
+		@tracker.track("viewed_about_page")
 	end
 
 	def test
@@ -24,11 +27,14 @@ class StaticpagesController < ApplicationController
 	end
 
 	def demo
+		@tracker.track("viewed_demo")
 	end
 
 	def demo_page
+		@tracker.track("viewed_second_demo_page")
 	end
 
 	def landing
+		@tracker.track("viewed_landing_page")
 	end
 end

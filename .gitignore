@@ -21,3 +21,6 @@
 
 # ENV
 config/initializers/omniauth_tokens.rb
+
+#LATEST DUMP
+latest.dump

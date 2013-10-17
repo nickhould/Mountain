@@ -4,7 +4,7 @@
 
 	<% unless current_user? %>
 		<div class="row-fluid">
-			<a href="users/new" class="btn btn-danger btn-flat signup">Sign Up</a>
+			<%= link_to("Connect with Tumblr",  tumblr_auth_url, class: "btn btn-danger btn-flat signup") %>
 		</div>
 	<% end %>
 	<%= image_tag "mountain devices.png", :width => 800 %>

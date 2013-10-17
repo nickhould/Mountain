@@ -9,7 +9,17 @@ class User < ActiveRecord::Base
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
 
-
+  def self.from_omniauth(auth)
+    joins(:authorizations).merge(Authorization.where(auth.slice(:provider, :uid))).first_or_initialize.tap do |user|
+      user.authorizations.new do |authorization|
+        authorization.uid = auth.uid
+        authorization.provider = auth.provider
+        authorization.token = auth.token
+        authorization.secret = auth.secret
+      end
+      user.save!
+    end
+  end
 
   def self.update_blogs
     all.each { |user| create_all_blogs_from_tumblr(user) }

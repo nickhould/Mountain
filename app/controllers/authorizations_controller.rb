@@ -1,5 +1,5 @@
 class AuthorizationsController < ApplicationController
-  before_filter :signed_in_user
+#  before_filter :signed_in_user
   # GET /authorizations
   # GET /authorizations.json
 
@@ -46,11 +46,10 @@ class AuthorizationsController < ApplicationController
     # google_token = session[:google_token] = auth.credentials.token
     # google_secret= session[:google_secret] = auth.credentials.secret
 
-    auth = request.env["omniauth.auth"]
-    token = auth.credentials.token
-    secret = auth.credentials.secret
-    @authorization = current_user.authorizations.new(token: token, secret: secret, uid: auth.uid, provider: auth.provider)
+    auth = Auth.new(request.env["omniauth.auth"])
+    authorization = Authorization.find_from_auth(auth)
 
+    @authorization = current_user.authorizations.new(token: token, secret: secret, uid: auth.uid, provider: auth.provider)
 
 
     respond_to do |format|

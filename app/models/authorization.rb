@@ -15,4 +15,12 @@ class Authorization < ActiveRecord::Base
   def from_tumblr?
     provider.downcase == "tumblr"
   end
+
+  def self.new_from_auth(auth)
+    new(auth.attributes)
+  end
+
+  def self.find_authorization_by_token_and_secret(token, secret)
+    where("token = ? and secret = ?", token, secret)
+  end
 end

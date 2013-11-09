@@ -1,25 +1,34 @@
 class User < ActiveRecord::Base
-  attr_accessible :name, :password_confirmation, :password, :email
+  attr_accessible :name, :email
 
-  has_secure_password
   has_many :dashboards
   has_many :authorizations
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
-                    uniqueness: { case_sensitive: false }
+  # validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
+                    # uniqueness: { case_sensitive: false }
 
   def self.from_omniauth(auth)
-    joins(:authorizations).merge(Authorization.where(auth.slice(:provider, :uid))).first_or_initialize.tap do |user|
-      user.authorizations.new do |authorization|
-        authorization.uid = auth.uid
-        authorization.provider = auth.provider
-        authorization.token = auth.token
-        authorization.secret = auth.secret
+    # find user with associated authorization
+    # if not found, create user and create authorization
+    # else return found user
+
+    authorization = Authorization.where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user_authorization|
+      if !user_authorization.created_at?
+        user = User.create do |user|
+          user.uid = auth.uid
+        end
+        user_authorization.uid = auth.uid
+        user_authorization.provider = auth.provider
+        user_authorization.token = auth.credentials.token
+        user_authorization.secret = auth.credentials.secret
+        user_authorization.user_id = user.id
+        user_authorization.save!
       end
-      user.save!
     end
+    authorization.user if authorization && authorization.user
   end
+
 
   def self.update_blogs
     all.each { |user| create_all_blogs_from_tumblr(user) }

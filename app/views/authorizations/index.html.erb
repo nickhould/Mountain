@@ -17,16 +17,6 @@
 			    </li>
 
 			  <% end %>
-			  <% unless google_auth %>
-			    <li>
-			    	<%= link_to "Link Google Analytics", google_auth_url, class: "btn btn-large btn-flat"  %>
-			    </li>
-			  <% else %>
-			    <li>
-			    	<%= link_to "Google Analytics Linked", google_auth, class: "btn btn-large btn-success btn-flat", method: :delete %>
-			    </li>
-			  <% end %>
 			</ul>
-
 </div>
 

@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authorized_all_providers
-    google_authorized? && tumblr_authorized? ? true : false
+    tumblr_authorized? ? true : false
   end
 
   def can_access_dashboard

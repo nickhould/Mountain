@@ -31,8 +31,6 @@ class DashboardsController < ApplicationController
   # GET /dashboards/new.json
   def new
     @dashboard = current_user.dashboards.new
-    @dashboard.datasource(google_token, google_secret)
-    @profiles =  @dashboard.profiles
     @blogs = current_user.blogs_from_tumblr
 
      # @profiles = current_user.profiles

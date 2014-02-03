@@ -65,7 +65,6 @@ ActiveRecord::Schema.define(:version => 20131014201204) do
     t.datetime "updated_at", :null => false
     t.datetime "posted_at"
     t.string   "type_of"
-    t.string   "uid"
   end
 
   create_table "users", :force => true do |t|

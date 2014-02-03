@@ -28,7 +28,7 @@ class SessionsController < ApplicationController
   end
 
   def log_out(session)
-    session[:user_id] = nilo
+    session[:user_id] = nil
     @tracker.track("logged_out")
   end
 end

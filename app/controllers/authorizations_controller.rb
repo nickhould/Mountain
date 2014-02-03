@@ -98,10 +98,6 @@ class AuthorizationsController < ApplicationController
 
   protected
 
-  def authorized_all_providers?
-    google_authorized? && tumblr_authorized? ? true : false
-  end
-
   def new_authorization_from_tumblr?
     !google_authorized? && tumblr_authorized? ? true : false
   end

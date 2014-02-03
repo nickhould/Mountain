@@ -17,3 +17,13 @@ Get accurate information across the board. Mountain gives you information from m
 
 Mountain was created by Samuel R Solomon, Enrique Gonzales and Jean-Nicholas Hould.
 
+
+
+
+## Issue with Posgresql 
+
+Start Postgresql with the following command:
+
+```
+pg_ctl -D /usr/local/var/postgres -l logfile start
+```

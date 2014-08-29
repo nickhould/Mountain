@@ -1,54 +1,35 @@
 require 'metrics'
 
 class GoogleAnalytics
-
-	def initialize(token, secret)
-    @token = token
-    @secret = secret
+	def initialize(authorization)
+    Garb::Session.access_token = OAuthManager.new(authorization).access_token
 	end
 
 	def accounts
-		Garb::Management::Account.all(garbsession)
+		Garb::Management::Account.all
 	end
 
 	def web_properties
-		Garb::Management::WebProperty.all(garbsession)
+		Garb::Management::WebProperty.all()
 	end
 
 	def web_property(web_property_id)
-		Garb::Management::WebProperty.all(garbsession).detect do |p|
+		Garb::Management::WebProperty.all.detect do |p|
 			p.id == web_property_id
 		end
 	end
 
 	def profiles
-  	Garb::Management::Profile.all(garbsession)
+  	Garb::Management::Profile.all
 	end
 
 	def profile(web_property_id)
-		Garb::Management::Profile.all(garbsession).detect do |p|
+		Garb::Management::Profile.all.detect do |p|
 			p.web_property_id == web_property_id
 		end
 	end
 
 	def goals
-		Garb::Management::Goal.all(garbsession)
+		Garb::Management::Goal.all
 	end
-
-	def garbsession
-		api_key = "tKHc-DDjWZu3mern4k1u7ndN"
-    consumer = OAuth::Consumer.new('472837297406.apps.googleusercontent.com', api_key, {
-        :site => 'https://www.google.com',
-        :request_token_path => '/accounts/OAuthGetRequestToken',
-        :access_token_path => '/accounts/OAuthGetAccessToken',
-        :authorize_path => '/accounts/OAuthAuthorizeToken'
-      })
-    garbsession = Garb::Session.new
-    garbsession.access_token = OAuth::AccessToken.new(consumer, @token, @secret)
-    garbsession
-	end
-
-  def access_token
-    garbsession.access_token
-  end
 end

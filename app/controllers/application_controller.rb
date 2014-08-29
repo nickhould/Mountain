@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
   end
 
   def google_authorized?
-    current_user.authorizations.find_by_provider("google") ? true : false
+    google_provider
   end
 
   def just_signed_up
@@ -63,12 +63,17 @@ class ApplicationController < ActionController::Base
   	URI.decode(Base64.decode64(url))
   end
 
+  def google_provider
+    ( current_user.authorizations.find_by_provider("google") or
+      current_user.authorizations.find_by_provider("google_oauth2") )
+  end
+
   def google_token
-    current_user.authorizations.find_by_provider("google").token if google_authorized?
+   google_provider.token if google_provider
   end
 
   def google_secret
-    current_user.authorizations.find_by_provider("google").secret if google_authorized?
+    google_provider.secret if google_provider
   end
 
   def tumblr_token

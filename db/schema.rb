@@ -11,16 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121213185724) do
+ActiveRecord::Schema.define(:version => 20140331014000) do
 
   create_table "authorizations", :force => true do |t|
     t.string   "provider"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.string   "uid"
     t.string   "token"
     t.string   "secret"
+    t.string   "refresh_token"
+    t.integer  "expires_at"
   end
 
   create_table "blog_data_sets", :force => true do |t|
@@ -65,6 +67,7 @@ ActiveRecord::Schema.define(:version => 20121213185724) do
     t.datetime "updated_at", :null => false
     t.datetime "posted_at"
     t.string   "type_of"
+    t.string   "uid"
   end
 
   create_table "users", :force => true do |t|
@@ -73,6 +76,7 @@ ActiveRecord::Schema.define(:version => 20121213185724) do
     t.datetime "updated_at",      :null => false
     t.string   "password_digest"
     t.string   "email"
+    t.string   "uid"
   end
 
 end

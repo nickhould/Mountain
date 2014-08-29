@@ -1,5 +1,8 @@
 <div class="hero-unit container-fluid">
 	<h1>Tumblr Stats</h1>
+	<% if Rails.env == "development" %>
+		<p>dev mode</p>
+	<% end %>
 	<p>Mountain is the only way to see metrics for your Tumblr account. Whether you're managing a major brand, composing beautiful long-form, or sharing cat pictures, Mountain shows you how people interact with your content.</p>
 
 	<% unless current_user? %>

@@ -5,9 +5,9 @@ gem 'bcrypt-ruby', '3.0.1'
 gem 'will_paginate', '3.0.3'
 gem 'garb'
 gem 'jquery-rails'
-gem 'omniauth-google', :git => 'git://github.com/davidkpham/omniauth-google.git'
+gem "omniauth-google-oauth2"
 gem 'omniauth-tumblr'
-gem 'oauth'
+gem 'oauth2'
 gem 'certified'
 gem 'newrelic_rpm'
 gem 'thin'
@@ -17,6 +17,9 @@ gem 'heroku'
 gem 'tumblr_client'
 gem 'domainatrix'
 gem 'whenever'
+gem 'railties'
+gem 'legato'
+gem 'gruff'
 
 group :development, :test do
   gem 'sqlite3', '1.3.5'
@@ -26,6 +29,7 @@ group :development, :test do
   gem 'spork', '0.9.2'
   gem 'pg', '0.12.2'
   gem "better_errors"
+  gem 'rails_email_preview', '~> 0.2.21'
 end
 
 # Gems used only for assets and not required
@@ -58,7 +62,5 @@ group :test do
   # gem 'growl', '1.0.3'
 end
 
-group :production do
-  gem 'pg', '0.12.2'
-end
+
 

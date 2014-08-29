@@ -1,5 +1,7 @@
 Dashboardly::Application.routes.draw do
 
+  mount RailsEmailPreview::Engine, at: 'emails'
+
   constraints(:host => "mountainmetrics.com") do
     root :to => redirect("http://www.mountainmetrics.com")
     match '/*path', :to => redirect {|params| "http://www.mountainmetrics.com/#{params[:path]}"}
@@ -35,7 +37,9 @@ Dashboardly::Application.routes.draw do
 
 
   # Omniauth
+  match "/auth/google_oauth2/callback" => "authorizations#create"
   match "/auth/:provider/callback" => "authorizations#create"
   match '/auth/failure', to: redirect('/')
+
 end
 

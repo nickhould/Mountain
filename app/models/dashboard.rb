@@ -2,7 +2,7 @@ require 'uri' # consider moving this require to your application.rb
 class Dashboard < ActiveRecord::Base
   after_save :create_all_post_from_blog
   attr_accessible :name, :web_property_id, :user_id, :blog_id
-  
+
   belongs_to :user
   belongs_to :blog
 
@@ -59,7 +59,7 @@ class Dashboard < ActiveRecord::Base
   end
 
   def web_properties
-    @ga.web_properties	
+    @ga.web_properties
   end
 
   def previous_period_dates
@@ -86,7 +86,7 @@ class Dashboard < ActiveRecord::Base
 
   def variation(metric_name, secondary_metric=nil, page_path=nil, single_metric = false)
   	if secondary_metric
-  		calculate_variation(variation_with_secondary_metric(metric_name, secondary_metric, page_path)) 
+  		calculate_variation(variation_with_secondary_metric(metric_name, secondary_metric, page_path))
   	elsif single_metric
   		calculate_variation([past_result(metric_name, page_path), present_result(metric_name, page_path)])
   	else
@@ -175,7 +175,7 @@ class Dashboard < ActiveRecord::Base
 	  	nil
 	  end
   end
-	
+
 	def sources
 		profile.sources(@params).sort { |a,b| a.visits.to_i <=> b.visits.to_i}.reverse.take(10)
 	end
@@ -200,5 +200,5 @@ class Dashboard < ActiveRecord::Base
 
 	def pageviews
 	  profile.pageviews(@params).first
-	end 
+	end
 end

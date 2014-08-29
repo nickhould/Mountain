@@ -1,10 +1,8 @@
-
 class Exits
   extend Garb::Model
 
   metrics :exits
 end
-
 
 class Visitstotal
   extend Garb::Model
@@ -34,7 +32,7 @@ class Pages
 end
 
 class Pageviews
-	extend Garb::Model 
+	extend Garb::Model
 
 	metrics :pageviews
   dimensions :page_path
@@ -45,7 +43,7 @@ class Visitors
 
 	metrics :visitors
 end
-  
+
 class Snapshot
   extend Garb::Model
 
@@ -63,7 +61,7 @@ class Nextpage
   extend Garb::Model
 
   metrics :pageviews
-  dimensions :page_path, :pagetitle 
+  dimensions :page_path, :pagetitle
 end
 
 class Keywords

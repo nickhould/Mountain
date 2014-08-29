@@ -4,7 +4,7 @@ class BlogDataSet < ActiveRecord::Base
   belongs_to :blog
 
   def self.update_from_blog(blog, tumblr_blog)
-    if blog && !blog.blog_data_sets.find_by_created_at_and_blog_id(Date.today, blog.id) 
+    if blog && !blog.blog_data_sets.find_by_created_at_and_blog_id(Date.today, blog.id)
       blog.blog_data_sets.create_from_blog(tumblr_blog)
     end
   end
@@ -15,5 +15,6 @@ class BlogDataSet < ActiveRecord::Base
       data_set.followers = tumblr_blog["followers"]
     end
   end
+
 
 end

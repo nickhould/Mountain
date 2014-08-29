@@ -25,8 +25,15 @@ class Blog < ActiveRecord::Base
     posts.create_all_from_tumblr(token, secret, url)
   end
 
-  # Blogs
+  # Metrics
+  def self.where_data_set_updated_at_n_days_ago(n)
+    return all.select do |b|
+      ( Date.today.to_date - b.blog_data_sets.last.created_at.to_date ).to_i <= n
+    end
+  end
 
+
+  # Blogs
   def self.create_all_from_tumblr(token, secret)
     initialize_tumblr(token, secret)
     blogs = @tumblr.blogs

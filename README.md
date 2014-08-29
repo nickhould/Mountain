@@ -1,19 +1,21 @@
-# MountainMetrics #
-## www.mountainmetrics.com ##
+# MountainMetrics 
+## www.mountainmetrics.com 
 
+### Postgresql Database
+To-Do
 
-### What is Mountain? ###
-Mountain is the only way to see metrics for your Tumblr account. Whether your managing a major brand, composing beautiful long-form, or sharing cat pictures, Mountain shows you how people interact with your content.
+### Running the servera
+Update Host File 
+```
+127.0.0.1       mountainmetrics.com www.mountainmetrics.com
+``
 
-#### Track variation ####
-Watch your following grow. Mountain shows you how Tumblr traffic, likes and reblogs change over time.
+Start Server in Port 80 
+```bash
+rvmsudo rails server thin -p 80 -b 127.0.0.1
+```
 
-#### Dig deep #####
-Mountain drills down and shows you how individual Tumblr posts are preforming.
-
-#### Cross Metrics ####
-Get accurate information across the board. Mountain gives you information from multiple sources.
-
-
-Mountain was created by Samuel R Solomon, Enrique Gonzales and Jean-Nicholas Hould.
-
+Clear DNS Cache
+```
+sudo dscacheutil -flushcache
+```
